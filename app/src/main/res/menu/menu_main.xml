@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:visible="true"
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="search"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
+
+    <item
+        android:visible="false"
+        android:id="@+id/sort"
+        android:icon="@drawable/ic_baseline_sort_24"
+        android:title="sort"
+        app:showAsAction="always" />
+
+    <item
+        android:visible="false"
+        android:id="@+id/menuSave"
+        android:icon="@drawable/ic_baseline_save_24"
+        android:title="Save"
+        app:showAsAction="always" />
+
+    <item
+        android:visible="false"
+        android:id="@+id/menuDelete"
+        android:icon="@drawable/ic_baseline_delete_24"
+        android:title="Delete"
+        app:showAsAction="always" />
+
+    <item
+        android:visible="false"
+        android:id="@+id/menuMain"
+        android:title="Item"
+        android:icon="@drawable/menu_icon"
+        app:showAsAction="always">
+        <menu>
+
+            <item
+                android:id="@+id/sortTest"
+                android:title="Sort">
+
+                <menu>
+                    <item
+                        android:id="@+id/sortTitle"
+                        android:icon="@drawable/arrow_drop_up_24"
+                        android:title="Title" />
+                    <item
+                        android:id="@+id/sortNote"
+                        android:title="Note" />
+                    <item
+                        android:id="@+id/sortDate"
+                        android:title="Date" />
+
+                </menu>
+            </item>
+
+
+            <item
+                android:id="@+id/menuUser"
+                android:title="User" />
+            <item
+                android:id="@+id/logout"
+                android:title="Logout" />
+
+        </menu>
+    </item>
+</menu>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="style_TextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">TextView</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:elegantTextHeight">true</item>
+        <item name="elevation">16dp</item>
+        <item name="strokeColor">@color/purple_500</item>
+        <item name="android:clickable">true</item>
+        <item name="android:animateOnClick">true</item>
+        <!--        <item name="android:textColor">@color/black</item>-->
+    </style>
+
+
+    <style name="style_TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:hint">Please enter this field</item>
+        <item name="boxBackgroundMode">outline</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="counterEnabled">true</item>
+        <item name="elevation">8dp</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox</item>
+        <item name="helperTextEnabled">true</item>
+
+        <!--        <item name="helperText">*Required</item>-->
+        <!--        <item name="counterMaxLength">50</item>-->
+        <!--        <item name="endIconMode">clear_text</item>-->
+        <!--        <item name="startIconDrawable">@android:drawable/ic_menu_edit</item>-->
+        <!--        <item name="endIconDrawable">@android:drawable/checkbox_on_background</item>-->
+        <!--        <item name="helperTextTextColor">@color/design_default_color_error</item>-->
+    </style>
+
+
+    <style name="style_TextInputEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+
+        <!--        <item name="android:inputType">textLongMessage|textImeMultiLine</item>-->
+        <!--        <item name="android:maxLength">10</item>-->
+    </style>
+
+
+    <style name="style_EditText" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:hint">Please enter this field</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="elevation">8dp</item>
+        <item name="maxLines">1</item>
+    </style>
+
+
+    <style name="style_Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="textAllCaps">false</item>
+        <item name="elevation">8dp</item>
+        <item name="android:text">Button</item>
+        <item name="cornerRadius">100dp</item>
+        <item name="strokeColor">@color/purple_500</item>
+        <item name="android:clickable">true</item>
+        <item name="android:animateOnClick">true</item>
+    </style>
+
+    <style name="style_CardView" parent="Widget.MaterialComponents.CardView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="elevation">8dp</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="cardPreventCornerOverlap">true</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="strokeColor">@color/purple_700</item>
+        <item name="android:clickable">true</item>
+        <item name="android:animateOnClick">true</item>
+
+    </style>
+
+
+    <style name="style_Divider" parent="Widget.MaterialComponents.MaterialDivider">
+        <item name="background">?android:attr/listDivider</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">2dp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="elevation">8dp</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="thickness">2dp</item>
+    </style>
+
+    <style name="style_ImageView">
+        <item name="android:layout_width">250dp</item>
+        <item name="android:layout_height">250dp</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="elevation">8dp</item>
+        <item name="cornerRadius">160dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:animateOnClick">true</item>
+    </style>
+
+</resources>

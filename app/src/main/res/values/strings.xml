@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">MyNotes</string>
+    <string name="navigation_drawer_open">navigation_drawer_open</string>
+    <string name="navigation_drawer_close">navigation_drawer_close</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="note">Once the APK has been de-compiled, you can download the zipped file containing the de-compiled files through the UnboxAPK API. There are various ways to view the de-compiled files, and one of the best ways is to use Android Studio.
+        Once the APK has been de-compiled, you can download the zipped file containing the de-compiled files through the UnboxAPK API. There are various ways to view the de-compiled files, and one of the best ways is to use Android Studio.
+        Once the APK has been de-compiled, you can download the zipped file containing the de-compiled files through the UnboxAPK API. There are various ways to view the de-compiled files, and one of the best ways is to use Android Studio.
+        Once the APK has been de-compiled, you can download the zipped file containing the de-compiled files through the UnboxAPK API. There are various ways to view the de-compiled files, and one of the best ways is to use Android Studio.
+        Once the APK has been de-compiled, you can download the zipped file containing the de-compiled files through the UnboxAPK API. There are various ways to view the de-compiled files, and one of the best ways is to use Android Studio.
+    </string>
+
+</resources>
