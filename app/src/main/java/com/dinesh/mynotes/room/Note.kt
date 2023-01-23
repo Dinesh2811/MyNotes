@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
 
-//@RequiresApi(Build.VERSION_CODES.O)
+@RequiresApi(Build.VERSION_CODES.O)
 @Entity(tableName = "table_name")
 @TypeConverters(LocalDateTimeConverter::class)
 data class Note(

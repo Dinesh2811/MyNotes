@@ -1,20 +1,26 @@
 package com.dinesh.mynotes.rv
 
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.PopupMenu
-//import android.widget.SearchView
-import androidx.appcompat.widget.SearchView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.SearchView
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.*
+import androidx.room.Room
 import com.dinesh.mynotes.R
 import com.dinesh.mynotes.activity.AddNote
 import com.dinesh.mynotes.activity.EditNote
@@ -25,12 +31,16 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
 import java.time.LocalDateTime
 import java.util.*
 
-private val TAG = "log_" + RvMain::class.java.name.split(RvMain::class.java.name.split(".").toTypedArray()[2] + ".").toTypedArray()[1]
-
+@RequiresApi(Build.VERSION_CODES.O)
 class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
+    private val TAG = "log_" + RvMain::class.java.name.split(RvMain::class.java.name.split(".").toTypedArray()[2] + ".").toTypedArray()[1]
+
 
     // TODO: initialization
     lateinit var v: View
@@ -122,16 +132,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         }
     }
 
-    var selectedPosition = -1
     override fun onLongClick(view: View?, position: Int, rvSelectedItemCount: Int) {
-//        (rvSelectedItemCount == 0).also { (rvIsItemSelected as MutableLiveData).value = it }
-//        if (actionMode == null) {
-//            selectedPosition = position
-//            actionMode = startActionMode(this)
-//            toggleSelection(position)
-//            callback.setDragEnable(true)
-//        }
-
         if (actionMode == null) {
             longClickMenu(view, position)
         }
@@ -145,16 +146,15 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         popup.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.actionSelect -> {
-                    selectedPosition = position
                     actionMode = startActionMode(this)
                     toggleSelection(position)
                     true
                 }
                 R.id.actionReOrder -> {
+                    setItemClick = false
                     actionMode = startActionMode(this)
                     callback.setDragEnable(true)
                     actionMode!!.title = "Drag & Re-Order"
-                    setItemClick = false
                     recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 //                    recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
                     true
@@ -165,11 +165,14 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         popup.show()
     }
 
-    override fun onBackPressed() {
-        Log.e(TAG, "onBackPressed: ")
+//    override fun onBackPressed() {
+//        Log.e(TAG, "onBackPressed: ")
 //        var i = 0
-//        for (i in i..(i+11)){ notesViewModel.insert(Note(title = "title $i", notes = "notes $i", dateCreated = LocalDateTime.now())) }
-    }
+//        for (i in i..(i+11)){
+//        notesViewModel.insert(Note(title = "title $i", notes = "notes $i", dateCreated = LocalDateTime.now()))
+//            }
+//        }
+//    }
 
     // TODO: ActionMode
     override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
@@ -213,6 +216,12 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         // Inflate the menu for the contextual action mode
         val inflater = mode?.menuInflater
         inflater?.inflate(R.menu.contextual_action_mode_menu, menu)
+        if(!setItemClick){
+//            if (menu != null) {
+                menu!!.findItem(R.id.menu_item_delete).isVisible = false
+                menu.findItem(R.id.menu_item_selectAll).isVisible = false
+//            }
+        }
         return true
     }
 
@@ -232,6 +241,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         rvAdapter.clearSelection()
 
         if (!setItemClick) {
+            rvMultiSelectList.clear()
             newNotesList = notesList as ArrayList<Note>
             newNotesList.forEachIndexed { i, it ->
                 rvMultiSelectList.add(RvMultiSelectModel(it.id.toInt(), i))
@@ -339,20 +349,153 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
 
 
     fun onItemMove(fromPosition: Int, toPosition: Int) {
-
-
         Collections.swap(notesList, fromPosition, toPosition)
         Log.d(TAG, "fromPosition: ${fromPosition}          toPosition: ${toPosition}")
         // Notify the adapter that an item moved
         rvAdapter.notifyItemMoved(fromPosition, toPosition)
-
-//        // Move the item in the data source
-//        CoroutineScope(Dispatchers.IO).launch {
-//            Collections.swap(notesList, fromPosition, toPosition)
-//            Log.d(TAG, "fromPosition: ${fromPosition}          toPosition: ${toPosition}")
-//            // Notify the adapter that an item moved
-//            rvAdapter.notifyItemMoved(fromPosition, toPosition)
-//        }
     }
+
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+//        return super.onNavigationItemSelected(item)
+        return when (item.itemId) {
+            R.id.menuBackup -> {
+                Toast.makeText(this, "This feature will be added soon", Toast.LENGTH_SHORT).show()
+//                // request for the storage permission
+//                if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+//                    ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), REQUEST_EXTERNAL_STORAGE)
+//                } else {
+//                    backupDatabase()
+//                }
+                drawerLayout!!.closeDrawer(GravityCompat.START)
+                true
+            }
+            R.id.menuRestore -> {
+                Toast.makeText(this, "This feature will be added soon", Toast.LENGTH_SHORT).show()
+//                restoreDatabase()
+//                notesLiveList.observe(this) {
+//                    Log.d(TAG, "onCreate: ${it}")
+//                    Log.d(TAG, "onCreate: ${it.size}")
+//                    notesList = it
+//                    rvAdapter.notesList = it
+//                    rvAdapter.notifyDataSetChanged()
+//                    if (it.isNotEmpty()) {
+//                        i = it.last().id.toInt()
+//                    }
+//                }
+//                notesViewModel.notesLiveList = notesViewModel.noteDao.getAllNotes()
+//                rvAdapter.notifyDataSetChanged()
+                drawerLayout!!.closeDrawer(GravityCompat.START)
+                true
+            }
+            else -> super.onNavigationItemSelected(item)
+        }
+    }
+
+    private fun restoreDatabase() {
+        val downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+        val myNoteDir = File(downloadDir, "MyNote")
+        val exportFile = File(myNoteDir, "notes.db")
+        val inputFile = FileInputStream(exportFile)
+
+        // Close the original database
+//        notesViewModel.closeDb()
+        val databaseFile = getDatabasePath("notes_database")
+        // Delete the original database file
+        databaseFile.delete()
+        val outputFile = FileOutputStream(databaseFile)
+
+        val buffer = ByteArray(1024)
+        var length: Int
+        while (inputFile.read(buffer).also { length = it } > 0) {
+            outputFile.write(buffer, 0, length)
+        }
+        inputFile.close()
+        outputFile.flush()
+        outputFile.close()
+        Toast.makeText(this, "Database imported from Download/MyNote folder", Toast.LENGTH_SHORT).show()
+        Log.d(TAG, "restoreDatabase: Database imported ${exportFile.absolutePath}")
+        // Reopen the database
+//        notesViewModel.openDb()
+    }
+
+//    private fun restoreDatabase() {
+//        // Restore the Database
+//        val downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+//        val myNoteDir = File(downloadDir, "MyNote")
+//        val file = File(myNoteDir, "notes.db")
+//        val inputFile = FileInputStream(file)
+//        val outputFile = FileOutputStream(getDatabasePath("notes_database"))
+//        val buffer = ByteArray(1024)
+//        var length: Int
+//        while (inputFile.read(buffer).also { length = it } > 0) {
+//            outputFile.write(buffer, 0, length)
+//        }
+//        inputFile.close()
+//        outputFile.flush()
+//        outputFile.close()
+//        Toast.makeText(this, "Database imported from Download/MyNote folder", Toast.LENGTH_SHORT).show()
+//        Log.d(TAG, "restoreDatabase: Database imported ${file.absolutePath}")
+//
+//    }
+
+    private val REQUEST_EXTERNAL_STORAGE = 1
+
+    private fun backupDatabase() {
+//        val backupFile = File(Environment.getExternalStorageDirectory(), "Download/MyNotes/note")
+//        val currentDB = application.getDatabasePath("notes_database").path
+//        val backupDB = backupFile.path
+//
+//        val src = FileInputStream(currentDB).channel
+//        val dst = FileOutputStream(backupDB).channel
+//        dst.transferFrom(src, 0, src.size())
+//        src.close()
+//        dst.close()
+        Log.d(TAG, "backupDatabase: ")
+        Toast.makeText(this, "backupDatabase", Toast.LENGTH_SHORT).show()
+        val backupFile = File(Environment.getExternalStorageDirectory(), "Download/MyNotes/note")
+        if (!backupFile.parentFile.exists()) {
+            backupFile.parentFile.mkdirs()
+        }
+        if (!backupFile.exists()) {
+            backupFile.createNewFile()
+        }
+        val currentDB = application.getDatabasePath("notes_database").path
+        val backupDB = backupFile.path
+        val src = FileInputStream(currentDB).channel
+        val dst = FileOutputStream(backupDB).channel
+    }
+//    private fun backupDatabase() {
+//        val downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+//        val myNoteDir = File(downloadDir, "MyNote")
+//        if (!myNoteDir.exists()) {
+//            myNoteDir.mkdirs()
+//        }
+//        val file = File(myNoteDir, "notes.db")
+//        val inputFile = FileInputStream(getDatabasePath("notes_database"))
+//        val outputFile = FileOutputStream(file)
+//        val buffer = ByteArray(1024)
+//        var length: Int
+//        while (inputFile.read(buffer).also { length = it } > 0) {
+//            outputFile.write(buffer, 0, length)
+//        }
+//        inputFile.close()
+//        outputFile.flush()
+//        outputFile.close()
+//        Toast.makeText(this, "Database exported to Download/MyNote folder", Toast.LENGTH_SHORT).show()
+//        Log.d(TAG, "backupDatabase: Database exported ${file.absolutePath}")
+//    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_EXTERNAL_STORAGE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                backupDatabase()
+            } else {
+                Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
 
 }

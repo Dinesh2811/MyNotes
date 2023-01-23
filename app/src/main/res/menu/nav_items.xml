@@ -11,4 +11,14 @@
         android:title="About"
         android:icon="@drawable/baseline_info_24"/>
 
+    <item
+        android:id="@+id/menuBackup"
+        android:title="Backup"
+        android:icon="@drawable/baseline_backup_24"/>
+
+    <item
+        android:id="@+id/menuRestore"
+        android:title="Restore"
+        android:icon="@drawable/baseline_restore_24"/>
+
 </menu>
