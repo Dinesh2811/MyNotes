@@ -8,7 +8,7 @@ import java.util.*
 
 class MyItemTouchHelperCallback(private val rvAdapter: RvAdapter, private val rvMain: RvMain) : ItemTouchHelper.Callback() {
 
-    private var isDragEnabled = true
+    private var isDragEnabled = false
     fun setDragEnable(dragEnabled: Boolean) {
         isDragEnabled = dragEnabled
     }

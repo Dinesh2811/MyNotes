@@ -122,7 +122,6 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         if (setItemClick) {
             if (actionMode != null) {
                 toggleSelection(position)
-                callback.setDragEnable(true)
             } else {
                 val intent = Intent(this, EditNote::class.java)
                 intent.putExtra("NOTE_ID", notesList[position].id)
@@ -148,6 +147,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                 R.id.actionSelect -> {
                     actionMode = startActionMode(this)
                     toggleSelection(position)
+                    callback.setDragEnable(false)
                     true
                 }
                 R.id.actionReOrder -> {
@@ -239,6 +239,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         actionMode = null
         callback.setDragEnable(false)
         rvAdapter.clearSelection()
+        Log.e(TAG, "onDestroyActionMode: ")
 
         if (!setItemClick) {
             rvMultiSelectList.clear()
