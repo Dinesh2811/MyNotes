@@ -12,7 +12,7 @@ android {
         applicationId "com.dinesh.mynotes"
         minSdk 26
         targetSdk 33
-        versionCode 6
+        versionCode 7
         versionName "1.0"
 
         javaCompileOptions {
@@ -72,7 +72,7 @@ dependencies {
 
 
     implementation 'androidx.appcompat:appcompat:1.6.0'
-    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
 
@@ -100,21 +100,12 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 
 
-//    // Navigation Component
-//    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-//    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
-//
-//
-////    Retrofit
-//    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-//    implementation "com.squareup.retrofit2:retrofit-mock:2.9.0"
-//
-////    Gson
+    //  Gson
 //    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'    //Gson Converter
-//    implementation 'com.google.code.gson:gson:2.10'    //Used to convert Java Object into JSON representation
-//
-////    HTTP
-//    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.8'
-//    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.8'
+    implementation 'com.google.code.gson:gson:2.10'    //Used to convert Java Object into JSON representation
+
+
+    //  QR-Code
+    implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
 
 }

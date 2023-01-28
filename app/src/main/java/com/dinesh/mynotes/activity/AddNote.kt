@@ -14,8 +14,10 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import com.dinesh.mynotes.R
 import com.dinesh.mynotes.app.NavigationDrawer
+import com.dinesh.mynotes.app.showSnackbar
 import com.dinesh.mynotes.room.Note
 import com.dinesh.mynotes.room.NotesViewModel
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -51,7 +53,7 @@ class AddNote : NavigationDrawer() {
             }
         }
 
-        Log.e(TAG, "onCreate: ${getIntent().getLongExtra("ID", 0)}")
+        Log.e(TAG, "onCreate: ${intent.getLongExtra("ID", 0)}")
 
     }
 
@@ -65,15 +67,21 @@ class AddNote : NavigationDrawer() {
         val trimmedNoteDes = noteDes.trim()
 
         if (trimmedTitle.isNotBlank() || trimmedNoteDes.isNotBlank()) {
-            val existingNoteLiveData = notesViewModel.getNoteByTitleAndDescription(trimmedTitle, trimmedNoteDes)
 
-            existingNoteLiveData.observe(this) {
-                if (it == null) {
-                    CoroutineScope(Dispatchers.IO).launch {
-                        notesViewModel.insert(Note(id= (intent.getLongExtra("ID",0).plus(1L)),title = trimmedTitle, notes = trimmedNoteDes, dateCreated = LocalDateTime.now()))
-                    }
-                }
+            CoroutineScope(Dispatchers.IO).launch {
+                notesViewModel.insert(Note(id= (intent.getLongExtra("ID",0).plus(1L)),title = trimmedTitle, notes = trimmedNoteDes, dateCreated = LocalDateTime.now()))
             }
+            Toast.makeText(this, "Your note is Created successfully", Toast.LENGTH_SHORT).show()
+
+//            val existingNoteLiveData = notesViewModel.getNoteByTitleAndDescription(trimmedTitle, trimmedNoteDes)
+//            existingNoteLiveData.observe(this) {
+//                if (it == null) {
+//                    CoroutineScope(Dispatchers.IO).launch {
+//                        notesViewModel.insert(Note(id= (intent.getLongExtra("ID",0).plus(1L)),title = trimmedTitle, notes = trimmedNoteDes, dateCreated = LocalDateTime.now()))
+//                    }
+//                    Toast.makeText(this, "Your note is Created successfully", Toast.LENGTH_SHORT).show()
+//                }
+//            }
         }
     }
 

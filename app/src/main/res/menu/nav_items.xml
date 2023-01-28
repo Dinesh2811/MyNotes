@@ -2,16 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menuShare"
-        android:title="Share"
-        android:icon="@drawable/baseline_share_24"/>
-
-    <item
-        android:id="@+id/menuAbout"
-        android:title="About"
-        android:icon="@drawable/baseline_info_24"/>
-
-    <item
         android:id="@+id/menuBackup"
         android:title="Backup"
         android:icon="@drawable/baseline_backup_24"/>
@@ -20,5 +10,15 @@
         android:id="@+id/menuRestore"
         android:title="Restore"
         android:icon="@drawable/baseline_restore_24"/>
+
+    <item
+        android:id="@+id/menuShare"
+        android:title="Share"
+        android:icon="@drawable/baseline_share_24"/>
+
+    <item
+        android:id="@+id/menuAbout"
+        android:title="About"
+        android:icon="@drawable/baseline_info_24"/>
 
 </menu>

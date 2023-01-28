@@ -17,7 +17,8 @@ private val TAG = "log_ColorScheme"
 //    }
 //}
 
-open class ColorScheme : AppCompatActivity() {
+open class ColorScheme : ExternalStoragePermission() {
+//open class ColorScheme : AppCompatActivity() {
 
     open val lightBackground: Int = R.color.white
     open val darkOnBackground: Int = R.color.black

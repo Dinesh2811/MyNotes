@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.flow
 @RequiresApi(Build.VERSION_CODES.O)
 class NotesViewModel(application: Application) : AndroidViewModel(application) {
 
-    public val noteDao: NotesDao = NotesDatabase.getInstance(application).notesDao()
+    val noteDao: NotesDao = NotesDatabase.getInstance(application).notesDao()
 
 //    val notesDatabase: NotesDatabase = NotesDatabase.getInstance(application)
 //    public val noteDao: NotesDao = notesDatabase.notesDao()
@@ -46,6 +46,11 @@ class NotesViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getNoteByTitleAndDescription(title: String, description: String): LiveData<Note> {
         return noteDao.getNoteByTitleAndDescription(title, description)
+    }
+
+
+    fun getNoteByTitleAndDescriptionAsNote(title: String, description: String): Note {
+        return noteDao.getNoteByTitleAndDescriptionAsNote(title, description)
     }
 
     fun insert(note: Note) {

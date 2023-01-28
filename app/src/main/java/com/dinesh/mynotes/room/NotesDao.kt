@@ -29,6 +29,9 @@ interface NotesDao {
     @Query("SELECT * FROM table_name WHERE title = :title AND notes = :description")
     fun getNoteByTitleAndDescription(title: String, description: String): LiveData<Note>
 
+    @Query("SELECT * FROM table_name WHERE title = :title AND notes = :description")
+    fun getNoteByTitleAndDescriptionAsNote(title: String, description: String): Note
+
 }
 
 /*

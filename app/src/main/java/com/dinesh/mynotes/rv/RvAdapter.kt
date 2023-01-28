@@ -81,17 +81,22 @@ class RvAdapter(var notesList: List<Note>, private val listener: RvInterface, pr
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val note = notesList[position]
-        val dateModifiedString = "Modified on : " + note.dateModified.format(DateTimeFormatter.ofPattern("EEE, MMM d, hh:mm a"))
-        holder.rvTitle.text = note.title
-        holder.rvNote.text = note.notes
+        if (note.title.trim().isEmpty()) { holder.rvTitle.visibility = View.GONE } else{
+            holder.rvTitle.visibility = View.VISIBLE
+            holder.rvTitle.text = note.title
+        }
+        if (note.notes.trim().isEmpty()){ holder.rvNote.visibility = View.GONE } else{
+            holder.rvNote.visibility = View.VISIBLE
+            holder.rvNote.text = note.notes
+        }
         holder.rvDateCreated.text = note.dateCreated.format(DateTimeFormatter.ofPattern("EEE, MMM d, hh:mm a"))
+        val dateModifiedString = "Modified on : " + note.dateModified.format(DateTimeFormatter.ofPattern("EEE, MMM d, hh:mm a"))
         holder.rvDateModified.text = dateModifiedString
         if (getSelectedItems().contains(position)) {
             holder.rvConstraintLayout.setBackgroundColor(Color.DKGRAY)
         } else {
             holder.rvConstraintLayout.setBackgroundColor(Color.WHITE)
         }
-//        holder.rvTitle.text = note.id.toString()
     }
 
     override fun getItemCount(): Int {

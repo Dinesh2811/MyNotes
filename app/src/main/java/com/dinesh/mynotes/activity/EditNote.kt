@@ -15,9 +15,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.dinesh.mynotes.R
 import com.dinesh.mynotes.app.NavigationDrawer
+import com.dinesh.mynotes.app.showSnackbar
 import com.dinesh.mynotes.room.Note
 import com.dinesh.mynotes.room.NotesViewModel
 import com.dinesh.mynotes.rv.RvMain
+import com.google.android.material.snackbar.Snackbar
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -87,6 +89,7 @@ class EditNote : NavigationDrawer() {
             note.id = intent.getLongExtra("NOTE_ID", 0)
             note.dateModified = LocalDateTime.now()
             notesViewModel.update(note)
+            Toast.makeText(this, "Your note is Updated successfully", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -108,18 +111,18 @@ class EditNote : NavigationDrawer() {
         saveIcon.setIcon(R.drawable.ic_baseline_save_24)
         saveIcon.setOnMenuItemClickListener {
             updateNote()
-            Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show()
             true
         }
 
-        val deleteIcon = menu?.findItem(R.id.menuDelete)
+        val deleteIcon = menu.findItem(R.id.menuDelete)
         deleteIcon!!.isVisible = true
         deleteIcon.setIcon(R.drawable.ic_baseline_delete_24)
         deleteIcon.setOnMenuItemClickListener {
             notesViewModel.delete(note)
+            Toast.makeText(this, "Your note was deleted successfully", Toast.LENGTH_SHORT).show()
 
 
-            val intent: Intent = Intent(this@EditNote, RvMain::class.java)
+            val intent = Intent(this@EditNote, RvMain::class.java)
             startActivity(intent)
 
 
