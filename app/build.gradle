@@ -8,11 +8,22 @@ android {
     namespace 'com.dinesh.mynotes'
     compileSdk 33
 
+//    signingConfigs {
+//        release {
+//            if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
+//                storeFile file(MYAPP_RELEASE_STORE_FILE)
+//                storePassword MYAPP_RELEASE_STORE_PASSWORD
+//                keyAlias MYAPP_RELEASE_KEY_ALIAS
+//                keyPassword MYAPP_RELEASE_KEY_PASSWORD
+//            }
+//        }
+//    }
+
     defaultConfig {
         applicationId "com.dinesh.mynotes"
         minSdk 26
         targetSdk 33
-        versionCode 7
+        versionCode 8
         versionName "1.0"
 
         javaCompileOptions {
@@ -29,6 +40,7 @@ android {
 
     buildTypes {
         release {
+//            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
