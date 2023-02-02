@@ -117,8 +117,8 @@ open class ExternalStoragePermission : AppCompatActivity() {
         AlertDialog.Builder(context!!)
             .setCancelable(true)
             .setTitle("Request Permission")
-            .setMessage("You have permanently denied " + permanentlyDeniedPermissionList + " permission.\n\n" +
-                    "To backup the notes please allow above permission " +
+            .setMessage("You have permanently denied 'Storage' permission.\n\n" +
+                    "To backup the notes we will be creating a backup file in your local storage. In order to do that please allow 'Storage' permission. " +
                     "\n\n\n" +
                     "Do you want to go to settings to allow permission?")
             .setPositiveButton("Go to Settings") { dialog, which ->

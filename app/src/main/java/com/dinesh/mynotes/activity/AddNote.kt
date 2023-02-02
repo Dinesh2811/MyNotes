@@ -39,8 +39,8 @@ class AddNote : NavigationDrawer() {
         initializeRecyclerView()
         notesViewModel = ViewModelProvider(this)[NotesViewModel::class.java]
 
-        title = etTitle.text.trim().toString()
-        noteDes = etNote.text.trim().toString()
+        title = etTitle.text.toString()
+        noteDes = etNote.text.toString()
 
         etTitle.addTextChangedListener {
             if (!it.isNullOrBlank()) {
@@ -63,8 +63,8 @@ class AddNote : NavigationDrawer() {
     }
 
     private fun addNote() {
-        val trimmedTitle = title.trim()
-        val trimmedNoteDes = noteDes.trim()
+        val trimmedTitle = title
+        val trimmedNoteDes = noteDes
 
         if (trimmedTitle.isNotBlank() || trimmedNoteDes.isNotBlank()) {
 

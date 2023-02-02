@@ -29,23 +29,12 @@
         <item name="counterEnabled">true</item>
         <item name="elevation">8dp</item>
         <item name="materialThemeOverlay">@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox</item>
-        <item name="helperTextEnabled">true</item>
-
-        <!--        <item name="helperText">*Required</item>-->
-        <!--        <item name="counterMaxLength">50</item>-->
-        <!--        <item name="endIconMode">clear_text</item>-->
-        <!--        <item name="startIconDrawable">@android:drawable/ic_menu_edit</item>-->
-        <!--        <item name="endIconDrawable">@android:drawable/checkbox_on_background</item>-->
-        <!--        <item name="helperTextTextColor">@color/design_default_color_error</item>-->
     </style>
 
 
     <style name="style_TextInputEditText" parent="Widget.AppCompat.EditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-
-        <!--        <item name="android:inputType">textLongMessage|textImeMultiLine</item>-->
-        <!--        <item name="android:maxLength">10</item>-->
     </style>
 
 

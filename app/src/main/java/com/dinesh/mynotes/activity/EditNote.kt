@@ -40,10 +40,10 @@ class EditNote : NavigationDrawer() {
         retrieveNote()
 
         etTitle.addTextChangedListener {
-            note.title = it.toString().trim()
+            note.title = it.toString()
         }
         etNote.addTextChangedListener {
-            note.notes = it.toString().trim()
+            note.notes = it.toString()
         }
 
     }

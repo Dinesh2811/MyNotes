@@ -6,12 +6,15 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.dinesh.mynotes.R
 import com.dinesh.mynotes.room.Note
 
 class RestoreAdapter(private val notes: List<Note>) : RecyclerView.Adapter<RestoreAdapter.ViewHolder>() {
     private val selectedNotes = mutableListOf<Note>()
+    var selectedNotesLiveData = MutableLiveData<List<Note>>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.restore_item_note, parent, false)
@@ -44,6 +47,7 @@ class RestoreAdapter(private val notes: List<Note>) : RecyclerView.Adapter<Resto
                 selectedNotes.add(note)
                 holder.checkBox.isChecked = true
             }
+            selectedNotesLiveData.value = selectedNotes
         }
         holder.rvCardView.setOnClickListener(itemClickListener)
         holder.itemView.setOnClickListener(itemClickListener)
@@ -67,6 +71,7 @@ class RestoreAdapter(private val notes: List<Note>) : RecyclerView.Adapter<Resto
 
     fun updateSelection(isChecked: Boolean) {
         if (isChecked) {
+            selectedNotes.clear()
             selectedNotes.addAll(notes)
         } else {
             selectedNotes.clear()
@@ -75,3 +80,4 @@ class RestoreAdapter(private val notes: List<Note>) : RecyclerView.Adapter<Resto
     }
 
 }
+
