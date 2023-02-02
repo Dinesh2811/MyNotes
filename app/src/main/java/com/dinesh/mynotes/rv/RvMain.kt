@@ -515,6 +515,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         val tvEncryptionKey = view.findViewById<TextView>(R.id.tvEncryptionKey)
         val etFileNameInputLayout = view.findViewById<TextInputLayout>(R.id.etFileNameInputLayout)
         val etFileName = view.findViewById<TextInputEditText>(R.id.etFileName)
+        val tvUserMsg = view.findViewById<TextView>(R.id.tvUserMsg)
 
         etFileName.addTextChangedListener {
             if (etFileName.text.toString().isNotEmpty()) {
@@ -529,6 +530,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         switch1.text = "Toggle to encrypt the Backup"
         qrCodeImage.visibility = View.GONE
         tvEncryptionKey.visibility = View.GONE
+        tvUserMsg.visibility = View.GONE
 
         switch1.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
@@ -562,6 +564,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
 
                 qrCodeImage.visibility = View.VISIBLE
                 tvEncryptionKey.visibility = View.VISIBLE
+                tvUserMsg.visibility = View.VISIBLE
 
             } else {
                 encryptionKey = "QRY9fqKaBlsBJZLoUNfOZg=="
@@ -569,6 +572,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                 switch1.text = "Toggle to encrypt the Backup"
                 qrCodeImage.visibility = View.GONE
                 tvEncryptionKey.visibility = View.GONE
+                tvUserMsg.visibility = View.GONE
             }
         }
 

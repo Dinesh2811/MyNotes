@@ -6,6 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etFileNameInputLayout"
         style="@style/style_TextInputLayout"
@@ -23,8 +32,6 @@
             style="@style/style_TextInputEditText"/>
 
     </com.google.android.material.textfield.TextInputLayout>
-
-
 
 
     <Button
@@ -62,32 +69,49 @@
         app:layout_constraintTop_toBottomOf="@+id/etFileNameInputLayout" />
 
 
+        <TextView
+            android:id="@+id/tvUserMsg"
+            style="@style/style_TextView"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="You must store the encryption key safely. Without the key you won't be able to restore the backup."
+            android:textColor="#FF0000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switch1" />
+
     <ImageView
         android:id="@+id/qrCodeImage"
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:scaleType="fitXY"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch1"
+        app:layout_constraintTop_toBottomOf="@+id/tvUserMsg"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvEncryptionKey"
-        style="@style/style_TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="TextView"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/qrCodeImage"
-        app:layout_constraintVertical_chainStyle="packed" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvEncryptionKey"
+            style="@style/style_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="TextView"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/qrCodeImage"
+            app:layout_constraintVertical_chainStyle="packed" />
 
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
