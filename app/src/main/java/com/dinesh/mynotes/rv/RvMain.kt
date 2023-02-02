@@ -198,6 +198,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                         val maxId = notesViewModel.getMaxId().plus(1L)
                         note = notesList[position]
                         note.id = maxId
+                        note.title = notesList[position].title + "(copy)"
                         notesViewModel.insert(note)
                         withContext(Dispatchers.Main) {
                             rvAdapter.notifyDataSetChanged()
