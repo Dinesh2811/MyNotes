@@ -95,9 +95,9 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
             }
         }
 
-        isPermissionGranted.observe(this){
+        isPermissionGranted.observe(this) {
             Log.e(TAG, "onCreate: isPermissionGranted ->> ${it}")
-            if (it && ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+            if (it && ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                 backup()
             }
         }
@@ -190,6 +190,23 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                     recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
                     true
                 }
+                R.id.menu_item_duplicate -> {
+                    setItemClick = true
+                    callback.setDragEnable(false)
+                    Log.e(TAG, "longClickMenu: ${notesList[position]}")
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        val maxId = notesViewModel.getMaxId().plus(1L)
+                        note = notesList[position]
+                        note.id = maxId
+                        notesViewModel.insert(note)
+                        withContext(Dispatchers.Main) {
+                            rvAdapter.notifyDataSetChanged()
+                            showSnackbar("Duplicate notes created", Snackbar.LENGTH_SHORT)
+                        }
+                    }
+                    true
+                }
+
                 else -> false
             }
         }
@@ -222,7 +239,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                 return true
             }
             R.id.menu_item_selectAll -> {
-                if (item.title.toString() == "Select All"){
+                if (item.title.toString() == "Select All") {
                     notesList.forEachIndexed { i, it ->
                         rvAdapter.selectedItems.put(i, true)
                     }
@@ -238,8 +255,10 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                 actionMode?.invalidate()
                 return true
             }
-            else -> { mode?.finish()
-                return false }
+            else -> {
+                mode?.finish()
+                return false
+            }
         }
     }
 
@@ -250,9 +269,9 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         val inflater = mode?.menuInflater
         inflater?.inflate(R.menu.contextual_action_mode_menu, menu)
         menuItemSelectAll = menu?.findItem(R.id.menu_item_selectAll)
-        if(!setItemClick){
-                menu!!.findItem(R.id.menu_item_delete).isVisible = false
-                menu.findItem(R.id.menu_item_selectAll).isVisible = false
+        if (!setItemClick) {
+            menu!!.findItem(R.id.menu_item_delete).isVisible = false
+            menu.findItem(R.id.menu_item_selectAll).isVisible = false
         }
         return true
     }
@@ -299,10 +318,10 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         rvAdapter.notifyItemChanged(position)
         val count = rvAdapter.selectedItemCount
 
-        if (notesList.isNotEmpty()){
+        if (notesList.isNotEmpty()) {
             if (notesList.size == count) {
                 menuItemSelectAll?.title = "UnSelect All"
-            } else{
+            } else {
                 menuItemSelectAll?.title = "Select All"
             }
         }
@@ -388,17 +407,17 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
     }
 
 
-    private fun backupLauncher(){
+    private fun backupLauncher() {
         saveFileLauncher = registerForActivityResult(ActivityResultContracts.CreateDocument("application/json")) { uri ->
             if (uri != null) {
                 // Write dummy data to the file
                 val fileOutputStream = contentResolver.openOutputStream(uri)
 
-                if (isEncrypted){
+                if (isEncrypted) {
                     val notesList = notesLiveList.value
                     if (!notesList.isNullOrEmpty()) {
                         val gsonBuilder = GsonBuilder()
-                        gsonBuilder.registerTypeAdapter(LocalDateTime::class.java, object: TypeAdapter<LocalDateTime>() {
+                        gsonBuilder.registerTypeAdapter(LocalDateTime::class.java, object : TypeAdapter<LocalDateTime>() {
                             override fun write(out: JsonWriter?, value: LocalDateTime?) {
                                 out?.value(value.toString())
                             }
@@ -445,11 +464,11 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                         showErrorSnackbar("No notes to backup")
                     }
 
-                } else{
+                } else {
                     val notesList = notesLiveList.value
                     if (!notesList.isNullOrEmpty()) {
                         val gsonBuilder = GsonBuilder()
-                        gsonBuilder.registerTypeAdapter(LocalDateTime::class.java, object: TypeAdapter<LocalDateTime>() {
+                        gsonBuilder.registerTypeAdapter(LocalDateTime::class.java, object : TypeAdapter<LocalDateTime>() {
                             override fun write(out: JsonWriter?, value: LocalDateTime?) {
                                 out?.value(value.toString())
                             }
@@ -478,7 +497,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         }
     }
 
-    private fun backup(){
+    private fun backup() {
         isEncrypted = false
         encryptionKey = "QRY9fqKaBlsBJZLoUNfOZg=="
         val builder = AlertDialog.Builder(this)
@@ -497,9 +516,9 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         val etFileName = view.findViewById<TextInputEditText>(R.id.etFileName)
 
         etFileName.addTextChangedListener {
-            if (etFileName.text.toString().isNotEmpty()){
+            if (etFileName.text.toString().isNotEmpty()) {
                 etFileNameInputLayout.isHelperTextEnabled = false
-            } else{
+            } else {
                 etFileNameInputLayout.isHelperTextEnabled = true
                 etFileNameInputLayout.helperText = "*Default file name will be 'notes'"
             }
@@ -521,7 +540,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                 val key = secretKey.encoded
                 encryptionKey = Base64.getEncoder().encodeToString(key)
 
-                    tvEncryptionKey.text = "Copy the encryption key\n$encryptionKey"
+                tvEncryptionKey.text = "Copy the encryption key\n$encryptionKey"
                 tvEncryptionKey.setOnClickListener {
                     val clipboard = this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                     val clip = ClipData.newPlainText("keyBase64", encryptionKey)
@@ -554,16 +573,16 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
 
         btnSave.setOnClickListener {
             if (!notesList.isNullOrEmpty()) {
-                if(isEncrypted){
+                if (isEncrypted) {
                     if (etFileName.text.toString().trim().isNotEmpty()) {
-                        saveFileLauncher.launch(etFileName.text.toString()+".enc.json")
-                    } else{
+                        saveFileLauncher.launch(etFileName.text.toString() + ".enc.json")
+                    } else {
                         saveFileLauncher.launch("notes.enc.json")
                     }
                 } else {
                     if (etFileName.text.toString().trim().isNotEmpty()) {
-                        saveFileLauncher.launch(etFileName.text.toString()+".json")
-                    } else{
+                        saveFileLauncher.launch(etFileName.text.toString() + ".json")
+                    } else {
                         saveFileLauncher.launch("notes.json")
                     }
                 }
@@ -622,9 +641,9 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                             }
 
                             etDecryptionKey.addTextChangedListener {
-                                if (etDecryptionKey.text.toString().length == 24){
+                                if (etDecryptionKey.text.toString().length == 24) {
                                     etDecryptionKeyInputLayout.isHelperTextEnabled = false
-                                } else{
+                                } else {
                                     etDecryptionKeyInputLayout.isHelperTextEnabled = true
                                     etDecryptionKeyInputLayout.helperText = "*Decryption key must have 24 character"
                                 }
@@ -632,7 +651,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
 
                             btnDecryptionKey.setOnClickListener {
                                 if (etDecryptionKey.text.toString().trim().length > 15) {
-                                    restoreRvDialog(data,uri,etDecryptionKey.text.toString().trim())
+                                    restoreRvDialog(data, uri, etDecryptionKey.text.toString().trim())
                                     encryptedDialog.cancel()
                                 }
                             }
@@ -643,8 +662,8 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                         } else if (selectedFileToRestore.toString().contains(".json") && !selectedFileToRestore.toString().contains(".enc.json")) {
                             Log.e(TAG, "restoreLauncher: $data")
                             isEncrypted = false
-                            restoreRvDialog(data,uri)
-                        } else{
+                            restoreRvDialog(data, uri)
+                        } else {
                             isEncrypted = false
 
                         }
@@ -654,7 +673,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         }
     }
 
-    private fun restoreRvDialog(selectedFileToRestore: String,uri: Uri, decryptKey: String = "QRY9fqKaBlsBJZLoUNfOZg==") {
+    private fun restoreRvDialog(selectedFileToRestore: String, uri: Uri, decryptKey: String = "QRY9fqKaBlsBJZLoUNfOZg==") {
         val builder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val view = inflater.inflate(R.layout.dialog_restore_rv, null)
@@ -667,7 +686,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         val checkBoxForAll = view.findViewById<CheckBox>(R.id.checkBoxForAll)
 
         val gsonBuilder = GsonBuilder()
-        gsonBuilder.registerTypeAdapter(LocalDateTime::class.java, object: TypeAdapter<LocalDateTime>() {
+        gsonBuilder.registerTypeAdapter(LocalDateTime::class.java, object : TypeAdapter<LocalDateTime>() {
             override fun write(out: JsonWriter?, value: LocalDateTime?) {
                 out?.value(value.toString())
             }
@@ -679,7 +698,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         val gson = gsonBuilder.create()
         val notesList: MutableList<Note> = mutableListOf()
 
-        if (isEncrypted){
+        if (isEncrypted) {
             val inputStream = contentResolver.openInputStream(uri)
             try {
                 inputStream?.use { dataInputStream ->
@@ -711,7 +730,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
 //                restoreErrorDialog("Error during decryption")     //  pad block corrupted
                 Log.e(TAG, "restoreRvDialog: ${e.message}")
             }
-        } else{
+        } else {
             try {
                 notesList.addAll(gson.fromJson(selectedFileToRestore, Array<Note>::class.java).toList())
             } catch (e: Exception) {
@@ -725,12 +744,12 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        adapter.selectedNotesLiveData.observe(this){
-            if (!it.isNullOrEmpty()){
-                if (it.size == notesList.size){
+        adapter.selectedNotesLiveData.observe(this) {
+            if (!it.isNullOrEmpty()) {
+                if (it.size == notesList.size) {
                     checkBoxForAll.isChecked = true
                     checkBoxForAll.text = "UnSelect All"
-                } else{
+                } else {
                     checkBoxForAll.isChecked = false
                     checkBoxForAll.text = "Select All"
                 }
@@ -740,17 +759,17 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         checkBoxForAll.setOnClickListener {
             val isChecked = checkBoxForAll.isChecked
             adapter.updateSelection(isChecked)
-            if (isChecked){
+            if (isChecked) {
                 checkBoxForAll.text = "UnSelect All"
-            } else{
+            } else {
                 checkBoxForAll.text = "Select All"
             }
 
         }
 
-        if (checkBoxForAll.isChecked){
+        if (checkBoxForAll.isChecked) {
             checkBoxForAll.text = "UnSelect All"
-        } else{
+        } else {
             checkBoxForAll.text = "Select All"
         }
 
@@ -791,9 +810,9 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
 
         btnCancel.setOnClickListener { dialog.cancel() }
 
-        if(!notesList.isNullOrEmpty()){
+        if (!notesList.isNullOrEmpty()) {
             dialog.show()
-        } else{
+        } else {
             restoreErrorDialog("Error")
         }
     }
