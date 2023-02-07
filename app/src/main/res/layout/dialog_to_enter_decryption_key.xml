@@ -10,8 +10,8 @@
         style="@style/style_TextInputLayout"
         android:hint="Please enter the decryption key"
         app:helperTextEnabled="true"
-        app:helperText="*Decryption key must have 24 character"
-        app:counterMaxLength="24"
+        app:helperText="*Decryption key must have 44 character"
+        app:counterMaxLength="44"
         app:endIconMode="custom"
         app:endIconDrawable="@drawable/baseline_content_paste_24"
         app:helperTextTextColor="@color/design_default_color_error"
@@ -22,7 +22,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etDecryptionKey"
             style="@style/style_TextInputEditText"
-            android:maxLength="24"
+            android:maxLength="44"
             android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>

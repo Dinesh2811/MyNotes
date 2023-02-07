@@ -1,13 +1,20 @@
 package com.dinesh.mynotes.app
 
-import android.view.View
+import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.Color
+import android.view.*
+import android.widget.FrameLayout
+import android.widget.ImageButton
 import android.widget.TextView
+import com.dinesh.mynotes.R
 import com.google.android.material.snackbar.Snackbar
 
-
 class FancySnackbar {
+    private val TAG = "log_" + FancySnackbar::class.java.name.split(FancySnackbar::class.java.name.split(".").toTypedArray()[2] + ".").toTypedArray()[1]
 
-    private var snackbar: Snackbar? = null
+    var snackbar: Snackbar? = null
+    private var secondaryAction: Snackbar.Callback? = null
 
     fun make(view: View, message: String, duration: Int): FancySnackbar {
         snackbar = Snackbar.make(view, message, duration)
@@ -42,9 +49,60 @@ class FancySnackbar {
     }
 
     fun show() {
+        snackbar?.addCallback(object : Snackbar.Callback() {
+            override fun onDismissed(snackbar: Snackbar?, event: Int) {
+                secondaryAction?.onDismissed(snackbar, event)
+            }
+        })
         snackbar?.show()
     }
+
+    fun dismiss() {
+        snackbar?.dismiss()
+    }
 }
+
+//class FancySnackbar {
+//
+//    private var snackbar: Snackbar? = null
+//
+//    fun make(view: View, message: String, duration: Int): FancySnackbar {
+//        snackbar = Snackbar.make(view, message, duration)
+//        return this
+//    }
+//
+//    fun setAction(text: String, listener: View.OnClickListener): FancySnackbar {
+//        snackbar?.setAction(text, listener)
+//        return this
+//    }
+//
+//    fun setBackgroundColor(color: Int): FancySnackbar {
+//        snackbar?.view?.setBackgroundColor(color)
+//        return this
+//    }
+//
+//    fun setTextColor(color: Int): FancySnackbar {
+//        val textView = snackbar?.view?.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
+//        textView?.setTextColor(color)
+//        return this
+//    }
+//
+//    fun setActionTextColor(color: Int): FancySnackbar {
+//        snackbar?.setActionTextColor(color)
+//        return this
+//    }
+//
+//    fun setMaxLines(lines: Int): FancySnackbar {
+//        val textView = snackbar?.view?.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
+//        textView?.maxLines = lines
+//        return this
+//    }
+//
+//    fun show() {
+//        snackbar?.show()
+//    }
+//}
+
 
 /*
 

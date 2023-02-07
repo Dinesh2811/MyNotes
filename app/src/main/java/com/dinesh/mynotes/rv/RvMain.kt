@@ -3,6 +3,7 @@ package com.dinesh.mynotes.rv
 import android.app.Dialog
 import android.content.*
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.OpenableColumns
@@ -17,6 +18,7 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.core.widget.addTextChangedListener
+import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
@@ -32,8 +34,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import com.google.gson.GsonBuilder
-import com.google.gson.TypeAdapter
+import com.google.gson.*
+import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
 import com.google.gson.stream.JsonWriter
 import com.google.zxing.BarcodeFormat
@@ -47,10 +49,15 @@ import kotlinx.coroutines.withContext
 import java.io.*
 import java.security.InvalidKeyException
 import java.security.NoSuchAlgorithmException
+import java.security.SecureRandom
 import java.time.LocalDateTime
 import java.util.*
 import javax.crypto.*
+import javax.crypto.spec.GCMParameterSpec
 import javax.crypto.spec.SecretKeySpec
+import java.lang.reflect.Type
+import java.security.Key
+import android.util.Base64
 
 class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
     private val TAG = "log_" + RvMain::class.java.name.split(RvMain::class.java.name.split(".").toTypedArray()[2] + ".").toTypedArray()[1]
@@ -74,7 +81,8 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
     private lateinit var saveFileLauncher: ActivityResultLauncher<String>
     private lateinit var openFileLauncher: ActivityResultLauncher<Array<String>>
 
-    var encryptionKey = "QRY9fqKaBlsBJZLoUNfOZg=="
+//    var encryptionKey = "2x2+69Nf9M9av+IqaEi3A10jMvt6CWt3Fvm6bAD4s2I="
+    var encryptionKey = ""
     var isEncrypted = false
 
     var i: Int = 0
@@ -408,106 +416,126 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
     }
 
 
+    private lateinit var notesJson: String
+    private lateinit var encryptedData: ByteArray
+
+    companion object {
+        private const val AES_MODE = "AES/GCM/NoPadding"
+        private const val GCM_IV_LENGTH = 12
+        private const val GCM_TAG_LENGTH = 16
+        private const val AES_KEY_SIZE = 256
+    }
+
+    private lateinit var ENCRYPTION_KEY: Key
+
     private fun backupLauncher() {
         saveFileLauncher = registerForActivityResult(ActivityResultContracts.CreateDocument("application/json")) { uri ->
             if (uri != null) {
-                // Write dummy data to the file
-                val fileOutputStream = contentResolver.openOutputStream(uri)
+                val file = DocumentFile.fromSingleUri(this, uri)
+                val fileName = file?.name
+                Log.d(TAG, "File name: $fileName")
 
-                if (isEncrypted) {
-                    val notesList = notesLiveList.value
-                    if (!notesList.isNullOrEmpty()) {
-                        val gsonBuilder = GsonBuilder()
-                        gsonBuilder.registerTypeAdapter(LocalDateTime::class.java, object : TypeAdapter<LocalDateTime>() {
-                            override fun write(out: JsonWriter?, value: LocalDateTime?) {
-                                out?.value(value.toString())
-                            }
 
-                            override fun read(input: JsonReader?): LocalDateTime {
-                                return LocalDateTime.parse(input?.nextString())
-                            }
-                        })
-                        val gson = gsonBuilder.create()
-                        val json = gson.toJson(notesList)
-
-                        try {
-                            val secretKey = encryptionKey.toByteArray()
-                            val skey = SecretKeySpec(secretKey, 0, secretKey.size, "AES")
-                            val cipher = Cipher.getInstance("AES")
-                            cipher.init(Cipher.ENCRYPT_MODE, skey)
-                            val encrypted = cipher.doFinal(json.toByteArray())
-                            fileOutputStream?.let {
-                                it.write(encrypted)
-                                it.close()
-                                Log.d(TAG, "File saved successfully at $uri")
-                            } ?: Log.e(TAG, "Failed to save file at $uri")
-                        } catch (e: IOException) {
-                            Log.e(TAG, "backupDatabaseToJSON: Error saving backup: ${e.message}")
-                            showErrorSnackbar("Error saving backup: ${e.message}")
-                        } catch (e: NoSuchAlgorithmException) {
-                            Log.e(TAG, "backupDatabaseToJSON: Error encrypting backup: ${e.message}")
-                            showErrorSnackbar("Error encrypting backup: ${e.message}")
-                        } catch (e: NoSuchPaddingException) {
-                            Log.e(TAG, "backupDatabaseToJSON: Error encrypting backup: ${e.message}")
-                            showErrorSnackbar("Error encrypting backup: ${e.message}")
-                        } catch (e: InvalidKeyException) {
-                            Log.e(TAG, "backupDatabaseToJSON: Error encrypting backup: ${e.message}")
-                            showErrorSnackbar("Error encrypting backup: ${e.message}")
-                        } catch (e: IllegalBlockSizeException) {
-                            Log.e(TAG, "backupDatabaseToJSON: Error encrypting backup: ${e.message}")
-                            showErrorSnackbar("Error encrypting backup: ${e.message}")
-                        } catch (e: BadPaddingException) {
-                            Log.e(TAG, "backupDatabaseToJSON: Error encrypting backup: ${e.message}")
-                            showErrorSnackbar("Error encrypting backup: ${e.message}")
+                if ((fileName != null)) {
+                    if (!fileName.contains(".json")) {
+                        Log.e(TAG, "Error: file name doesn't end with '.json', deleting the file")
+                        showErrorSnackbar("Error: File name doesn't end with '.json'", Snackbar.LENGTH_INDEFINITE)
+                        file.delete()
+                        return@registerForActivityResult
+                    }
+                    if (isEncrypted) {
+                        if (!((fileName.contains(".enc")))) {
+                            Log.e(TAG, "Error: file name doesn't end with '.enc.json', deleting the file")
+                            showErrorSnackbar("Error: File name doesn't end with '.enc.json'", Snackbar.LENGTH_INDEFINITE)
+                            file.delete()
+                            return@registerForActivityResult
                         }
                     } else {
-                        Log.e(TAG, "backupDatabaseToJSON: No notes to backup")
-                        showErrorSnackbar("No notes to backup")
-                    }
-
-                } else {
-                    val notesList = notesLiveList.value
-                    if (!notesList.isNullOrEmpty()) {
-                        val gsonBuilder = GsonBuilder()
-                        gsonBuilder.registerTypeAdapter(LocalDateTime::class.java, object : TypeAdapter<LocalDateTime>() {
-                            override fun write(out: JsonWriter?, value: LocalDateTime?) {
-                                out?.value(value.toString())
-                            }
-
-                            override fun read(input: JsonReader?): LocalDateTime {
-                                return LocalDateTime.parse(input?.nextString())
-                            }
-                        })
-
-//                    @SuppressLint("SuspiciousIndentation")
-                        val gson = gsonBuilder.create()
-                        val json = gson.toJson(notesList)
-                        fileOutputStream?.let {
-                            it.write(json.toByteArray())
-                            it.close()
-                            Log.d(TAG, "File saved successfully at $uri")
-                        } ?: Log.e(TAG, "Failed to save file at $uri")
-                    } else {
-                        Log.e(TAG, "backupDatabaseToJSON: No notes to backup")
-                        showErrorSnackbar("No notes to backup")
+                        if (fileName.contains(".enc")) {
+                            Log.e(TAG, "Error: file name doesn't end with '.json' or has '.enc', deleting the file")
+                            showErrorSnackbar("Error: File name can't have '.enc'", Snackbar.LENGTH_INDEFINITE)
+                            file.delete()
+                            return@registerForActivityResult
+                        }
                     }
                 }
+
+                val gsonBuilder = GsonBuilder()
+                gsonBuilder.registerTypeAdapter(LocalDateTime::class.java, LocalDateTimeSerializer())
+                gsonBuilder.registerTypeAdapter(LocalDateTime::class.java, LocalDateTimeDeserializer())
+                val gsonWithCustomSerializer = gsonBuilder.create()
+
+                if (!notesList.isNullOrEmpty()) {
+                    notesJson = gsonWithCustomSerializer.toJson(notesList)
+
+                    try {
+                        contentResolver.openOutputStream(uri)?.use { outputStream ->
+                            if (isEncrypted) {
+                                val cipher = Cipher.getInstance(AES_MODE)
+                                cipher.init(Cipher.ENCRYPT_MODE, ENCRYPTION_KEY, getGCMParameterSpec())
+                                encryptedData = cipher.doFinal(notesJson.toByteArray(Charsets.UTF_8))
+
+                                outputStream.write(encryptedData)
+
+                                val snackBarTitle = "Please make sure you safely secure the encryption key in a password manager. " +
+                                        "Without the key you won't able to decrypt the backup file. \n\n" +
+                                        "(Long press to dismiss)"
+
+                                val btnCopyClickListener: (v: View) -> Unit = {
+                                        val clipboard = this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                                        val clip = ClipData.newPlainText("keyBase64", encryptionKey)
+                                        clipboard.setPrimaryClip(clip)
+                                        Toast.makeText(this, "Text copied to clipboard: $encryptionKey", Toast.LENGTH_SHORT).show()
+                                    FancySnackbarLayout().dismiss()
+                                }
+                                val btnShareClickListener: (v: View) -> Unit = {
+                                    val sendIntent: Intent = Intent().apply {
+                                        action = Intent.ACTION_SEND
+                                        putExtra(Intent.EXTRA_TEXT, "The encryption key for the file '$fileName' is '$encryptionKey'")
+                                        type = "text/plain"
+                                    }
+
+                                    startActivity(Intent.createChooser(sendIntent, "Share using"))
+                                    FancySnackbarLayout().dismiss()
+                                }
+                                val tvLongClickListener = View.OnLongClickListener {
+                                    FancySnackbarLayout().dismiss()
+                                    true }
+
+                                FancySnackbarLayout()
+                                    .makeCustomLayout(findViewById(android.R.id.content),this, snackBarTitle, Snackbar.LENGTH_INDEFINITE, btnCopyClickListener, btnShareClickListener, tvLongClickListener)
+                                    .show()
+
+                            } else {
+                                outputStream.write(notesJson.toByteArray())
+                            }
+                            Log.i(TAG, "File successfully created at: $uri")
+                            Toast.makeText(this, "File successfully created at: $uri", Toast.LENGTH_LONG).show()
+                        }
+                    } catch (e: Exception) {
+                        Log.e(TAG, "Error saving backup: ${e.message}")
+                        showErrorSnackbar("Error saving backup: ${e.message}", Snackbar.LENGTH_LONG)
+                    }
+                } else {
+                    Log.e(TAG, "backupDatabaseToJSON: No notes to backup")
+                    showErrorSnackbar("No notes to backup", Snackbar.LENGTH_LONG)
+                }
             } else {
-                Log.e(TAG, "No file URI received")
+                Log.e(TAG, "Error creating file")
+                showErrorSnackbar("Error creating file", Snackbar.LENGTH_LONG)
             }
         }
     }
 
     private fun backup() {
         isEncrypted = false
-        encryptionKey = "QRY9fqKaBlsBJZLoUNfOZg=="
         val builder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val view = inflater.inflate(R.layout.dialog_save, null)
         builder.setView(view)
         val dialog = builder.create()
         dialog.show()
-//        val etFileName = view.findViewById<EditText>(R.id.etFileName)
+
         val btnSave = view.findViewById<Button>(R.id.btnSave)
         val btnCancelBackup = view.findViewById<Button>(R.id.btnCancelBackup)
         val switch1 = view.findViewById<SwitchCompat>(R.id.switch1)
@@ -519,13 +547,14 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
 
         etFileName.addTextChangedListener {
             if (etFileName.text.toString().isNotEmpty()) {
-                etFileNameInputLayout.isHelperTextEnabled = false
+//                etFileNameInputLayout.isHelperTextEnabled = false
+                etFileNameInputLayout.isHelperTextEnabled = true
+                etFileNameInputLayout.helperText = " "
             } else {
                 etFileNameInputLayout.isHelperTextEnabled = true
                 etFileNameInputLayout.helperText = "*Default file name will be 'notes'"
             }
         }
-
 
         switch1.text = "Toggle to encrypt the Backup"
         qrCodeImage.visibility = View.GONE
@@ -536,14 +565,10 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
             if (isChecked) {
                 switch1.text = "Backup will be encrypted"
                 isEncrypted = true
+                getEncryptionKey()
+                encryptionKey = Base64.encodeToString(ENCRYPTION_KEY.encoded, Base64.DEFAULT)
 
-                val keyGenerator = KeyGenerator.getInstance("AES")
-                keyGenerator.init(128)
-                val secretKey = keyGenerator.generateKey()
-                val key = secretKey.encoded
-                encryptionKey = Base64.getEncoder().encodeToString(key)
-
-                tvEncryptionKey.text = "Copy the encryption key\n$encryptionKey"
+                tvEncryptionKey.text = "Copy the encryption key:\n\n$encryptionKey"
                 tvEncryptionKey.setOnClickListener {
                     val clipboard = this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                     val clip = ClipData.newPlainText("keyBase64", encryptionKey)
@@ -567,7 +592,6 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                 tvUserMsg.visibility = View.VISIBLE
 
             } else {
-                encryptionKey = "QRY9fqKaBlsBJZLoUNfOZg=="
                 isEncrypted = false
                 switch1.text = "Toggle to encrypt the Backup"
                 qrCodeImage.visibility = View.GONE
@@ -603,82 +627,166 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         }
     }
 
+    private fun decryptDataAsString(encryptedData: ByteArray, Key: String): String {
+        val encryptionKeyBytes = Base64.decode(Key, Base64.DEFAULT)
+        val decryptionKey = SecretKeySpec(encryptionKeyBytes, 0, encryptionKeyBytes.size, "AES")
+
+        val cipher = Cipher.getInstance(AES_MODE)
+        cipher.init(Cipher.DECRYPT_MODE, decryptionKey, getGCMParameterSpec())
+        return String(cipher.doFinal(encryptedData), Charsets.UTF_8)
+    }
+
 
     private fun restoreLauncher() {
         openFileLauncher = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri: Uri? ->
-            val cursor = uri?.let { contentResolver.query(it, null, null, null, null) }
-            cursor?.use {
-                val nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
-                cursor.moveToFirst()
-                selectedFileToRestore = cursor.getString(nameIndex)
-                Log.d(TAG, "Selected file: $selectedFileToRestore")
-                Log.d(TAG, "Selected file path: ${uri.path}")
+            if (uri == null) {
+                Log.e(TAG, "Uri is null, the file selection has been cancelled")
+                Toast.makeText(this, "The file selection has been cancelled", Toast.LENGTH_SHORT).show()
+                return@registerForActivityResult
+            }
+            isEncrypted = false
 
-                val inputStream = contentResolver.openInputStream(uri)
-                inputStream?.use { inputStream ->
-                    val data = inputStream.bufferedReader().readText()
-//                    Log.e(TAG, "restoreLauncher: $data")
-                    if (!selectedFileToRestore.isNullOrEmpty()) {
-                        isEncrypted = false
-                        if (selectedFileToRestore.toString().contains(".enc.json")) {
-                            isEncrypted = true
-                            val encryptedBuilder = AlertDialog.Builder(this)
-                            val encryptedInflater = layoutInflater
-                            val encryptedView = encryptedInflater.inflate(R.layout.dialog_to_enter_decryption_key, null)
-                            encryptedBuilder.setView(encryptedView)
-                            val encryptedDialog = encryptedBuilder.create()
-                            encryptedDialog.show()
+            try {
+                uri.let {
+                    val file = DocumentFile.fromSingleUri(this, it)
+                    val fileName = file?.name
+                    Log.d(TAG, "File name: $fileName")
 
-//                            val etDecryptionKey = encryptedView.findViewById<EditText>(R.id.etDecryptionKey)
-                            val btnDecryptionKey = encryptedView.findViewById<Button>(R.id.btnDecryptionKey)
-                            val btnCancelDecryption = encryptedView.findViewById<Button>(R.id.btnCancelDecryption)
-                            val etDecryptionKeyInputLayout = encryptedView.findViewById<TextInputLayout>(R.id.etDecryptionKeyInputLayout)
-                            val etDecryptionKey = encryptedView.findViewById<TextInputEditText>(R.id.etDecryptionKey)
+                    val inputStream = contentResolver.openInputStream(it)
+                    inputStream?.let {
+                        val byteArray = inputStream.readBytes()
+                        var restoreData: String = "[{}]"
 
-                            etDecryptionKeyInputLayout.setEndIconOnClickListener {
-                                val clipboard = this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                                if (clipboard.hasPrimaryClip() && clipboard.primaryClipDescription?.hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN) == true) {
-                                    val text = clipboard.primaryClip?.getItemAt(0)?.text.toString()
-                                    etDecryptionKey.setText(text)
-                                    etDecryptionKey.setSelection(etDecryptionKey.length())
-                                    etDecryptionKey.requestFocus()
+                        if (fileName != null) {
+                            if (fileName.contains(".enc") && fileName.contains(".json")) {
+                                isEncrypted = true
+
+                                val encryptedBuilder = AlertDialog.Builder(this)
+                                val encryptedInflater = layoutInflater
+                                val encryptedView = encryptedInflater.inflate(R.layout.dialog_to_enter_decryption_key, null)
+                                encryptedBuilder.setView(encryptedView)
+                                val encryptedDialog = encryptedBuilder.create()
+                                encryptedDialog.show()
+
+                                val btnDecryptionKey = encryptedView.findViewById<Button>(R.id.btnDecryptionKey)
+                                val btnCancelDecryption = encryptedView.findViewById<Button>(R.id.btnCancelDecryption)
+                                val etDecryptionKeyInputLayout = encryptedView.findViewById<TextInputLayout>(R.id.etDecryptionKeyInputLayout)
+                                val etDecryptionKey = encryptedView.findViewById<TextInputEditText>(R.id.etDecryptionKey)
+
+                                etDecryptionKeyInputLayout.setEndIconOnClickListener {
+                                    val clipboard = this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                                    if (clipboard.hasPrimaryClip() && clipboard.primaryClipDescription?.hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN) == true) {
+                                        val text = clipboard.primaryClip?.getItemAt(0)?.text.toString()
+                                        etDecryptionKey.setText(text)
+                                        etDecryptionKey.setSelection(etDecryptionKey.length())
+                                        etDecryptionKey.requestFocus()
+                                    }
                                 }
-                            }
 
-                            etDecryptionKey.addTextChangedListener {
-                                if (etDecryptionKey.text.toString().length == 24) {
-                                    etDecryptionKeyInputLayout.isHelperTextEnabled = false
-                                } else {
-                                    etDecryptionKeyInputLayout.isHelperTextEnabled = true
-                                    etDecryptionKeyInputLayout.helperText = "*Decryption key must have 24 character"
+                                etDecryptionKey.addTextChangedListener {
+                                    if (etDecryptionKey.text.toString().length == 24) {
+                                        etDecryptionKeyInputLayout.isHelperTextEnabled = false
+                                    } else {
+                                        etDecryptionKeyInputLayout.isHelperTextEnabled = true
+                                        etDecryptionKeyInputLayout.helperText = "*Decryption key must have 44 character"
+                                    }
                                 }
-                            }
 
-                            btnDecryptionKey.setOnClickListener {
-                                if (etDecryptionKey.text.toString().trim().length > 15) {
-                                    restoreRvDialog(data, uri, etDecryptionKey.text.toString().trim())
+                                // TODO: Include try-catch block
+                                btnDecryptionKey.setOnClickListener {
+                                    if (etDecryptionKey.text.toString().trim().length > 15) {
+                                        encryptionKey = etDecryptionKey.text.toString().trim()
+//                                        Log.e(TAG, "restoreLauncher: decryptionKey --> ${etDecryptionKey.text.toString().trim()}")
+
+                                        try {
+                                            encryptedDialog.cancel()
+                                            restoreData = decryptDataAsString(byteArray, encryptionKey)
+                                            if (!validateEncryptedData(byteArray, restoreData, encryptionKey)) {
+                                                Log.e(TAG, "The encrypted data in the file has been changed")
+                                                showErrorSnackbar("The encrypted data in the file must been changed", Snackbar.LENGTH_INDEFINITE)
+                                                Toast.makeText(this, "The encrypted data in the file has been changed", Toast.LENGTH_SHORT).show()
+                                                return@setOnClickListener
+//                                            return@registerForActivityResult
+                                            } else {
+                                                Log.i(TAG, "The encrypted data in the file hasn't changed")
+                                            }
+                                            restoreRvDialog(convertStringToList(restoreData))
+                                        } catch (e: IOException) {
+                                            Log.e(TAG, "backupDatabaseToJSON: Error restoring the backup: ${e.message}")
+//                            showErrorSnackbar("Error saving backup: ${e.message.toString()}")
+                                            FancySnackbarLayout()
+                                                .makeCustomLayout(findViewById(android.R.id.content), this, e.message.toString(),
+                                                    btnShareClickListener = { FancySnackbarLayout().dismiss() })
+                                                .setInit(btnCopyView = View.GONE, btnShareImage = R.drawable.ic_baseline_close_24)
+                                                .show()
+                                        } catch (e: NoSuchAlgorithmException) {
+                                            Log.e(TAG, "backupDatabaseToJSON: Error decrypting backup: ${e.message}")
+//                            showErrorSnackbar("Error decrypting backup: ${e.message.toString()}")
+                                            FancySnackbarLayout()
+                                                .makeCustomLayout(findViewById(android.R.id.content), this, e.message.toString(),
+                                                    btnShareClickListener = { FancySnackbarLayout().dismiss() })
+                                                .setInit(btnCopyView = View.GONE, btnShareImage = R.drawable.ic_baseline_close_24)
+                                                .show()
+                                        } catch (e: NoSuchPaddingException) {
+                                            Log.e(TAG, "backupDatabaseToJSON: Error decrypting backup: ${e.message}")
+//                            showErrorSnackbar("Error decrypting backup: ${e.message.toString()}")
+                                            FancySnackbarLayout()
+                                                .makeCustomLayout(findViewById(android.R.id.content), this, e.message.toString(),
+                                                    btnShareClickListener = { FancySnackbarLayout().dismiss() })
+                                                .setInit(btnCopyView = View.GONE, btnShareImage = R.drawable.ic_baseline_close_24)
+                                                .show()
+                                        } catch (e: InvalidKeyException) {
+                                            Log.e(TAG, "backupDatabaseToJSON: Error decrypting backup: ${e.message}")
+//                            showErrorSnackbar("Error decrypting backup: ${e.message.toString()}")
+                                            FancySnackbarLayout()
+                                                .makeCustomLayout(findViewById(android.R.id.content), this, e.message.toString(),
+                                                    btnShareClickListener = { FancySnackbarLayout().dismiss() })
+                                                .setInit(btnCopyView = View.GONE, btnShareImage = R.drawable.ic_baseline_close_24)
+                                                .show()
+                                        } catch (e: IllegalBlockSizeException) {
+                                            Log.e(TAG, "backupDatabaseToJSON: Error decrypting backup: ${e.message}")
+//                            showErrorSnackbar("Error decrypting backup: ${e.message.toString()}")
+                                            FancySnackbarLayout()
+                                                .makeCustomLayout(findViewById(android.R.id.content), this, e.message.toString(),
+                                                    btnShareClickListener = { FancySnackbarLayout().dismiss() })
+                                                .setInit(btnCopyView = View.GONE, btnShareImage = R.drawable.ic_baseline_close_24)
+                                                .show()
+                                        } catch (e: BadPaddingException) {
+                                            Log.e(TAG, "backupDatabaseToJSON: Error decrypting backup: ${e.message}")
+//                            showErrorSnackbar("Error decrypting backup: ${e.message.toString()}")
+                                            FancySnackbarLayout()
+                                                .makeCustomLayout(findViewById(android.R.id.content), this, e.message.toString(),
+                                                    btnShareClickListener = { FancySnackbarLayout().dismiss() })
+                                                .setInit(btnCopyView = View.GONE, btnShareImage = R.drawable.ic_baseline_close_24)
+                                                .show()
+                                        }
+                                    }
+                                }
+
+                                btnCancelDecryption.setOnClickListener {
                                     encryptedDialog.cancel()
                                 }
+                            } else if (fileName.contains(".json")) {
+                                restoreData = byteArray.toString(Charsets.UTF_8)
+                                restoreRvDialog(convertStringToList(restoreData))
                             }
-
-                            btnCancelDecryption.setOnClickListener {
-                                encryptedDialog.cancel()
-                            }
-                        } else if (selectedFileToRestore.toString().contains(".json") && !selectedFileToRestore.toString().contains(".enc.json")) {
-                            Log.e(TAG, "restoreLauncher: $data")
-                            isEncrypted = false
-                            restoreRvDialog(data, uri)
-                        } else {
-                            isEncrypted = false
-
                         }
+//                        Log.e(TAG, "restoreLauncher: ${convertStringToList(restoreData)}")
+//                        restoreRvDialog(convertStringToList(restoreData))
                     }
-                } ?: Log.e(TAG, "Failed to read file data")
+                    inputStream?.close()
+                } ?: Log.e(TAG, "Uri is null")
+            } catch (e: Exception) {
+                Log.e(TAG, "Error while reading the file: ${e.message}")
+                Toast.makeText(this, "Error while reading the file", Toast.LENGTH_LONG).show()
             }
+
         }
     }
 
-    private fun restoreRvDialog(selectedFileToRestore: String, uri: Uri, decryptKey: String = "QRY9fqKaBlsBJZLoUNfOZg==") {
+
+    private fun restoreRvDialog(listOfNotes: List<Note>) {
+        Log.e(TAG, "restoreRvDialog: ${listOfNotes.size}")
         val builder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val view = inflater.inflate(R.layout.dialog_restore_rv, null)
@@ -690,68 +798,13 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         val btnCancel = view.findViewById<Button>(R.id.btnCancel)
         val checkBoxForAll = view.findViewById<CheckBox>(R.id.checkBoxForAll)
 
-        val gsonBuilder = GsonBuilder()
-        gsonBuilder.registerTypeAdapter(LocalDateTime::class.java, object : TypeAdapter<LocalDateTime>() {
-            override fun write(out: JsonWriter?, value: LocalDateTime?) {
-                out?.value(value.toString())
-            }
-
-            override fun read(input: JsonReader?): LocalDateTime {
-                return LocalDateTime.parse(input?.nextString())
-            }
-        })
-        val gson = gsonBuilder.create()
-        val notesList: MutableList<Note> = mutableListOf()
-
-        if (isEncrypted) {
-            val inputStream = contentResolver.openInputStream(uri)
-            try {
-                inputStream?.use { dataInputStream ->
-                    val encryptedData = dataInputStream.readBytes()
-                    val secretKey = decryptKey.toByteArray()
-                    val skey = SecretKeySpec(secretKey, 0, secretKey.size, "AES")
-                    val cipher = Cipher.getInstance("AES")
-                    cipher.init(Cipher.DECRYPT_MODE, skey)
-                    val decrypted = cipher.doFinal(encryptedData)
-                    val decryptedString = decrypted.toString(Charsets.UTF_8)
-
-                    val gsonBuilder = GsonBuilder()
-                    gsonBuilder.registerTypeAdapter(LocalDateTime::class.java, object : TypeAdapter<LocalDateTime>() {
-                        override fun write(out: JsonWriter?, value: LocalDateTime?) {
-                            out?.value(value.toString())
-                        }
-
-                        override fun read(input: JsonReader?): LocalDateTime {
-                            return LocalDateTime.parse(input?.nextString())
-                        }
-                    })
-                    val decryptedGson = gsonBuilder.create()
-                    val decryptedNotesList = decryptedGson.fromJson(decryptedString, Array<Note>::class.java).toList()
-
-                    Log.d(TAG, "Decrypted notes: $decryptedNotesList")
-                    notesList.addAll(decryptedNotesList)
-                }
-            } catch (e: Exception) {
-//                restoreErrorDialog("Error during decryption")     //  pad block corrupted
-                Log.e(TAG, "restoreRvDialog: ${e.message}")
-            }
-        } else {
-            try {
-                notesList.addAll(gson.fromJson(selectedFileToRestore, Array<Note>::class.java).toList())
-            } catch (e: Exception) {
-                Log.e(TAG, "Error restoring notes from JSON: ${e.message}")
-                Toast.makeText(this@RvMain, "Error restoring notes from JSON", Toast.LENGTH_SHORT).show()
-                showErrorSnackbar("Error restoring notes from JSON: ${e.message}")
-            }
-        }
-
-        val adapter = RestoreAdapter(notesList)
+        val adapter = RestoreAdapter(listOfNotes)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         adapter.selectedNotesLiveData.observe(this) {
             if (!it.isNullOrEmpty()) {
-                if (it.size == notesList.size) {
+                if (it.size == listOfNotes.size) {
                     checkBoxForAll.isChecked = true
                     checkBoxForAll.text = "UnSelect All"
                 } else {
@@ -815,12 +868,55 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
 
         btnCancel.setOnClickListener { dialog.cancel() }
 
-        if (!notesList.isNullOrEmpty()) {
+        if (!listOfNotes.isNullOrEmpty()) {
             dialog.show()
         } else {
             restoreErrorDialog("Error")
         }
     }
+
+    private fun getEncryptionKey(): Key {
+//        return SecretKeySpec(ENCRYPTION_KEY.toByteArray(Charsets.UTF_8), "AES")
+        val keyGen = KeyGenerator.getInstance("AES")
+        keyGen.init(AES_KEY_SIZE)
+        ENCRYPTION_KEY = keyGen.generateKey()
+        return ENCRYPTION_KEY
+    }
+
+    private fun getGCMParameterSpec(): GCMParameterSpec {
+        val iv = ByteArray(GCM_IV_LENGTH)
+        return GCMParameterSpec(GCM_TAG_LENGTH * 8, iv)
+    }
+
+    private fun validateEncryptedData(encryptedData: ByteArray, decryptedData: String, decryptionKey: String): Boolean {
+        val encryptionKeyBytes = Base64.decode(decryptionKey, Base64.DEFAULT)
+        val DECRYPTION_KEY = SecretKeySpec(encryptionKeyBytes, 0, encryptionKeyBytes.size, "AES")
+
+        val cipher = Cipher.getInstance(AES_MODE)
+        cipher.init(Cipher.ENCRYPT_MODE, DECRYPTION_KEY, getGCMParameterSpec())
+        val encryptedDataCheck = cipher.doFinal(decryptedData.toByteArray(Charsets.UTF_8))
+
+        return encryptedData.contentEquals(encryptedDataCheck)
+    }
+
+    private fun convertStringToList(restoreData: String): List<Note> {
+        //  convertListToJson
+        val gsonBuilder = GsonBuilder()
+        gsonBuilder.registerTypeAdapter(LocalDateTime::class.java, LocalDateTimeSerializer())
+        gsonBuilder.registerTypeAdapter(LocalDateTime::class.java, LocalDateTimeDeserializer())
+        val gsonWithCustomSerializer = gsonBuilder.create()
+//        val notesJson = gsonWithCustomSerializer.toJson(listOfNotes)
+
+        //  convertJsonToList
+        val notesType = object : TypeToken<List<Note>>() {}.type
+        val notesList = gsonWithCustomSerializer.fromJson<List<Note>>(restoreData, notesType)
+
+//        Log.e(TAG, notesJson)
+//        Log.d(TAG, "notesList -> $notesList")
+        return notesList
+    }
+
+
 
     private fun restoreErrorDialog(Title: String = getString(R.string.app_name)) {
         val dialog = FancyDialog(this)
@@ -864,3 +960,17 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
 
 
 }
+
+
+class LocalDateTimeSerializer : JsonSerializer<LocalDateTime> {
+    override fun serialize(src: LocalDateTime?, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement {
+        return JsonPrimitive(src.toString())
+    }
+}
+
+class LocalDateTimeDeserializer : JsonDeserializer<LocalDateTime> {
+    override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): LocalDateTime {
+        return LocalDateTime.parse(json?.asString)
+    }
+}
+
