@@ -6,14 +6,16 @@ plugins {
 
 android {
     namespace 'com.dinesh.mynotes'
-    compileSdk 34
-    compileSdkPreview "UpsideDownCake"
+    compileSdk 33
+//    compileSdk 34
+//    compileSdkPreview "UpsideDownCake"
 
     defaultConfig {
         applicationId "com.dinesh.mynotes"
         minSdk 26
-        targetSdk 34
-        versionCode 10
+        targetSdk 33
+//        targetSdk 34
+        versionCode 11
         versionName "2.0"
 
         javaCompileOptions {

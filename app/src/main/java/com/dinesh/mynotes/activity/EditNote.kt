@@ -2,6 +2,12 @@ package com.dinesh.mynotes.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.SpannableStringBuilder
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.text.style.URLSpan
+import android.text.util.Linkify
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
@@ -38,6 +44,32 @@ class EditNote : NavigationDrawer() {
         super.onCreate(savedInstanceState)
         initializeRecyclerView()
         retrieveNote()
+
+//        val editable = etNote.text as Editable
+//
+//        val spannable = SpannableStringBuilder.valueOf(editable)
+//        Linkify.addLinks(spannable, Linkify.WEB_URLS)
+//
+//        val clickableSpan = object : ClickableSpan() {
+//            override fun onClick(widget: View) {
+//                // Handle the URL click event here
+//                val url = (widget as EditText).text.subSequence(widget.selectionStart, widget.selectionEnd).toString()
+//                // Open the URL using an appropriate method (e.g., using an Intent to open a browser)
+//            }
+//        }
+//
+//        val spans = spannable.getSpans(0, spannable.length, URLSpan::class.java)
+//        for (span in spans) {
+//            val start = spannable.getSpanStart(span)
+//            val end = spannable.getSpanEnd(span)
+//            val flags = spannable.getSpanFlags(span)
+//            spannable.removeSpan(span)
+//            spannable.setSpan(clickableSpan, start, end, flags)
+//        }
+//
+//        etNote.text = spannable
+//        etNote.movementMethod = LinkMovementMethod.getInstance()
+
 
         etTitle.addTextChangedListener {
             note.title = it.toString()

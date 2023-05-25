@@ -46,8 +46,10 @@
         <activity android:name=".app.NavigationDrawer"/>
 
         <activity android:name=".rv.RvMain"/>
-        <activity android:name=".activity.EditNote"/>
-        <activity android:name=".activity.AddNote"/>
+        <activity android:name=".activity.EditNote"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".activity.AddNote"
+                  android:windowSoftInputMode="adjustResize"/>
 
         <activity android:name=".TMain"/>
         <activity android:name=".BackupActivity"/>
