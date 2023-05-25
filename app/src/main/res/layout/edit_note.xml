@@ -17,7 +17,7 @@
         android:hint="Title"
         android:inputType="textLongMessage|textMultiLine|textAutoComplete"
         android:padding="8dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textAppearance="@android:style/TextAppearance.Material.Body1"
         android:textIsSelectable="true"
         android:textSize="20sp"
         android:textStyle="bold"

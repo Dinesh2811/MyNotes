@@ -17,8 +17,7 @@ import com.dinesh.mynotes.room.NotesDatabase
 import java.io.*
 
 class BackupActivity : AppCompatActivity() {
-    private val TAG = "log_" + BackupActivity::class.java.name.split(BackupActivity::class.java.name.split(".").toTypedArray()[2] + ".").toTypedArray()[1]
-
+    private val TAG = "log_BackupActivity"
     private val REQUEST_EXTERNAL_STORAGE = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {

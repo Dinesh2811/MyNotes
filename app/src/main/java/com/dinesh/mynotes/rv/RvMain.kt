@@ -5,6 +5,7 @@ import android.content.*
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.OpenableColumns
 import android.util.Log
@@ -81,7 +82,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
     private lateinit var saveFileLauncher: ActivityResultLauncher<String>
     private lateinit var openFileLauncher: ActivityResultLauncher<Array<String>>
 
-//    var encryptionKey = "2x2+69Nf9M9av+IqaEi3A10jMvt6CWt3Fvm6bAD4s2I="
+    //    var encryptionKey = "2x2+69Nf9M9av+IqaEi3A10jMvt6CWt3Fvm6bAD4s2I="
     var encryptionKey = ""
     var isEncrypted = false
 
@@ -105,9 +106,14 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
 
         isPermissionGranted.observe(this) {
             Log.e(TAG, "onCreate: isPermissionGranted ->> ${it}")
-            if (it && ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+                if (it && ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                    backup()
+                }
+            } else {
                 backup()
             }
+
         }
 
 
@@ -190,6 +196,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                     callback.setDragEnable(false)
                     true
                 }
+
                 R.id.actionReOrder -> {
                     setItemClick = false
                     actionMode = startActionMode(this)
@@ -198,6 +205,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                     recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
                     true
                 }
+
                 R.id.menu_item_duplicate -> {
                     setItemClick = true
                     callback.setDragEnable(false)
@@ -247,6 +255,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                 mode?.finish()
                 return true
             }
+
             R.id.menu_item_selectAll -> {
                 if (item.title.toString() == "Select All") {
                     notesList.forEachIndexed { i, it ->
@@ -264,6 +273,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                 actionMode?.invalidate()
                 return true
             }
+
             else -> {
                 mode?.finish()
                 return false
@@ -361,6 +371,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                 })
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -397,20 +408,28 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 //        return super.onNavigationItemSelected(item)
         return when (item.itemId) {
+            // TODO: want to modify 26-5-23
             R.id.menuBackup -> {
-                if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                    backup()
+                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+                    if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                        backup()
+                    } else {
+                        requestPermission(this)
+                    }
                 } else {
-                    requestPermission(this)
+                    backup()
                 }
+
                 drawerLayout.closeDrawer(GravityCompat.START)
                 true
             }
+
             R.id.menuRestore -> {
                 openFileLauncher.launch(arrayOf("*/*"))
                 drawerLayout.closeDrawer(GravityCompat.START)
                 true
             }
+
             else -> super.onNavigationItemSelected(item)
         }
     }
@@ -482,10 +501,10 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                                         "(Long press to dismiss)"
 
                                 val btnCopyClickListener: (v: View) -> Unit = {
-                                        val clipboard = this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                                        val clip = ClipData.newPlainText("keyBase64", encryptionKey)
-                                        clipboard.setPrimaryClip(clip)
-                                        Toast.makeText(this, "Text copied to clipboard: $encryptionKey", Toast.LENGTH_SHORT).show()
+                                    val clipboard = this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                                    val clip = ClipData.newPlainText("keyBase64", encryptionKey)
+                                    clipboard.setPrimaryClip(clip)
+                                    Toast.makeText(this, "Text copied to clipboard: $encryptionKey", Toast.LENGTH_SHORT).show()
                                     FancySnackbarLayout().dismiss()
                                 }
                                 val btnShareClickListener: (v: View) -> Unit = {
@@ -500,10 +519,19 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                                 }
                                 val tvLongClickListener = View.OnLongClickListener {
                                     FancySnackbarLayout().dismiss()
-                                    true }
+                                    true
+                                }
 
                                 FancySnackbarLayout()
-                                    .makeCustomLayout(findViewById(android.R.id.content),this, snackBarTitle, Snackbar.LENGTH_INDEFINITE, btnCopyClickListener, btnShareClickListener, tvLongClickListener)
+                                    .makeCustomLayout(
+                                        findViewById(android.R.id.content),
+                                        this,
+                                        snackBarTitle,
+                                        Snackbar.LENGTH_INDEFINITE,
+                                        btnCopyClickListener,
+                                        btnShareClickListener,
+                                        tvLongClickListener
+                                    )
                                     .show()
 
                             } else {
@@ -915,7 +943,6 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
 //        Log.d(TAG, "notesList -> $notesList")
         return notesList
     }
-
 
 
     private fun restoreErrorDialog(Title: String = getString(R.string.app_name)) {

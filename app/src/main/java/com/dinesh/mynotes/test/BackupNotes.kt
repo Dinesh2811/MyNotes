@@ -4,7 +4,6 @@ import android.accounts.AccountManager.KEY_PASSWORD
 import android.app.Dialog
 import android.content.*
 import android.hardware.biometrics.BiometricPrompt
-import android.hardware.fingerprint.FingerprintManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle

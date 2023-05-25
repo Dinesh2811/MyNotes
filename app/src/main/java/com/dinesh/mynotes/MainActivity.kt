@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.dinesh.mynotes.app.FancySnackbar
 import com.dinesh.mynotes.app.FancySnackbarLayout
 import com.dinesh.mynotes.rv.RvMain
+import com.dinesh.mynotes.test.T1
 import com.google.android.material.snackbar.Snackbar
 
 //class MainActivity : ExternalStoragePermission() {
@@ -29,7 +30,8 @@ class MainActivity : AppCompatActivity() {
 //        startActivity(Intent(this, BackupNotes::class.java))
 //        startActivity(Intent(this, com.dinesh.mynotes.test.MainActivity::class.java))
         startActivity(Intent(this, RvMain::class.java))
-//        finish()
+//        startActivity(Intent(this, T1::class.java))
+        finish()
 
 
 //
