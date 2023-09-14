@@ -78,7 +78,6 @@ open class NavigationDrawer : ToolbarMain(), NavigationView.OnNavigationItemSele
                     .setTitle(getString(R.string.app_name))
                     .setMessage("This is a Simple Notes App. \n\n " +
                             "This is just the initial build of the app, I plan to include new feature if any users demands. \n\n" +
-                            "You can contact me via email at dk2811testmail@gmail.com \n\n" +
                             "Please don't hesitate to contact me to report any bugs or give any suggestion.")
                     .setPositiveButton("Contact", object : DialogInterface.OnClickListener {
                         override fun onClick(dialog: DialogInterface, which: Int) {
