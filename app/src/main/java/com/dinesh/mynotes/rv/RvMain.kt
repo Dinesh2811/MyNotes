@@ -59,6 +59,7 @@ import javax.crypto.spec.SecretKeySpec
 import java.lang.reflect.Type
 import java.security.Key
 import android.util.Base64
+import java.time.format.DateTimeFormatter
 
 class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
     private val TAG = "log_" + RvMain::class.java.name.split(RvMain::class.java.name.split(".").toTypedArray()[2] + ".").toTypedArray()[1]
@@ -665,6 +666,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
     }
 
 
+//    private var restoreData: String = "[{}]"
     private fun restoreLauncher() {
         openFileLauncher = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri: Uri? ->
             if (uri == null) {
@@ -673,6 +675,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                 return@registerForActivityResult
             }
             isEncrypted = false
+//            restoreData = "[{}]"
 
             try {
                 uri.let {
@@ -682,8 +685,10 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
 
                     val inputStream = contentResolver.openInputStream(it)
                     inputStream?.let {
+                        // TODO: Dk_14-9-23
                         val byteArray = inputStream.readBytes()
                         var restoreData: String = "[{}]"
+//                        restoreData = "[{}]"
 
                         if (fileName != null) {
                             if (fileName.contains(".enc") && fileName.contains(".json")) {
@@ -796,6 +801,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                                 }
                             } else if (fileName.contains(".json")) {
                                 restoreData = byteArray.toString(Charsets.UTF_8)
+                                Log.i(TAG, "restoreLauncher: ${convertStringToList(restoreData)}")
                                 restoreRvDialog(convertStringToList(restoreData))
                             }
                         }
@@ -813,6 +819,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
     }
 
 
+//    private var noteID = 0L
     private fun restoreRvDialog(listOfNotes: List<Note>) {
         Log.e(TAG, "restoreRvDialog: ${listOfNotes.size}")
         val builder = AlertDialog.Builder(this)
@@ -928,22 +935,24 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
     }
 
     private fun convertStringToList(restoreData: String): List<Note> {
-        //  convertListToJson
-        val gsonBuilder = GsonBuilder()
-        gsonBuilder.registerTypeAdapter(LocalDateTime::class.java, LocalDateTimeSerializer())
-        gsonBuilder.registerTypeAdapter(LocalDateTime::class.java, LocalDateTimeDeserializer())
-        val gsonWithCustomSerializer = gsonBuilder.create()
-//        val notesJson = gsonWithCustomSerializer.toJson(listOfNotes)
+        try{
+            //  convertListToJson
+            val gsonBuilder = GsonBuilder()
+            gsonBuilder.registerTypeAdapter(LocalDateTime::class.java, LocalDateTimeSerializer())
+            gsonBuilder.registerTypeAdapter(LocalDateTime::class.java, LocalDateTimeDeserializer())
+            val gsonWithCustomSerializer = gsonBuilder.create()
+//            val notesJson = gsonWithCustomSerializer.toJson(listOfNotes)
 
-        //  convertJsonToList
-        val notesType = object : TypeToken<List<Note>>() {}.type
-        val notesList = gsonWithCustomSerializer.fromJson<List<Note>>(restoreData, notesType)
+            //  convertJsonToList
+            val notesType = object : TypeToken<List<Note>>() {}.type
+            val notesList = gsonWithCustomSerializer.fromJson<List<Note>>(restoreData, notesType)
 
-//        Log.e(TAG, notesJson)
-//        Log.d(TAG, "notesList -> $notesList")
-        return notesList
+            return notesList
+        } catch (e: Exception){
+            Log.e(TAG, "${e.message}")
+            return emptyList()
+        }
     }
-
 
     private fun restoreErrorDialog(Title: String = getString(R.string.app_name)) {
         val dialog = FancyDialog(this)
@@ -973,21 +982,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
     }
 
 
-//    private val REQUEST_EXTERNAL_STORAGE = 1000
-//    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-//        if (requestCode == REQUEST_EXTERNAL_STORAGE) {
-//            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                backupDialog()
-//            } else {
-//                Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//    }
-
-
 }
-
 
 class LocalDateTimeSerializer : JsonSerializer<LocalDateTime> {
     override fun serialize(src: LocalDateTime?, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement {
@@ -1000,4 +995,5 @@ class LocalDateTimeDeserializer : JsonDeserializer<LocalDateTime> {
         return LocalDateTime.parse(json?.asString)
     }
 }
+
 
