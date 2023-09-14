@@ -39,11 +39,11 @@ class FancySnackbarLayout {
                          btnShareClickListener: View.OnClickListener? = null, tvLongClickListener: View.OnLongClickListener? = null): FancySnackbarLayout {
 
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val customView = inflater?.inflate(R.layout.snackbar_custom, null) as ViewGroup
+        val customView = inflater.inflate(R.layout.snackbar_custom, null) as ViewGroup
 
-        snackbarTextView = customView?.findViewById<TextView>(R.id.snackbar_text)
-        btnCopy = customView?.findViewById<ImageButton>(R.id.snackbar_btnCopy)
-        btnShare = customView?.findViewById<ImageButton>(R.id.snackbar_btnShare)
+        snackbarTextView = customView.findViewById<TextView>(R.id.snackbar_text)
+        btnCopy = customView.findViewById<ImageButton>(R.id.snackbar_btnCopy)
+        btnShare = customView.findViewById<ImageButton>(R.id.snackbar_btnShare)
 
         snackbarTextView?.text = message
 //        snackbarTextView?.setOnLongClickListener {

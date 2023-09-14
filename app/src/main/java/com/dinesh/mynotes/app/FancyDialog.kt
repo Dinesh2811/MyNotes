@@ -61,7 +61,7 @@ class FancyDialog(context: Context) : Dialog(context) {
         if (positiveButtonText != null) {
             positiveButton.text = positiveButtonText
             if (positiveButtonClickListener != null) {
-                positiveButton.setOnClickListener { v -> positiveButtonClickListener!!.onClick(this@FancyDialog, DialogInterface.BUTTON_POSITIVE) }
+                positiveButton.setOnClickListener { positiveButtonClickListener!!.onClick(this@FancyDialog, DialogInterface.BUTTON_POSITIVE) }
             }
         } else {
             positiveButton.visibility = View.GONE
@@ -70,7 +70,7 @@ class FancyDialog(context: Context) : Dialog(context) {
         if (negativeButtonText != null) {
             negativeButton.text = negativeButtonText
             if (negativeButtonClickListener != null) {
-                negativeButton.setOnClickListener { v -> negativeButtonClickListener!!.onClick(this@FancyDialog, DialogInterface.BUTTON_NEGATIVE) }
+                negativeButton.setOnClickListener { negativeButtonClickListener!!.onClick(this@FancyDialog, DialogInterface.BUTTON_NEGATIVE) }
             }
         } else {
             negativeButton.visibility = View.GONE

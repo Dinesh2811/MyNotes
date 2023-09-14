@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.dinesh.mynotes.app.FancySnackbar
 import com.dinesh.mynotes.app.FancySnackbarLayout
 import com.dinesh.mynotes.rv.RvMain
-import com.dinesh.mynotes.test.T1
 import com.google.android.material.snackbar.Snackbar
 
 //class MainActivity : ExternalStoragePermission() {
