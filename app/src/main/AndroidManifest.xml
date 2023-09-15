@@ -23,7 +23,7 @@
         android:roundIcon="@mipmap/ic_app_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyNotes"
-        tools:targetApi="33">
+        tools:targetApi="34">
         <activity
             android:name=".rv.RvMain"
             android:exported="true">
