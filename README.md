@@ -22,18 +22,24 @@ and responsive user experience.
 
 <table>
   <tr>
+    <td><img src="images/demo_app.gif" width="147.25" height="312.25"/></td>
     <td><img src="images/Screenshot%203.png" alt="Screenshot 3" width="200" height="400"/></td>
     <td><img src="images/Screenshot%204.png" alt="Screenshot 4" width="200" height="400"/></td>
     <td><img src="images/Screenshot%205.png" alt="Screenshot 5" width="200" height="400"/></td>
   </tr>
   <tr>
-    <td><img src="images/Screenshot%207.png" alt="Screenshot 4" width="200" height="400"/></td>
-    <td><img src="images/Screenshot%2011.png" alt="Screenshot 4" width="200" height="400"/></td>
-    <td><img src="images/Screenshot%2013.png" alt="Screenshot 5" width="200" height="400"/></td>
+    <td><img src="images/Screenshot%207.png" alt="Screenshot 7" width="200" height="400"/></td>
+    <td><img src="images/Screenshot%2011.png" alt="Screenshot 11" width="200" height="400"/></td>
+    <td><img src="images/Screenshot%2013.png" alt="Screenshot 13" width="200" height="400"/></td>
+    <td><img src="images/Screenshot%2014.png" alt="Screenshot 14" width="200" height="400"/></td>
   </tr>
 </table>
 
+
 ## Demo Video
+
+
+<img src="images/demo_app.gif" width="147.25" height="312.25"/>
 
 ![App Demo](./images/demo_app.gif)
 
