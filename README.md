@@ -1,15 +1,7 @@
-# <img src="https://github.com/Dinesh2811/MyNotes/assets/55741240/f31dfd06-5d1e-44c3-b6f1-caf3cd356182" alt="app_icon" width="25" height="25"> MyNotes
-
-[<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" width="250"  height="100"/>](https://play.google.com/store/apps/details?id=com.dinesh.mynotes)
-
-[<img src="https://github.com/Dinesh2811/MyNotes/assets/55741240/9595555d-d184-44d8-a5a4-66c6eb309a16" alt="Get it on Google Play" width="250"  height="100"/>](https://github.com/Dinesh2811/MyNotes/releases/download/2.0/MyNotes.v2.0.13.apk)
-
-
-
-## Download
+# <img src="https://github.com/Dinesh2811/MyNotes/assets/55741240/f31dfd06-5d1e-44c3-b6f1-caf3cd356182" alt="app_icon" width="25" height="25"> MyNotes - Secure backup using AES 256-bit encryption
 
 <div align="center">
-    <h4><b>You can get MyNotes from one of the links below!</b></h4>
+    <h4><b>You can get MyNotes app from one of the links below!</b></h4>
     <a href="https://play.google.com/store/apps/details?id=com.dinesh.mynotes">
         <img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" height="60" />
     </a>
@@ -18,17 +10,8 @@
     </a>
 </div>
 
-
-
-
-
-
-
-
-## MyNotes - Secure backup using AES 256-bit encryption
-
 ### Overview
-MyNotes is a lightweight open-source Android app designed for easy note-taking, secure data storage, and effortless backup and restore options. With AES 256-bit encryption, you can keep your notes safe and private. The app utilizes LiveData, ViewModel, Coroutine, and Room Database for a seamless 
+MyNotes is a lightweight open-source Android app designed for easy note-taking, secure data storage, and effortless backup and restore options. With AES 256-bit encryption, you can keep your notes safe and private. The app utilizes LiveData, ViewModel, Coroutine, and Room Database for a seamless
 and responsive user experience.
 
 ### Features
