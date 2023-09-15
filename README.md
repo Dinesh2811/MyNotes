@@ -1,4 +1,8 @@
-# <img src="https://github.com/Dinesh2811/MyNotes/assets/55741240/f31dfd06-5d1e-44c3-b6f1-caf3cd356182" alt="app_icon" width="25" height="25"> MyNotes - Secure backup using AES 256-bit encryption
+<h2 align="center">
+    <img src="images/app_icon.png" alt="icon" height="75" width="75" />
+    <br />
+    <b>MyNotes - Secure backup using AES 256-bit encryption</b>
+</h2>
 
 <div align="center">
     <h4><b>You can get MyNotes app from one of the links below!</b></h4>
