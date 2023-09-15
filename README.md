@@ -42,7 +42,18 @@ Whether you're looking to offer your expertise, suggest improvements, report iss
 ## Spread the Word
 If you find MyNotes app useful, consider sharing it with fellow developers and communities.
 
+## Third-Party Dependencies
+
+The project utilizes various third-party libraries to enhance functionality. Here are some of the key dependencies:
+
+- **[com.google.code.gson:gson](https://github.com/google/gson)** - Used for JSON serialization ([Apache License 2.0][7])
+- **[com.journeyapps:zxing-android-embedded](https://github.com/journeyapps/zxing-android-embedded)** - QR-Code library ([Apache License 2.0][7])
+
+Please note that this list includes only a subset of the third-party libraries used in the project. Additionally, the project relies on other standard AndroidX and Kotlin libraries, which are not listed here for brevity. You can review the `build.gradle` file for a complete list of dependencies.
+
 ## License
+
+MyNotes is licensed under the terms of the [Apache License 2.0][7]. See [License](LICENSE) for details.
 
 ```
    Copyright 2023 Dinesh K
@@ -59,5 +70,7 @@ If you find MyNotes app useful, consider sharing it with fellow developers and c
    See the License for the specific language governing permissions and
    limitations under the License.
 ```
+
+[7]: https://www.apache.org/licenses/LICENSE-2.0
 
 ### Happy note-taking with MyNotes!
