@@ -18,6 +18,26 @@
 MyNotes is a lightweight open-source Android app designed for easy note-taking, secure data storage, and effortless backup and restore options. With AES 256-bit encryption, you can keep your notes safe and private. The app utilizes LiveData, ViewModel, Coroutine, and Room Database for a seamless
 and responsive user experience.
 
+## Screenshots
+
+<table>
+  <tr>
+    <td><img src="images/Screenshot%203.png" alt="Screenshot 3" width="200" height="400"/></td>
+    <td><img src="images/Screenshot%204.png" alt="Screenshot 4" width="200" height="400"/></td>
+    <td><img src="images/Screenshot%205.png" alt="Screenshot 5" width="200" height="400"/></td>
+  </tr>
+  <tr>
+    <td><img src="images/Screenshot%207.png" alt="Screenshot 4" width="200" height="400"/></td>
+    <td><img src="images/Screenshot%2011.png" alt="Screenshot 4" width="200" height="400"/></td>
+    <td><img src="images/Screenshot%2013.png" alt="Screenshot 5" width="200" height="400"/></td>
+  </tr>
+</table>
+
+## Demo Video
+
+![App Demo](./images/demo_app.gif)
+
+
 ### Features
 - Create, edit, update, and delete notes effortlessly.
 - Local backup and restore options for your notes.
