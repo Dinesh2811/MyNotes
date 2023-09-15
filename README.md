@@ -23,7 +23,7 @@ and responsive user experience.
 
 <table>
   <tr>
-    <td><a href="images/demo_app.webm" target="_blank"><img src="images/demo_app.gif" width="147.25" height="312.25" alt="Click to play video"/></a></td>
+    <td><a href="images/demo_app.gif" target="_blank"><img src="images/demo_app.gif" width="147.25" height="312.25" alt="Click to play video"/></a></td>
     <td><img src="images/Screenshot%203.png" alt="Screenshot 3" width="200" height="400"/></td>
     <td><img src="images/Screenshot%204.png" alt="Screenshot 4" width="200" height="400"/></td>
     <td><img src="images/Screenshot%205.png" alt="Screenshot 5" width="200" height="400"/></td>
@@ -70,7 +70,7 @@ The project utilizes various third-party libraries to enhance functionality. Her
 - **[com.google.code.gson:gson](https://github.com/google/gson)** - Used for JSON serialization ([Apache License 2.0][7])
 - **[com.journeyapps:zxing-android-embedded](https://github.com/journeyapps/zxing-android-embedded)** - QR-Code library ([Apache License 2.0][7])
 
-Please note that this list includes only a subset of the third-party libraries used in the project. Additionally, the project relies on other standard AndroidX and Kotlin libraries, which are not listed here for brevity. You can review the `build.gradle` file for a complete list of dependencies.
+Please note that this list includes only a subset of the third-party libraries used in the project. Additionally, the project relies on other standard AndroidX and Kotlin libraries, which are not listed here for brevity. You can review the`build.gradle`file for a complete list of dependencies.
 
 ## License
 
