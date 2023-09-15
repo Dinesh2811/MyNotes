@@ -2,13 +2,6 @@ package com.dinesh.mynotes.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.SpannableStringBuilder
-import android.text.method.LinkMovementMethod
-import android.text.style.ClickableSpan
-import android.text.style.URLSpan
-import android.text.util.Linkify
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
@@ -21,15 +14,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.dinesh.mynotes.R
 import com.dinesh.mynotes.app.NavigationDrawer
-import com.dinesh.mynotes.app.showSnackbar
 import com.dinesh.mynotes.room.Note
 import com.dinesh.mynotes.room.NotesViewModel
 import com.dinesh.mynotes.rv.RvMain
-import com.google.android.material.snackbar.Snackbar
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-
-private val TAG = "log_" + EditNote::class.java.name.split(EditNote::class.java.name.split(".").toTypedArray()[2] + ".").toTypedArray()[1]
 
 class EditNote : NavigationDrawer() {
 
@@ -38,7 +26,6 @@ class EditNote : NavigationDrawer() {
     lateinit var etTitle: EditText
     lateinit var etNote: EditText
     private var note: Note = Note()
-    var rvMain: RvMain = RvMain()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,6 +66,7 @@ class EditNote : NavigationDrawer() {
         }
 
     }
+
     private fun initializeRecyclerView() {
         setContentView(R.layout.activity_main)
 //        setNavigationDrawer()
@@ -103,7 +91,7 @@ class EditNote : NavigationDrawer() {
         note.id = intent.getLongExtra("NOTE_ID", 0)
         note.dateModified = LocalDateTime.now()
         notesViewModel.getNoteById(noteId).observe(this, Observer { retrievedNote ->
-            if (retrievedNote != null){
+            if (retrievedNote != null) {
                 note = retrievedNote
                 etTitle.setText(note.title)
                 etNote.setText(note.notes)
@@ -121,7 +109,7 @@ class EditNote : NavigationDrawer() {
             note.id = intent.getLongExtra("NOTE_ID", 0)
             note.dateModified = LocalDateTime.now()
             notesViewModel.update(note)
-            Toast.makeText(this, "Your note is Updated successfully", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "Your note is Updated successfully", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -152,7 +140,6 @@ class EditNote : NavigationDrawer() {
         deleteIcon.setOnMenuItemClickListener {
             notesViewModel.delete(note)
             Toast.makeText(this, "Your note was deleted successfully", Toast.LENGTH_SHORT).show()
-
 
             val intent = Intent(this@EditNote, RvMain::class.java)
             startActivity(intent)

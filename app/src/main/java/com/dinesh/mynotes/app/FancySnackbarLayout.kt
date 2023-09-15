@@ -3,7 +3,6 @@ package com.dinesh.mynotes.app
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
-import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -12,18 +11,15 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.core.view.isVisible
 import com.dinesh.mynotes.R
 import com.google.android.material.snackbar.Snackbar
 
-
 class FancySnackbarLayout {
-    private val TAG = "log_" + FancySnackbarLayout::class.java.name.split(FancySnackbarLayout::class.java.name.split(".").toTypedArray()[2] + ".").toTypedArray()[1]
-
     private var secondaryAction: Snackbar.Callback? = null
+
     companion object {
         var snackbar: Snackbar? = null
-        var  layout: Snackbar.SnackbarLayout? = null
+        var layout: Snackbar.SnackbarLayout? = null
         var snackbarTextView: TextView? = null
         var btnCopy: ImageButton? = null
         var btnShare: ImageButton? = null
@@ -35,8 +31,10 @@ class FancySnackbarLayout {
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    fun makeCustomLayout(view: View, context: Context, message: String, duration: Int = Snackbar.LENGTH_INDEFINITE, btnCopyClickListener: View.OnClickListener? = null,
-                         btnShareClickListener: View.OnClickListener? = null, tvLongClickListener: View.OnLongClickListener? = null): FancySnackbarLayout {
+    fun makeCustomLayout(
+        view: View, context: Context, message: String, duration: Int = Snackbar.LENGTH_INDEFINITE, btnCopyClickListener: View.OnClickListener? = null,
+        btnShareClickListener: View.OnClickListener? = null, tvLongClickListener: View.OnLongClickListener? = null,
+    ): FancySnackbarLayout {
 
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val customView = inflater.inflate(R.layout.snackbar_custom, null) as ViewGroup
@@ -80,9 +78,9 @@ class FancySnackbarLayout {
 //            true
 //        }
 
-        snackbarTextView?.setOnLongClickListener (tvLongClickListener)
-        btnCopy?.setOnClickListener (btnCopyClickListener)
-        btnShare?.setOnClickListener (btnShareClickListener)
+        snackbarTextView?.setOnLongClickListener(tvLongClickListener)
+        btnCopy?.setOnClickListener(btnCopyClickListener)
+        btnShare?.setOnClickListener(btnShareClickListener)
 
         snackbar = Snackbar.make(view, "", duration)
         snackbar?.view?.setBackgroundColor(Color.WHITE)
@@ -123,7 +121,7 @@ class FancySnackbarLayout {
         return this
     }
 
-    fun setInit(btnCopyView: Int = View.VISIBLE, btnShareView: Int = View.VISIBLE,btnCopyImage: Int = R.drawable.baseline_content_copy_24, btnShareImage: Int = R.drawable.baseline_share_24): FancySnackbarLayout{
+    fun setInit(btnCopyView: Int = View.VISIBLE, btnShareView: Int = View.VISIBLE, btnCopyImage: Int = R.drawable.baseline_content_copy_24, btnShareImage: Int = R.drawable.baseline_share_24): FancySnackbarLayout {
         btnCopy?.visibility = btnCopyView
         btnShare?.visibility = btnShareView
         btnCopy?.setImageResource(btnCopyImage)

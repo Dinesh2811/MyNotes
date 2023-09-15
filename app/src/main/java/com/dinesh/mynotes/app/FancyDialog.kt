@@ -9,7 +9,6 @@ import android.widget.Button
 import android.widget.TextView
 import com.dinesh.mynotes.R
 
-
 class FancyDialog(context: Context) : Dialog(context) {
 
     private var title: String? = null

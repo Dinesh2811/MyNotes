@@ -1,10 +1,7 @@
 package com.dinesh.mynotes.rv
 
-import android.util.Log
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.dinesh.mynotes.room.Note
-import java.util.*
 
 class MyItemTouchHelperCallback(private val rvAdapter: RvAdapter, private val rvMain: RvMain) : ItemTouchHelper.Callback() {
 
@@ -47,12 +44,7 @@ class MyItemTouchHelperCallback(private val rvAdapter: RvAdapter, private val rv
 
     }
 
-
-    }
-
-
-
-
+}
 
 
 /*

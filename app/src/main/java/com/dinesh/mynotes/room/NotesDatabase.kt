@@ -2,7 +2,6 @@ package com.dinesh.mynotes.room
 
 import android.content.Context
 import android.os.Build
-import android.os.Environment
 import androidx.annotation.RequiresApi
 import androidx.room.Database
 import androidx.room.Room
@@ -10,41 +9,6 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import java.io.File
-import java.io.FileInputStream
-import java.io.FileOutputStream
-
-
-//@RequiresApi(Build.VERSION_CODES.O)
-//@Database(entities = [Note::class], version = 1, exportSchema = false)
-//@TypeConverters(LocalDateTimeConverter::class)
-//abstract class NotesDatabase : RoomDatabase() {
-//    abstract fun notesDao(): NotesDao
-//
-//    companion object {
-//        @Volatile
-//        private var INSTANCE: NotesDatabase? = null
-//
-//        fun getInstance(context: Context): NotesDatabase {
-//            if (INSTANCE == null) {
-//                synchronized(this) {
-//                    if (INSTANCE == null) {
-//                        INSTANCE = Room.databaseBuilder(context, NotesDatabase::class.java, "notes_database")
-//                            .fallbackToDestructiveMigration()
-//                            .build()
-//                    }
-//                }
-//            }
-//            return INSTANCE!!
-//        }
-//
-//        fun destroyInstance() {
-//            INSTANCE = null
-//        }
-//    }
-//}
-
-
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Database(entities = [Note::class], version = 2, exportSchema = false)
@@ -114,10 +78,6 @@ val MIGRATION_1_2 = object : Migration(1, 2) {
 Room.databaseBuilder(this, AppDatabase::class.java, "my_database")
 .writeToFile(backupFile)
  */
-
-
-
-
 
 
 /*

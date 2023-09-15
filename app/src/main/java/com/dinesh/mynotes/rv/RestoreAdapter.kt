@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.dinesh.mynotes.R
@@ -25,14 +24,14 @@ class RestoreAdapter(private val notes: List<Note>) : RecyclerView.Adapter<Resto
         val note = notes[position]
         if (note.title.trim().isEmpty()) {
             holder.tvTitle.visibility = View.GONE
-        } else{
+        } else {
             holder.tvTitle.text = note.title
             holder.tvTitle.visibility = View.VISIBLE
         }
 
-        if (note.notes.trim().isEmpty()){
+        if (note.notes.trim().isEmpty()) {
             holder.tvNote.visibility = View.GONE
-        } else{
+        } else {
             holder.tvNote.text = note.notes
             holder.tvNote.visibility = View.VISIBLE
         }

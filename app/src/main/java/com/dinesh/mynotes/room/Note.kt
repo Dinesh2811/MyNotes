@@ -1,17 +1,10 @@
 package com.dinesh.mynotes.room
 
-import android.os.Build
-import android.util.Log
-import androidx.annotation.RequiresApi
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.dinesh.mynotes.R
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
-
 
 @Entity(tableName = "table_name")
 @TypeConverters(LocalDateTimeConverter::class)
@@ -25,5 +18,5 @@ data class Note(
     var isPinned: Boolean = false,
     var color: Int = R.color.white,
     var label: String = "nullLabel",
-    var selected: Boolean = false
-):java.io.Serializable
+    var selected: Boolean = false,
+) : java.io.Serializable

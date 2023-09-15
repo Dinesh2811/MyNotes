@@ -33,37 +33,3 @@ interface NotesDao {
     fun getNoteByTitleAndDescriptionAsNote(title: String, description: String): Note
 
 }
-
-/*
-
-@Dao
-interface NotesDao {
-
-    @Transaction
-    @Insert
-    fun insert(note: Note)
-
-    @Transaction
-//    @Query("UPDATE table_name SET notes = :note.title WHERE title = :note.title")
-    @Update
-    fun update(note: Note)
-
-    @Transaction
-    @Delete
-    fun delete(note: Note)
-
-    @Transaction
-    @Query("SELECT * FROM table_name")
-    fun getAllNotes(): LiveData<List<Note>>
-
-    @Transaction
-    @Query("SELECT * FROM table_name WHERE id = :noteId")
-    fun getNoteById(noteId: Long): LiveData<Note>
-
-    @Transaction
-    @Query("SELECT COUNT(*) FROM table_name")
-    fun getSize(): LiveData<Int>
-
-}
-
- */

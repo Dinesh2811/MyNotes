@@ -3,11 +3,10 @@ package com.dinesh.mynotes.rv
 import android.app.Dialog
 import android.content.*
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.provider.OpenableColumns
+import android.util.Base64
 import android.util.Log
 import android.view.*
 import android.widget.*
@@ -37,8 +36,6 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.*
 import com.google.gson.reflect.TypeToken
-import com.google.gson.stream.JsonReader
-import com.google.gson.stream.JsonWriter
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
@@ -48,22 +45,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.*
+import java.lang.reflect.Type
 import java.security.InvalidKeyException
+import java.security.Key
 import java.security.NoSuchAlgorithmException
-import java.security.SecureRandom
 import java.time.LocalDateTime
 import java.util.*
 import javax.crypto.*
 import javax.crypto.spec.GCMParameterSpec
 import javax.crypto.spec.SecretKeySpec
-import java.lang.reflect.Type
-import java.security.Key
-import android.util.Base64
-import java.time.format.DateTimeFormatter
 
 class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
     private val TAG = "log_" + RvMain::class.java.name.split(RvMain::class.java.name.split(".").toTypedArray()[2] + ".").toTypedArray()[1]
-
 
     // TODO: initialization
     lateinit var v: View
@@ -73,7 +66,6 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
     private lateinit var note: Note
     lateinit var notesList: List<Note>
     private var actionMode: ActionMode? = null
-    var rvIsItemSelected: LiveData<Boolean> = MutableLiveData()
     private lateinit var recyclerView: RecyclerView
     private lateinit var floatingActionButton: FloatingActionButton
     private lateinit var callback: MyItemTouchHelperCallback
@@ -83,12 +75,10 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
     private lateinit var saveFileLauncher: ActivityResultLauncher<String>
     private lateinit var openFileLauncher: ActivityResultLauncher<Array<String>>
 
-    //    var encryptionKey = "2x2+69Nf9M9av+IqaEi3A10jMvt6CWt3Fvm6bAD4s2I="
     var encryptionKey = ""
     var isEncrypted = false
 
     var i: Int = 0
-    private var selectedFileToRestore: String? = null
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -105,18 +95,17 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
             }
         }
 
-        isPermissionGranted.observe(this) {
-            Log.e(TAG, "onCreate: isPermissionGranted ->> ${it}")
-            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
-                if (it && ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                    backup()
-                }
-            } else {
-                backup()
-            }
-
-        }
-
+        // TODO: requestPermission
+//        isPermissionGranted.observe(this) {
+//            Log.e(TAG, "onCreate: isPermissionGranted ->> ${it}")
+//            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+//                if (it && ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+//                    backup()
+//                }
+//            } else {
+//                backup()
+//            }
+//        }
 
         restoreLauncher()
         backupLauncher()
@@ -231,14 +220,6 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         popup.show()
     }
 
-//    override fun onBackPressed() {
-//        Log.e(TAG, "onBackPressed: ")
-//        var i = 0
-//        for (i in i..(i+100)){
-//        notesViewModel.insert(Note(title = "title $i", notes = "notes $i", dateCreated = LocalDateTime.now()))
-//            }
-//        }
-
     // TODO: ActionMode
     override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
         // Handle menu item clicks here
@@ -249,7 +230,6 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                 for (i in selectedItems.size - 1 downTo 0) {
                     val position = selectedItems[i]
                     notesViewModel.delete(notesList[position])
-//                    (notesList as MutableList<Note>).removeAt(position)
                     rvAdapter.notifyItemRemoved(position)
                 }
                 showSnackbar("${selectedItems.size} Notes deleted", Snackbar.LENGTH_SHORT)
@@ -409,17 +389,18 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 //        return super.onNavigationItemSelected(item)
         return when (item.itemId) {
-            // TODO: want to modify 26-5-23
+            // TODO: requestPermission
             R.id.menuBackup -> {
-                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
-                    if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                        backup()
-                    } else {
-                        requestPermission(this)
-                    }
-                } else {
-                    backup()
-                }
+                backup()
+//                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+//                    if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+//                        backup()
+//                    } else {
+//                        requestPermission(this)
+//                    }
+//                } else {
+//                    backup()
+//                }
 
                 drawerLayout.closeDrawer(GravityCompat.START)
                 true
@@ -539,7 +520,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                                 outputStream.write(notesJson.toByteArray())
                             }
                             Log.i(TAG, "File successfully created at: $uri")
-                            Toast.makeText(this, "File successfully created at: $uri", Toast.LENGTH_LONG).show()
+//                            Toast.makeText(this, "File successfully created at: $uri", Toast.LENGTH_LONG).show()
                         }
                     } catch (e: Exception) {
                         Log.e(TAG, "Error saving backup: ${e.message}")
@@ -576,7 +557,6 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
 
         etFileName.addTextChangedListener {
             if (etFileName.text.toString().isNotEmpty()) {
-//                etFileNameInputLayout.isHelperTextEnabled = false
                 etFileNameInputLayout.isHelperTextEnabled = true
                 etFileNameInputLayout.helperText = " "
             } else {
@@ -665,8 +645,6 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         return String(cipher.doFinal(encryptedData), Charsets.UTF_8)
     }
 
-
-//    private var restoreData: String = "[{}]"
     private fun restoreLauncher() {
         openFileLauncher = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri: Uri? ->
             if (uri == null) {
@@ -675,7 +653,6 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                 return@registerForActivityResult
             }
             isEncrypted = false
-//            restoreData = "[{}]"
 
             try {
                 uri.let {
@@ -685,10 +662,8 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
 
                     val inputStream = contentResolver.openInputStream(it)
                     inputStream?.let {
-                        // TODO: Dk_14-9-23
                         val byteArray = inputStream.readBytes()
                         var restoreData: String = "[{}]"
-//                        restoreData = "[{}]"
 
                         if (fileName != null) {
                             if (fileName.contains(".enc") && fileName.contains(".json")) {
@@ -725,7 +700,6 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                                     }
                                 }
 
-                                // TODO: Include try-catch block
                                 btnDecryptionKey.setOnClickListener {
                                     if (etDecryptionKey.text.toString().trim().length > 15) {
                                         encryptionKey = etDecryptionKey.text.toString().trim()
@@ -739,7 +713,6 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                                                 showErrorSnackbar("The encrypted data in the file must been changed", Snackbar.LENGTH_INDEFINITE)
                                                 Toast.makeText(this, "The encrypted data in the file has been changed", Toast.LENGTH_SHORT).show()
                                                 return@setOnClickListener
-//                                            return@registerForActivityResult
                                             } else {
                                                 Log.i(TAG, "The encrypted data in the file hasn't changed")
                                             }
@@ -805,8 +778,6 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
                                 restoreRvDialog(convertStringToList(restoreData))
                             }
                         }
-//                        Log.e(TAG, "restoreLauncher: ${convertStringToList(restoreData)}")
-//                        restoreRvDialog(convertStringToList(restoreData))
                     }
                     inputStream?.close()
                 } ?: Log.e(TAG, "Uri is null")
@@ -818,8 +789,6 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         }
     }
 
-
-//    private var noteID = 0L
     private fun restoreRvDialog(listOfNotes: List<Note>) {
         Log.e(TAG, "restoreRvDialog: ${listOfNotes.size}")
         val builder = AlertDialog.Builder(this)
@@ -911,7 +880,6 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
     }
 
     private fun getEncryptionKey(): Key {
-//        return SecretKeySpec(ENCRYPTION_KEY.toByteArray(Charsets.UTF_8), "AES")
         val keyGen = KeyGenerator.getInstance("AES")
         keyGen.init(AES_KEY_SIZE)
         ENCRYPTION_KEY = keyGen.generateKey()
@@ -935,7 +903,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
     }
 
     private fun convertStringToList(restoreData: String): List<Note> {
-        try{
+        try {
             //  convertListToJson
             val gsonBuilder = GsonBuilder()
             gsonBuilder.registerTypeAdapter(LocalDateTime::class.java, LocalDateTimeSerializer())
@@ -948,7 +916,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
             val notesList = gsonWithCustomSerializer.fromJson<List<Note>>(restoreData, notesType)
 
             return notesList
-        } catch (e: Exception){
+        } catch (e: Exception) {
             Log.e(TAG, "${e.message}")
             return emptyList()
         }
@@ -980,7 +948,6 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
             })
         dialog.show()
     }
-
 
 }
 

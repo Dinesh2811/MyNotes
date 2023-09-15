@@ -1,32 +1,26 @@
 package com.dinesh.mynotes.activity
 
-import android.content.Intent
 import android.os.Bundle
-import android.text.util.Linkify
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.widget.EditText
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import com.dinesh.mynotes.R
 import com.dinesh.mynotes.app.NavigationDrawer
-import com.dinesh.mynotes.app.showSnackbar
 import com.dinesh.mynotes.room.Note
 import com.dinesh.mynotes.room.NotesViewModel
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
-private val TAG = "log_" + AddNote::class.java.name.split(AddNote::class.java.name.split(".").toTypedArray()[2] + ".").toTypedArray()[1]
-
 class AddNote : NavigationDrawer() {
+    private val TAG = "log_AddNote"
 
     lateinit var v: View
     private lateinit var notesViewModel: NotesViewModel
@@ -79,7 +73,7 @@ class AddNote : NavigationDrawer() {
             }
         }
 
-        Log.e(TAG, "onCreate: ${intent.getLongExtra("ID", 0)}")
+//        Log.e(TAG, "onCreate: ${intent.getLongExtra("ID", 0)}")
 
     }
 
@@ -95,9 +89,9 @@ class AddNote : NavigationDrawer() {
         if (trimmedTitle.isNotBlank() || trimmedNoteDes.isNotBlank()) {
 
             CoroutineScope(Dispatchers.IO).launch {
-                notesViewModel.insert(Note(id= (intent.getLongExtra("ID",0).plus(1L)),title = trimmedTitle, notes = trimmedNoteDes, dateCreated = LocalDateTime.now()))
+                notesViewModel.insert(Note(id = (intent.getLongExtra("ID", 0).plus(1L)), title = trimmedTitle, notes = trimmedNoteDes, dateCreated = LocalDateTime.now()))
             }
-            Toast.makeText(this, "Your note is Created successfully", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "Your note is Created successfully", Toast.LENGTH_SHORT).show()
 
 //            val existingNoteLiveData = notesViewModel.getNoteByTitleAndDescription(trimmedTitle, trimmedNoteDes)
 //            existingNoteLiveData.observe(this) {
@@ -142,7 +136,7 @@ class AddNote : NavigationDrawer() {
         saveIcon.setIcon(R.drawable.ic_baseline_save_24)
         saveIcon.setOnMenuItemClickListener {
             addNote()
-            Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show()
             true
         }
 
@@ -150,7 +144,6 @@ class AddNote : NavigationDrawer() {
     }
 
 }
-
 
 
 //    private fun getView(viewID: Int): View? {

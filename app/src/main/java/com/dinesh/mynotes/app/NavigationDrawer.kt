@@ -1,38 +1,19 @@
 package com.dinesh.mynotes.app
 
-
-//open class NavigationDrawer : ToolbarMain() {
-//
-//}
-
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.dinesh.mynotes.R
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
-import java.io.File
-import java.io.FileInputStream
-import java.io.FileOutputStream
 
 
 open class NavigationDrawer : ToolbarMain(), NavigationView.OnNavigationItemSelectedListener {
-    private val TAG = "log_" + NavigationDrawer::class.java.name.split(NavigationDrawer::class.java.name.split(".").toTypedArray()[2] + ".").toTypedArray()[1]
-
     open lateinit var drawerLayout: DrawerLayout
     open lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     open lateinit var navigationView: NavigationView
@@ -123,7 +104,6 @@ open class NavigationDrawer : ToolbarMain(), NavigationView.OnNavigationItemSele
 
         return true
     }
-
 
 }
 

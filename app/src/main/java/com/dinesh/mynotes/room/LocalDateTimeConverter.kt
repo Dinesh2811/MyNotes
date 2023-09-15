@@ -3,11 +3,6 @@ package com.dinesh.mynotes.room
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.room.TypeConverter
-import java.text.SimpleDateFormat
-import java.time.Instant
-import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 import java.time.*
 import java.util.*
 

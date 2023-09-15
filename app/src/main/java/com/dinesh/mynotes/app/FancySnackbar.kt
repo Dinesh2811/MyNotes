@@ -1,18 +1,10 @@
 package com.dinesh.mynotes.app
 
-import android.annotation.SuppressLint
-import android.content.Context
-import android.graphics.Color
-import android.view.*
-import android.widget.FrameLayout
-import android.widget.ImageButton
+import android.view.View
 import android.widget.TextView
-import com.dinesh.mynotes.R
 import com.google.android.material.snackbar.Snackbar
 
 class FancySnackbar {
-    private val TAG = "log_" + FancySnackbar::class.java.name.split(FancySnackbar::class.java.name.split(".").toTypedArray()[2] + ".").toTypedArray()[1]
-
     var snackbar: Snackbar? = null
     private var secondaryAction: Snackbar.Callback? = null
 
