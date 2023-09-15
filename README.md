@@ -15,6 +15,7 @@
 </div>
 
 ### Overview
+
 MyNotes is a lightweight open-source Android app designed for easy note-taking, secure data storage, and effortless backup and restore options. With AES 256-bit encryption, you can keep your notes safe and private. The app utilizes LiveData, ViewModel, Coroutine, and Room Database for a seamless
 and responsive user experience.
 
@@ -22,23 +23,21 @@ and responsive user experience.
 
 <table>
   <tr>
+    <td><a href="images/demo_app.webm" target="_blank"><img src="images/demo_app.gif" width="147.25" height="312.25" alt="Click to play video"/></a></td>
     <td><img src="images/Screenshot%203.png" alt="Screenshot 3" width="200" height="400"/></td>
     <td><img src="images/Screenshot%204.png" alt="Screenshot 4" width="200" height="400"/></td>
     <td><img src="images/Screenshot%205.png" alt="Screenshot 5" width="200" height="400"/></td>
   </tr>
   <tr>
-    <td><img src="images/Screenshot%207.png" alt="Screenshot 4" width="200" height="400"/></td>
-    <td><img src="images/Screenshot%2011.png" alt="Screenshot 4" width="200" height="400"/></td>
-    <td><img src="images/Screenshot%2013.png" alt="Screenshot 5" width="200" height="400"/></td>
+    <td><img src="images/Screenshot%207.png" alt="Screenshot 7" width="200" height="400"/></td>
+    <td><img src="images/Screenshot%2011.png" alt="Screenshot 11" width="200" height="400"/></td>
+    <td><img src="images/Screenshot%2013.png" alt="Screenshot 13" width="200" height="400"/></td>
+    <td><img src="images/Screenshot%2014.png" alt="Screenshot 14" width="200" height="400"/></td>
   </tr>
 </table>
 
-## Demo Video
-
-![App Demo](./images/demo_app.gif)
-
-
 ### Features
+
 - Create, edit, update, and delete notes effortlessly.
 - Local backup and restore options for your notes.
 - Encrypt your backups using AES 256-bit encryption for added security.
@@ -46,6 +45,7 @@ and responsive user experience.
 - Built using modern Android development tools and architecture, including LiveData, ViewModel, Coroutines, and Room database.
 
 ## Contribution
+
 Whether you're looking to offer your expertise, suggest improvements, report issues, or ask questions, your involvement is highly valued and much appreciated. Any kind of contributions from the community are most welcomed.
 
 #### Here's how you can contribute:
@@ -60,6 +60,7 @@ Whether you're looking to offer your expertise, suggest improvements, report iss
   Have ideas for new features or improvements? Feel free to open discussions in the GitHub repository. Your input can help shape the future of EasyPermissionRequest.
 
 ## Spread the Word
+
 If you find MyNotes app useful, consider sharing it with fellow developers and communities.
 
 ## Third-Party Dependencies
