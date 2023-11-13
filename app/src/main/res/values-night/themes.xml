@@ -37,5 +37,12 @@
 
         <item name="backgroundColor">@color/Neutral10</item>
 
+        <!--        Toolbar & Multi Select Rv         -->
+        <item name="actionModeBackground">?attr/colorOnPrimary</item>
+        <item name="homeAsUpIndicator">@drawable/ic_baseline_arrow_back_24</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_baseline_close_24</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="windowActionModeOverlay">true</item>
+
     </style>
 </resources>

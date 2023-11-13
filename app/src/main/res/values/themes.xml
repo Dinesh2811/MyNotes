@@ -37,6 +37,13 @@
 
         <item name="backgroundColor">@color/material_dynamic_neutral99</item>
 
+        <!--        Toolbar & Multi Select Rv         -->
+        <item name="actionModeBackground">?attr/colorOnPrimary</item>
+        <item name="homeAsUpIndicator">@drawable/ic_baseline_arrow_back_24</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_baseline_close_24</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="windowActionModeOverlay">true</item>
+
     </style>
 
     <style name="Theme.Dynamic.PureWhite" parent="Theme.Material3.DynamicColors.Light">
@@ -75,6 +82,13 @@
 
         <item name="backgroundColor">@color/material_dynamic_neutral100</item>
 
+        <!--        Toolbar & Multi Select Rv         -->
+        <item name="actionModeBackground">?attr/colorOnPrimary</item>
+        <item name="homeAsUpIndicator">@drawable/ic_baseline_arrow_back_24</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_baseline_close_24</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="windowActionModeOverlay">true</item>
+
     </style>
 
     <style name="Theme.Dynamic.PureWhite.V2" parent="Theme.Material3.DynamicColors.Light">
@@ -112,6 +126,13 @@
         <item name="windowNoTitle">true</item>
 
         <item name="backgroundColor">@color/material_dynamic_neutral100	</item>
+
+        <!--        Toolbar & Multi Select Rv         -->
+        <item name="actionModeBackground">?attr/colorOnPrimary</item>
+        <item name="homeAsUpIndicator">@drawable/ic_baseline_arrow_back_24</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_baseline_close_24</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="windowActionModeOverlay">true</item>
 
     </style>
 
@@ -152,6 +173,13 @@
 
         <item name="backgroundColor">@color/material_dynamic_neutral10</item>
 
+        <!--        Toolbar & Multi Select Rv         -->
+        <item name="actionModeBackground">?attr/colorOnPrimary</item>
+        <item name="homeAsUpIndicator">@drawable/ic_baseline_arrow_back_24</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_baseline_close_24</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="windowActionModeOverlay">true</item>
+
     </style>
 
     <style name="Theme.Dynamic.PureBlack" parent="Theme.Material3.DynamicColors.Dark">
@@ -190,6 +218,13 @@
 
         <item name="backgroundColor">@color/material_dynamic_neutral0</item>
 
+        <!--        Toolbar & Multi Select Rv         -->
+        <item name="actionModeBackground">?attr/colorOnPrimary</item>
+        <item name="homeAsUpIndicator">@drawable/ic_baseline_arrow_back_24</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_baseline_close_24</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="windowActionModeOverlay">true</item>
+
     </style>
 
     <style name="Theme.Dynamic.PureBlack.V2" parent="Theme.Material3.DynamicColors.Dark">
@@ -227,6 +262,13 @@
         <item name="windowNoTitle">true</item>
 
         <item name="backgroundColor">@color/material_dynamic_neutral0</item>
+
+        <!--        Toolbar & Multi Select Rv         -->
+        <item name="actionModeBackground">?attr/colorOnPrimary</item>
+        <item name="homeAsUpIndicator">@drawable/ic_baseline_arrow_back_24</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_baseline_close_24</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="windowActionModeOverlay">true</item>
 
     </style>
 
@@ -267,6 +309,13 @@
 
         <item name="backgroundColor">@color/Neutral99</item>
 
+        <!--        Toolbar & Multi Select Rv         -->
+        <item name="actionModeBackground">?attr/colorOnPrimary</item>
+        <item name="homeAsUpIndicator">@drawable/ic_baseline_arrow_back_24</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_baseline_close_24</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="windowActionModeOverlay">true</item>
+
     </style>
 
     <style name="Theme.PureWhite" parent="Theme.Material3.Light.NoActionBar">
@@ -305,6 +354,13 @@
 
         <item name="backgroundColor">@color/Neutral100	</item>
 
+        <!--        Toolbar & Multi Select Rv         -->
+        <item name="actionModeBackground">?attr/colorOnPrimary</item>
+        <item name="homeAsUpIndicator">@drawable/ic_baseline_arrow_back_24</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_baseline_close_24</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="windowActionModeOverlay">true</item>
+
     </style>
 
     <style name="Theme.PureWhite.V2" parent="Theme.Material3.Light.NoActionBar">
@@ -342,6 +398,13 @@
         <item name="windowNoTitle">true</item>
 
         <item name="backgroundColor">@color/Neutral100</item>
+
+        <!--        Toolbar & Multi Select Rv         -->
+        <item name="actionModeBackground">?attr/colorOnPrimary</item>
+        <item name="homeAsUpIndicator">@drawable/ic_baseline_arrow_back_24</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_baseline_close_24</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="windowActionModeOverlay">true</item>
 
     </style>
 
@@ -382,6 +445,13 @@
 
         <item name="backgroundColor">@color/Neutral10</item>
 
+        <!--        Toolbar & Multi Select Rv         -->
+        <item name="actionModeBackground">?attr/colorOnPrimary</item>
+        <item name="homeAsUpIndicator">@drawable/ic_baseline_arrow_back_24</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_baseline_close_24</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="windowActionModeOverlay">true</item>
+
     </style>
 
     <style name="Theme.PureBlack" parent="Theme.Material3.Dark.NoActionBar">
@@ -420,6 +490,13 @@
 
         <item name="backgroundColor">@color/Neutral0</item>
 
+        <!--        Toolbar & Multi Select Rv         -->
+        <item name="actionModeBackground">?attr/colorOnPrimary</item>
+        <item name="homeAsUpIndicator">@drawable/ic_baseline_arrow_back_24</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_baseline_close_24</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="windowActionModeOverlay">true</item>
+
     </style>
 
     <style name="Theme.PureBlack.V2" parent="Theme.Material3.Dark.NoActionBar">
@@ -457,6 +534,13 @@
         <item name="windowNoTitle">true</item>
 
         <item name="backgroundColor">@color/Neutral0</item>
+
+        <!--        Toolbar & Multi Select Rv         -->
+        <item name="actionModeBackground">?attr/colorOnPrimary</item>
+        <item name="homeAsUpIndicator">@drawable/ic_baseline_arrow_back_24</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_baseline_close_24</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="windowActionModeOverlay">true</item>
 
     </style>
 
