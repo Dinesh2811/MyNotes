@@ -336,9 +336,14 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         return when (id) {
             R.id.action_search -> {
                 val searchView = item.actionView as SearchView
-                searchView.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
+//                searchView.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
                 val searchClose = searchView.findViewById<View>(androidx.appcompat.R.id.search_close_btn) as ImageView
                 searchClose.setImageResource(R.drawable.ic_baseline_close_24)
+
+                searchView.queryHint = "Search Here"
+                searchView.maxWidth = Int.MAX_VALUE
+                searchView.isIconified = false
+                searchView.clearFocus()
 
                 searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                     override fun onQueryTextSubmit(query: String): Boolean {
