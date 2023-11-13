@@ -99,7 +99,7 @@ open class NavigationDrawer : ToolbarMain(), NavigationView.OnNavigationItemSele
         // TODO: NavigationIcon
 //        toolbar!!.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
         val navigationIcon = ContextCompat.getDrawable(this, R.drawable.ic_baseline_menu_24)
-        navigationIcon!!.setTint(ContextCompat.getColor(this, toolbarOnBackground))
+//        navigationIcon!!.setTint(ContextCompat.getColor(this, toolbarOnBackground))
         toolbar.navigationIcon = navigationIcon
 
         return true

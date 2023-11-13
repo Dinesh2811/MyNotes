@@ -2,6 +2,7 @@ package com.dinesh.mynotes.app
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.util.TypedValue
 import android.view.Gravity
@@ -43,6 +44,13 @@ class FancySnackbarLayout {
         btnCopy = customView.findViewById<ImageButton>(R.id.snackbar_btnCopy)
         btnShare = customView.findViewById<ImageButton>(R.id.snackbar_btnShare)
 
+        val typedValue = TypedValue()
+        context.theme.resolveAttribute(com.google.android.material.R.attr.colorOnSurfaceInverse, typedValue, true)
+        val color = typedValue.data
+        val colorStateList = ColorStateList.valueOf(color)
+        (btnCopy as ImageButton).imageTintList = colorStateList
+        (btnShare as ImageButton).imageTintList = colorStateList
+
         snackbarTextView?.text = message
 //        snackbarTextView?.setOnLongClickListener {
 //            snackbar?.dismiss()
@@ -83,7 +91,7 @@ class FancySnackbarLayout {
         btnShare?.setOnClickListener(btnShareClickListener)
 
         snackbar = Snackbar.make(view, "", duration)
-        snackbar?.view?.setBackgroundColor(Color.WHITE)
+//        snackbar?.view?.setBackgroundColor(Color.WHITE)
         snackbar?.view?.setPadding(0, 0, 0, 0)
         snackbar?.view?.layoutParams = (snackbar?.view?.layoutParams as FrameLayout.LayoutParams).apply {
             gravity = Gravity.BOTTOM
@@ -126,7 +134,7 @@ class FancySnackbarLayout {
         btnShare?.visibility = btnShareView
         btnCopy?.setImageResource(btnCopyImage)
         btnShare?.setImageResource(btnShareImage)
-        snackbarTextView?.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
+//        snackbarTextView?.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
         return this
     }
 

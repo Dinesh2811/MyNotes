@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Material3" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/Primary80</item>
+        <item name="colorOnPrimary">@color/Primary20</item>
+        <item name="colorPrimaryContainer">@color/Primary30</item>
+        <item name="colorOnPrimaryContainer">@color/Primary90</item>
+        <item name="colorPrimaryInverse">@color/Primary40</item>
+        <item name="colorSecondary">@color/Secondary80</item>
+        <item name="colorOnSecondary">@color/Secondary20</item>
+        <item name="colorSecondaryContainer">@color/Secondary30</item>
+        <item name="colorOnSecondaryContainer">@color/Secondary90</item>
+        <item name="colorTertiary">@color/Tertiary80</item>
+        <item name="colorOnTertiary">@color/Tertiary20</item>
+        <item name="colorTertiaryContainer">@color/Tertiary30</item>
+        <item name="colorOnTertiaryContainer">@color/Tertiary90</item>
+        <item name="colorError">@color/Error80</item>
+        <item name="colorOnError">@color/Error20</item>
+        <item name="colorErrorContainer">@color/Error30</item>
+        <item name="colorOnErrorContainer">@color/Error90</item>
+        <item name="android:colorBackground">@color/Neutral10</item>
+        <item name="colorOnBackground">@color/Neutral90</item>
+        <item name="colorSurface">@color/NeutralVariant30</item>
+        <item name="colorOnSurface">@color/NeutralVariant80</item>
+        <item name="colorSurfaceInverse">@color/Neutral90</item>
+        <item name="colorOnSurfaceInverse">@color/Neutral10</item>
+        <item name="colorSurfaceVariant">@color/NeutralVariant30</item>
+        <item name="colorOnSurfaceVariant">@color/NeutralVariant80</item>
+        <item name="colorOutline">@color/NeutralVariant80</item>
+
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="backgroundColor">@color/Neutral10</item>
+
+    </style>
+</resources>

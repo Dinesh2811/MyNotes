@@ -1,10 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+<color name="purple_200">#FFBB86FC</color>
+<color name="purple_500">#FF6200EE</color>
+<color name="purple_700">#FF3700B3</color>
+<color name="teal_200">#FF03DAC5</color>
+<color name="teal_700">#FF018786</color>
+
+<color name="Primary0">#FF000000</color>
+<color name="Primary10">#FF21005d</color>
+<color name="Primary20">#FF381e72</color>
+<color name="Primary30">#FF4f378b</color>
+<color name="Primary40">#FF6750a4</color>
+<color name="Primary50">#FF7f67be</color>
+<color name="Primary60">#FF9a82db</color>
+<color name="Primary70">#FFb69df8</color>
+<color name="Primary80">#FFd0bcff</color>
+<color name="Primary90">#FFeaddff</color>
+<color name="Primary95">#FFf6edff</color>
+<color name="Primary99">#FFfffbfe</color>
+<color name="Primary100">#FFFFFFFF</color>
+
+<color name="Secondary0">#FF000000</color>
+<color name="Secondary10">#FF1d192b</color>
+<color name="Secondary20">#FF332d41</color>
+<color name="Secondary30">#FF4a4458</color>
+<color name="Secondary40">#FF625b71</color>
+<color name="Secondary50">#FF7a7289</color>
+<color name="Secondary60">#FF958da5</color>
+<color name="Secondary70">#FFb0a7c0</color>
+<color name="Secondary80">#FFccc2dc</color>
+<color name="Secondary90">#FFe8def8</color>
+<color name="Secondary95">#FFf6edff</color>
+<color name="Secondary99">#FFfffbfe</color>
+<color name="Secondary100">#FFFFFFFF</color>
+
+<color name="Tertiary0">#FF000000</color>
+<color name="Tertiary10">#FF31111d</color>
+<color name="Tertiary20">#FF492532</color>
+<color name="Tertiary30">#FF633b48</color>
+<color name="Tertiary40">#FF7d5260</color>
+<color name="Tertiary50">#FF986977</color>
+<color name="Tertiary60">#FFb58392</color>
+<color name="Tertiary70">#FFd29dac</color>
+<color name="Tertiary80">#FFefb8c8</color>
+<color name="Tertiary90">#FFffd8e4</color>
+<color name="Tertiary95">#FFffecf1</color>
+<color name="Tertiary99">#FFfffbfa</color>
+<color name="Tertiary100">#FFFFFFFF</color>
+
+<color name="Error10">#FF410e0b</color>
+<color name="Error20">#FF601410</color>
+<color name="Error30">#FF8c1d18</color>
+<color name="Error40">#FFb3261e</color>
+<color name="Error50">#FFdc362e</color>
+<color name="Error60">#FFe46962</color>
+<color name="Error70">#FFec928e</color>
+<color name="Error80">#FFf2b8b5</color>
+<color name="Error90">#FFf9dedc</color>
+<color name="Error95">#FFfceeee</color>
+<color name="Error99">#FFfffbf9</color>
+
+<color name="Neutral0">#FF000000</color>
+<color name="Neutral10">#FF1c1b1f</color>
+<color name="Neutral20">#FF313033</color>
+<color name="Neutral30">#FF484649</color>
+<color name="Neutral40">#FF605d62</color>
+<color name="Neutral50">#FF787579</color>
+<color name="Neutral60">#FF939094</color>
+<color name="Neutral70">#FFaeaaae</color>
+<color name="Neutral80">#FFc9c5ca</color>
+<color name="Neutral90">#FFe6e1e5</color>
+<color name="Neutral95">#FFf4eff4</color>
+<color name="Neutral99">#FFfffbfe</color>
+<color name="Neutral100">#FFFFFFFF</color>
+
+<color name="NeutralVariant0">#FF000000</color>
+<color name="NeutralVariant10">#FF1d1a22</color>
+<color name="NeutralVariant20">#FF322f37</color>
+<color name="NeutralVariant30">#FF49454f</color>
+<color name="NeutralVariant40">#FF5f5c65</color>
+<color name="NeutralVariant50">#FF78737d</color>
+<color name="NeutralVariant60">#FF928e98</color>
+<color name="NeutralVariant70">#FFada8b3</color>
+<color name="NeutralVariant80">#FFc8c2ce</color>
+<color name="NeutralVariant90">#FFe5deea</color>
+<color name="NeutralVariant95">#FFf3ecf8</color>
+<color name="NeutralVariant99">#FFfffbfe</color>
+<color name="NeutralVariant100">#FFFFFFFF</color>
+
+<color name="black">#FF000000</color>
+<color name="white">#FFFFFFFF</color>
+<color name="Error">@color/Error40</color>
+<color name="OnError">@color/white</color>
+<color name="ErrorContainer">@color/Error90</color>
+<color name="OnErrorContainer">@color/Error10</color>
+
+
+
+
+
+<color name="Primary">@color/Primary40</color>
+<color name="OnPrimary">@color/white</color>
+<color name="PrimaryContainer">@color/Primary90</color>
+<color name="OnPrimaryContainer">@color/Primary10</color>
+
+
+<color name="Secondary">@color/Secondary40</color>
+<color name="OnSecondary">@color/white</color>
+<color name="SecondaryContainer">@color/Secondary90</color>
+<color name="OnSecondaryContainer">@color/Secondary10</color>
+
+
+<color name="Tertiary">@color/Tertiary40</color>
+<color name="OnTertiary">@color/white</color>
+<color name="TertiaryContainer">@color/Tertiary90</color>
+<color name="OnTertiaryContainer">@color/Tertiary10</color>
+
+
+<color name="Outline">@color/NeutralVariant50</color>
+<color name="OutlineVariant">@color/NeutralVariant80</color>
+<color name="Background">@color/Primary99</color>
+<color name="OnBackground">@color/Neutral10</color>
+
+<color name="Surface">@color/Primary99</color>
+<color name="OnSurface">@color/Neutral10</color>
+<color name="SurfaceVariant">@color/NeutralVariant90</color>
+<color name="OnSurfaceVariant">@color/NeutralVariant30</color>
+
+<color name="SurfaceInverse">@color/Neutral20</color>
+<color name="OnSurfaceInverse">@color/Neutral95</color>
+<color name="SurfaceBright">@color/Neutral99</color>
+<color name="SurfaceContainer">@color/Neutral95</color>
+<color name="SurfaceContainerHighest">@color/Neutral90</color>
+
+
+
+
+
+<color name="PrimaryInverse">@color/Primary80</color>
+<color name="PrimaryFixed">@color/Primary90</color>
+<color name="PrimaryFixedDim">@color/Primary80</color>
+<color name="OnPrimaryFixed">@color/Primary10</color>
+<color name="OnPrimaryFixedVariant">@color/Primary30</color>
+
+<color name="SecondaryFixed">@color/Secondary90</color>
+<color name="SecondaryFixedDim">@color/Secondary80</color>
+<color name="OnSecondaryFixed">@color/Secondary10</color>
+<color name="OnSecondaryFixedVariant">@color/Secondary30</color>
+
+<color name="TertiaryFixed">@color/Tertiary90</color>
+<color name="TertiaryFixedDim">@color/Tertiary80</color>
+<color name="OnTertiaryFixed">@color/Tertiary10</color>
+<color name="OnTertiaryFixedVariant">@color/Tertiary30</color>
+
+
 </resources>

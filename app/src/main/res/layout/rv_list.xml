@@ -13,10 +13,17 @@
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
         app:cardUseCompatPadding="true"
+        android:backgroundTint="?attr/colorOnPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+<!--        colorOnPrimarySurface-->
+<!--        colorPrimaryContainer-->
+
+        <!--        colorOnPrimary-->
+        <!--        colorPrimaryContainer-->
+        <!--        colorPrimaryInverse-->
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,12 +39,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
                 android:elevation="100dp"
                 android:gravity="left"
                 android:maxLines="1"
                 android:padding="2dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
                 android:text="TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="16sp"
@@ -52,12 +59,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
                 android:elevation="100dp"
                 android:gravity="left"
                 android:maxLines="10"
-                android:padding="8dp"
+                android:padding="2dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -93,15 +100,15 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
                 android:elevation="100dp"
+                android:ellipsize="marquee"
                 android:gravity="right"
+                android:marqueeRepeatLimit="marquee_forever"
                 android:maxLines="1"
                 android:padding="2dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
                 android:text="TextView"
-                android:ellipsize="marquee"
-                android:marqueeRepeatLimit="marquee_forever"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"

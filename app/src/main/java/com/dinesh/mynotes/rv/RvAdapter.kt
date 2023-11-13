@@ -1,7 +1,8 @@
 package com.dinesh.mynotes.rv
 
-import android.graphics.Color
+import android.content.res.ColorStateList
 import android.util.SparseBooleanArray
+import android.util.TypedValue
 import android.view.ActionMode
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
@@ -39,6 +41,7 @@ class RvAdapter(var notesList: List<Note>, private val listener: RvInterface, pr
         val rvDateCreated: TextView = itemView.findViewById(R.id.rvDateCreated)
         val rvDateModified: TextView = itemView.findViewById(R.id.rvDateModified)
         val rvCardView: CardView = itemView.findViewById(R.id.rvCardView)
+//        val rvCardView: ConstraintLayout = itemView.findViewById(R.id.rvConstraintLayout)
         val rvConstraintLayout: ConstraintLayout = itemView.findViewById(R.id.rvConstraintLayout)
 
         init {
@@ -93,11 +96,20 @@ class RvAdapter(var notesList: List<Note>, private val listener: RvInterface, pr
         holder.rvDateCreated.text = note.dateCreated.format(DateTimeFormatter.ofPattern("EEE, MMM d, hh:mm a"))
         val dateModifiedString = "Modified on : " + note.dateModified.format(DateTimeFormatter.ofPattern("EEE, MMM d, hh:mm a"))
         holder.rvDateModified.text = dateModifiedString
+
+        val typedValue = TypedValue()
         if (getSelectedItems().contains(position)) {
-            holder.rvConstraintLayout.setBackgroundColor(Color.DKGRAY)
+//            holder.rvConstraintLayout.setBackgroundColor(Color.DKGRAY)
+            holder.itemView.context.theme.resolveAttribute(com.google.android.material.R.attr.colorPrimaryContainer, typedValue, true)
         } else {
-            holder.rvConstraintLayout.setBackgroundColor(Color.WHITE)
+//            holder.rvConstraintLayout.setBackgroundColor(Color.WHITE)
+//            holder.itemView.context.theme.resolveAttribute(com.google.android.material.R.attr.colorOnPrimary, typedValue, true)
+            holder.itemView.context.theme.resolveAttribute(com.google.android.material.R.attr.colorOnSurfaceInverse, typedValue, true)
         }
+        val color = typedValue.data
+        val colorStateList = ColorStateList.valueOf(color)
+        holder.rvCardView.backgroundTintList = colorStateList
+
     }
 
     override fun getItemCount(): Int {

@@ -12,10 +12,9 @@
         <item name="android:textStyle">normal</item>
         <item name="android:elegantTextHeight">true</item>
         <item name="elevation">16dp</item>
-        <item name="strokeColor">@color/purple_500</item>
+<!--        <item name="strokeColor">@color/purple_500</item>-->
         <item name="android:clickable">true</item>
         <item name="android:animateOnClick">true</item>
-        <!--        <item name="android:textColor">@color/black</item>-->
     </style>
 
 
@@ -58,7 +57,7 @@
         <item name="elevation">8dp</item>
         <item name="android:text">Button</item>
         <item name="cornerRadius">100dp</item>
-        <item name="strokeColor">@color/purple_500</item>
+<!--        <item name="strokeColor">@color/purple_500</item>-->
         <item name="android:clickable">true</item>
         <item name="android:animateOnClick">true</item>
     </style>
@@ -72,8 +71,8 @@
         <item name="cornerRadius">16dp</item>
         <item name="cardPreventCornerOverlap">true</item>
         <item name="cardUseCompatPadding">true</item>
-        <item name="cardBackgroundColor">@color/white</item>
-        <item name="strokeColor">@color/purple_700</item>
+<!--        <item name="cardBackgroundColor">@color/white</item>-->
+<!--        <item name="strokeColor">@color/purple_700</item>-->
         <item name="android:clickable">true</item>
         <item name="android:animateOnClick">true</item>
 

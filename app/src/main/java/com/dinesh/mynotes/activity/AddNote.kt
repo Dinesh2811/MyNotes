@@ -37,31 +37,6 @@ class AddNote : NavigationDrawer() {
         title = etTitle.text.toString()
         noteDes = etNote.text.toString()
 
-//        val editable = etNote.text as Editable
-//
-//        val spannable = SpannableStringBuilder.valueOf(editable)
-//        Linkify.addLinks(spannable, Linkify.WEB_URLS)
-//
-//        val clickableSpan = object : ClickableSpan() {
-//            override fun onClick(widget: View) {
-//                // Handle the URL click event here
-//                val url = (widget as EditText).text.subSequence(widget.selectionStart, widget.selectionEnd).toString()
-//                // Open the URL using an appropriate method (e.g., using an Intent to open a browser)
-//            }
-//        }
-//
-//        val spans = spannable.getSpans(0, spannable.length, URLSpan::class.java)
-//        for (span in spans) {
-//            val start = spannable.getSpanStart(span)
-//            val end = spannable.getSpanEnd(span)
-//            val flags = spannable.getSpanFlags(span)
-//            spannable.removeSpan(span)
-//            spannable.setSpan(clickableSpan, start, end, flags)
-//        }
-//
-//        etNote.text = spannable
-//        etNote.movementMethod = LinkMovementMethod.getInstance()
-
         etTitle.addTextChangedListener {
             if (!it.isNullOrBlank()) {
                 title = it.toString()
@@ -72,9 +47,6 @@ class AddNote : NavigationDrawer() {
                 noteDes = it.toString()
             }
         }
-
-//        Log.e(TAG, "onCreate: ${intent.getLongExtra("ID", 0)}")
-
     }
 
     override fun onPause() {
@@ -124,7 +96,7 @@ class AddNote : NavigationDrawer() {
 
         // TODO: NavigationIcon
         val navigationIcon = ContextCompat.getDrawable(this, R.drawable.ic_baseline_arrow_back_24)
-        navigationIcon!!.setTint(ContextCompat.getColor(this, toolbarOnBackground))
+//        navigationIcon!!.setTint(ContextCompat.getColor(this, toolbarOnBackground))
         toolbar.navigationIcon = navigationIcon
 
         menu?.findItem(R.id.menuMain)?.isVisible = false
@@ -136,7 +108,6 @@ class AddNote : NavigationDrawer() {
         saveIcon.setIcon(R.drawable.ic_baseline_save_24)
         saveIcon.setOnMenuItemClickListener {
             addNote()
-//            Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show()
             true
         }
 
@@ -144,8 +115,3 @@ class AddNote : NavigationDrawer() {
     }
 
 }
-
-
-//    private fun getView(viewID: Int): View? {
-//        return v.findViewById(viewID)
-//    }
