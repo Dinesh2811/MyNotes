@@ -1,0 +1,2484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 8.1.3" type="baseline" client="gradle" dependencies="false" name="AGP (8.1.3)" variant="all" version="8.1.3">
+
+    <issue
+        id="CommitTransaction"
+        message="This transaction should be completed with a `commit()` call"
+        errorLine1="        val fragmentTransaction = supportFragmentManager.beginTransaction()"
+        errorLine2="                                                         ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/app/NavigationDrawer.kt"
+            line="47"
+            column="58"/>
+    </issue>
+
+    <issue
+        id="ScrollViewSize"
+        message="This androidx.constraintlayout.widget.ConstraintLayout should use `android:layout_height=&quot;wrap_content&quot;`"
+        errorLine1="            android:layout_height=&quot;match_parent&quot;>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/dialog_save.xml"
+            line="20"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        message="Suspicious indentation: This is indented but is not continuing the previous expression (`val textColor2 = tex`...)"
+        errorLine1="        FancySnackbar()"
+        errorLine2="        ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/app/ExtensionFun.kt"
+            line="46"
+            column="9"/>
+        <location
+            file="src/main/java/com/dinesh/mynotes/app/ExtensionFun.kt"
+            line="44"
+            column="5"
+            message="Previous statement here"/>
+    </issue>
+
+    <issue
+        id="InflateParams"
+        message="Avoid passing `null` as the view root (needed to resolve layout parameters on the inflated layout&apos;s root element)"
+        errorLine1="        val customView = inflater.inflate(R.layout.snackbar_custom, null) as ViewGroup"
+        errorLine2="                                                                    ~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/app/FancySnackbarLayout.kt"
+            line="41"
+            column="69"/>
+    </issue>
+
+    <issue
+        id="SpUsage"
+        message="Should use &quot;`sp`&quot; instead of &quot;`dp`&quot; for text sizes"
+        errorLine1="        &lt;item name=&quot;android:textSize&quot;>16dp&lt;/item>"
+        errorLine2="                                      ~~~~">
+        <location
+            file="src/main/res/values/styles.xml"
+            line="10"
+            column="39"/>
+    </issue>
+
+    <issue
+        id="NotifyDataSetChanged"
+        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort."
+        errorLine1="        notifyDataSetChanged()"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/rv/RestoreAdapter.kt"
+            line="78"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="NotifyDataSetChanged"
+        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort."
+        errorLine1="        notifyDataSetChanged()"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/rv/RvAdapter.kt"
+            line="32"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="NotifyDataSetChanged"
+        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort."
+        errorLine1="        notifyDataSetChanged()"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/rv/RvAdapter.kt"
+            line="156"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="NotifyDataSetChanged"
+        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort."
+        errorLine1="            rvAdapter.notifyDataSetChanged()"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/rv/RvMain.kt"
+            line="92"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="NotifyDataSetChanged"
+        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort."
+        errorLine1="                            rvAdapter.notifyDataSetChanged()"
+        errorLine2="                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/rv/RvMain.kt"
+            line="210"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="NotifyDataSetChanged"
+        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort."
+        errorLine1="                rvAdapter.notifyDataSetChanged()"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/rv/RvMain.kt"
+            line="252"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="Unnecessary; SDK_INT is always >= 26"
+        errorLine1="@RequiresApi(Build.VERSION_CODES.O)"
+        errorLine2="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/room/LocalDateTimeConverter.kt"
+            line="9"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="Unnecessary; SDK_INT is always >= 26"
+        errorLine1="@RequiresApi(Build.VERSION_CODES.O)"
+        errorLine2="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/room/NotesDatabase.kt"
+            line="13"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="Unnecessary; SDK_INT is always >= 26"
+        errorLine1="@RequiresApi(Build.VERSION_CODES.O)"
+        errorLine2="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/room/NotesViewModel.kt"
+            line="12"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="This folder configuration (`v24`) is unnecessary; `minSdkVersion` is 26. Merge all the resources in this folder into `drawable`.">
+        <location
+            file="src/main/res/drawable-v24"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="This folder configuration (`v26`) is unnecessary; `minSdkVersion` is 26. Merge all the resources in this folder into `mipmap-anydpi`.">
+        <location
+            file="src/main/res/mipmap-anydpi-v26"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        message="Do not place Android context classes in static fields; this is a memory leak"
+        errorLine1="        var snackbarTextView: TextView? = null"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/app/FancySnackbarLayout.kt"
+            line="24"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        message="Do not place Android context classes in static fields; this is a memory leak"
+        errorLine1="        var btnCopy: ImageButton? = null"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/app/FancySnackbarLayout.kt"
+            line="25"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        message="Do not place Android context classes in static fields; this is a memory leak"
+        errorLine1="        var btnShare: ImageButton? = null"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/app/FancySnackbarLayout.kt"
+            line="26"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `?attr/colorSurfaceInverse` with a theme that also paints a background (inferred theme is `@style/Theme.Light`)"
+        errorLine1="    android:background=&quot;?attr/colorSurfaceInverse&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/snackbar_custom.xml"
+            line="7"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.purple_200` appears to be unused"
+        errorLine1="&lt;color name=&quot;purple_200&quot;>#FFBB86FC&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="4"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.purple_500` appears to be unused"
+        errorLine1="&lt;color name=&quot;purple_500&quot;>#FF6200EE&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="5"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.purple_700` appears to be unused"
+        errorLine1="&lt;color name=&quot;purple_700&quot;>#FF3700B3&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="6"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.teal_200` appears to be unused"
+        errorLine1="&lt;color name=&quot;teal_200&quot;>#FF03DAC5&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="7"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.teal_700` appears to be unused"
+        errorLine1="&lt;color name=&quot;teal_700&quot;>#FF018786&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="8"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Primary0` appears to be unused"
+        errorLine1="&lt;color name=&quot;Primary0&quot;>#FF000000&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="10"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Primary20` appears to be unused"
+        errorLine1="&lt;color name=&quot;Primary20&quot;>#FF381e72&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="12"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Primary30` appears to be unused"
+        errorLine1="&lt;color name=&quot;Primary30&quot;>#FF4f378b&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="13"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Primary50` appears to be unused"
+        errorLine1="&lt;color name=&quot;Primary50&quot;>#FF7f67be&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="15"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Primary60` appears to be unused"
+        errorLine1="&lt;color name=&quot;Primary60&quot;>#FF9a82db&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="16"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Primary70` appears to be unused"
+        errorLine1="&lt;color name=&quot;Primary70&quot;>#FFb69df8&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="17"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Primary95` appears to be unused"
+        errorLine1="&lt;color name=&quot;Primary95&quot;>#FFf6edff&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="20"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Primary99` appears to be unused"
+        errorLine1="&lt;color name=&quot;Primary99&quot;>#FFfffbfe&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="21"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Primary100` appears to be unused"
+        errorLine1="&lt;color name=&quot;Primary100&quot;>#FFFFFFFF&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="22"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Secondary0` appears to be unused"
+        errorLine1="&lt;color name=&quot;Secondary0&quot;>#FF000000&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="24"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Secondary20` appears to be unused"
+        errorLine1="&lt;color name=&quot;Secondary20&quot;>#FF332d41&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="26"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Secondary30` appears to be unused"
+        errorLine1="&lt;color name=&quot;Secondary30&quot;>#FF4a4458&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="27"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Secondary50` appears to be unused"
+        errorLine1="&lt;color name=&quot;Secondary50&quot;>#FF7a7289&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="29"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Secondary60` appears to be unused"
+        errorLine1="&lt;color name=&quot;Secondary60&quot;>#FF958da5&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="30"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Secondary70` appears to be unused"
+        errorLine1="&lt;color name=&quot;Secondary70&quot;>#FFb0a7c0&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="31"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Secondary80` appears to be unused"
+        errorLine1="&lt;color name=&quot;Secondary80&quot;>#FFccc2dc&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="32"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Secondary95` appears to be unused"
+        errorLine1="&lt;color name=&quot;Secondary95&quot;>#FFf6edff&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="34"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Secondary99` appears to be unused"
+        errorLine1="&lt;color name=&quot;Secondary99&quot;>#FFfffbfe&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="35"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Secondary100` appears to be unused"
+        errorLine1="&lt;color name=&quot;Secondary100&quot;>#FFFFFFFF&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="36"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Tertiary0` appears to be unused"
+        errorLine1="&lt;color name=&quot;Tertiary0&quot;>#FF000000&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="38"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Tertiary20` appears to be unused"
+        errorLine1="&lt;color name=&quot;Tertiary20&quot;>#FF492532&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="40"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Tertiary30` appears to be unused"
+        errorLine1="&lt;color name=&quot;Tertiary30&quot;>#FF633b48&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="41"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Tertiary50` appears to be unused"
+        errorLine1="&lt;color name=&quot;Tertiary50&quot;>#FF986977&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="43"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Tertiary60` appears to be unused"
+        errorLine1="&lt;color name=&quot;Tertiary60&quot;>#FFb58392&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="44"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Tertiary70` appears to be unused"
+        errorLine1="&lt;color name=&quot;Tertiary70&quot;>#FFd29dac&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="45"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Tertiary80` appears to be unused"
+        errorLine1="&lt;color name=&quot;Tertiary80&quot;>#FFefb8c8&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="46"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Tertiary95` appears to be unused"
+        errorLine1="&lt;color name=&quot;Tertiary95&quot;>#FFffecf1&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="48"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Tertiary99` appears to be unused"
+        errorLine1="&lt;color name=&quot;Tertiary99&quot;>#FFfffbfa&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="49"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Tertiary100` appears to be unused"
+        errorLine1="&lt;color name=&quot;Tertiary100&quot;>#FFFFFFFF&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="50"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Error20` appears to be unused"
+        errorLine1="&lt;color name=&quot;Error20&quot;>#FF601410&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="53"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Error30` appears to be unused"
+        errorLine1="&lt;color name=&quot;Error30&quot;>#FF8c1d18&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="54"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Error50` appears to be unused"
+        errorLine1="&lt;color name=&quot;Error50&quot;>#FFdc362e&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="56"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Error60` appears to be unused"
+        errorLine1="&lt;color name=&quot;Error60&quot;>#FFe46962&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="57"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Error70` appears to be unused"
+        errorLine1="&lt;color name=&quot;Error70&quot;>#FFec928e&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="58"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Error80` appears to be unused"
+        errorLine1="&lt;color name=&quot;Error80&quot;>#FFf2b8b5&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="59"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Error95` appears to be unused"
+        errorLine1="&lt;color name=&quot;Error95&quot;>#FFfceeee&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="61"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Error99` appears to be unused"
+        errorLine1="&lt;color name=&quot;Error99&quot;>#FFfffbf9&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="62"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Neutral0` appears to be unused"
+        errorLine1="&lt;color name=&quot;Neutral0&quot;>#FF000000&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="64"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Neutral30` appears to be unused"
+        errorLine1="&lt;color name=&quot;Neutral30&quot;>#FF484649&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="67"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Neutral40` appears to be unused"
+        errorLine1="&lt;color name=&quot;Neutral40&quot;>#FF605d62&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="68"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Neutral50` appears to be unused"
+        errorLine1="&lt;color name=&quot;Neutral50&quot;>#FF787579&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="69"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Neutral60` appears to be unused"
+        errorLine1="&lt;color name=&quot;Neutral60&quot;>#FF939094&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="70"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Neutral70` appears to be unused"
+        errorLine1="&lt;color name=&quot;Neutral70&quot;>#FFaeaaae&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="71"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Neutral80` appears to be unused"
+        errorLine1="&lt;color name=&quot;Neutral80&quot;>#FFc9c5ca&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="72"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Neutral90` appears to be unused"
+        errorLine1="&lt;color name=&quot;Neutral90&quot;>#FFe6e1e5&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="73"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Neutral100` appears to be unused"
+        errorLine1="&lt;color name=&quot;Neutral100&quot;>#FFFFFFFF&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="76"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.NeutralVariant0` appears to be unused"
+        errorLine1="&lt;color name=&quot;NeutralVariant0&quot;>#FF000000&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="78"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.NeutralVariant10` appears to be unused"
+        errorLine1="&lt;color name=&quot;NeutralVariant10&quot;>#FF1d1a22&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="79"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.NeutralVariant20` appears to be unused"
+        errorLine1="&lt;color name=&quot;NeutralVariant20&quot;>#FF322f37&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="80"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.NeutralVariant40` appears to be unused"
+        errorLine1="&lt;color name=&quot;NeutralVariant40&quot;>#FF5f5c65&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="82"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.NeutralVariant60` appears to be unused"
+        errorLine1="&lt;color name=&quot;NeutralVariant60&quot;>#FF928e98&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="84"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.NeutralVariant70` appears to be unused"
+        errorLine1="&lt;color name=&quot;NeutralVariant70&quot;>#FFada8b3&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="85"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.NeutralVariant80` appears to be unused"
+        errorLine1="&lt;color name=&quot;NeutralVariant80&quot;>#FFc8c2ce&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="86"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.NeutralVariant95` appears to be unused"
+        errorLine1="&lt;color name=&quot;NeutralVariant95&quot;>#FFf3ecf8&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="88"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.NeutralVariant99` appears to be unused"
+        errorLine1="&lt;color name=&quot;NeutralVariant99&quot;>#FFfffbfe&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="89"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.NeutralVariant100` appears to be unused"
+        errorLine1="&lt;color name=&quot;NeutralVariant100&quot;>#FFFFFFFF&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="90"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.black` appears to be unused"
+        errorLine1="&lt;color name=&quot;black&quot;>#FF000000&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="92"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Error` appears to be unused"
+        errorLine1="&lt;color name=&quot;Error&quot;>@color/Error40&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="94"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.OnError` appears to be unused"
+        errorLine1="&lt;color name=&quot;OnError&quot;>@color/white&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="95"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.ErrorContainer` appears to be unused"
+        errorLine1="&lt;color name=&quot;ErrorContainer&quot;>@color/Error90&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="96"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.OnErrorContainer` appears to be unused"
+        errorLine1="&lt;color name=&quot;OnErrorContainer&quot;>@color/Error10&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="97"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Primary` appears to be unused"
+        errorLine1="&lt;color name=&quot;Primary&quot;>@color/Primary40&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="103"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.OnPrimary` appears to be unused"
+        errorLine1="&lt;color name=&quot;OnPrimary&quot;>@color/white&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="104"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.PrimaryContainer` appears to be unused"
+        errorLine1="&lt;color name=&quot;PrimaryContainer&quot;>@color/Primary90&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="105"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.OnPrimaryContainer` appears to be unused"
+        errorLine1="&lt;color name=&quot;OnPrimaryContainer&quot;>@color/Primary10&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="106"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Secondary` appears to be unused"
+        errorLine1="&lt;color name=&quot;Secondary&quot;>@color/Secondary40&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="109"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.OnSecondary` appears to be unused"
+        errorLine1="&lt;color name=&quot;OnSecondary&quot;>@color/white&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="110"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.SecondaryContainer` appears to be unused"
+        errorLine1="&lt;color name=&quot;SecondaryContainer&quot;>@color/Secondary90&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="111"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.OnSecondaryContainer` appears to be unused"
+        errorLine1="&lt;color name=&quot;OnSecondaryContainer&quot;>@color/Secondary10&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="112"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Tertiary` appears to be unused"
+        errorLine1="&lt;color name=&quot;Tertiary&quot;>@color/Tertiary40&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="115"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.OnTertiary` appears to be unused"
+        errorLine1="&lt;color name=&quot;OnTertiary&quot;>@color/white&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="116"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.TertiaryContainer` appears to be unused"
+        errorLine1="&lt;color name=&quot;TertiaryContainer&quot;>@color/Tertiary90&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="117"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.OnTertiaryContainer` appears to be unused"
+        errorLine1="&lt;color name=&quot;OnTertiaryContainer&quot;>@color/Tertiary10&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="118"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Outline` appears to be unused"
+        errorLine1="&lt;color name=&quot;Outline&quot;>@color/NeutralVariant50&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="121"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.OutlineVariant` appears to be unused"
+        errorLine1="&lt;color name=&quot;OutlineVariant&quot;>@color/NeutralVariant80&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="122"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Background` appears to be unused"
+        errorLine1="&lt;color name=&quot;Background&quot;>@color/Primary99&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="123"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.OnBackground` appears to be unused"
+        errorLine1="&lt;color name=&quot;OnBackground&quot;>@color/Neutral10&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="124"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.Surface` appears to be unused"
+        errorLine1="&lt;color name=&quot;Surface&quot;>@color/Primary99&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="126"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.OnSurface` appears to be unused"
+        errorLine1="&lt;color name=&quot;OnSurface&quot;>@color/Neutral10&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="127"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.SurfaceVariant` appears to be unused"
+        errorLine1="&lt;color name=&quot;SurfaceVariant&quot;>@color/NeutralVariant90&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="128"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.OnSurfaceVariant` appears to be unused"
+        errorLine1="&lt;color name=&quot;OnSurfaceVariant&quot;>@color/NeutralVariant30&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="129"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.SurfaceInverse` appears to be unused"
+        errorLine1="&lt;color name=&quot;SurfaceInverse&quot;>@color/Neutral20&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="131"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.OnSurfaceInverse` appears to be unused"
+        errorLine1="&lt;color name=&quot;OnSurfaceInverse&quot;>@color/Neutral95&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="132"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.SurfaceBright` appears to be unused"
+        errorLine1="&lt;color name=&quot;SurfaceBright&quot;>@color/Neutral99&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="133"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.SurfaceContainer` appears to be unused"
+        errorLine1="&lt;color name=&quot;SurfaceContainer&quot;>@color/Neutral95&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="134"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.SurfaceContainerHighest` appears to be unused"
+        errorLine1="&lt;color name=&quot;SurfaceContainerHighest&quot;>@color/Neutral90&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="135"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.PrimaryInverse` appears to be unused"
+        errorLine1="&lt;color name=&quot;PrimaryInverse&quot;>@color/Primary80&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="141"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.PrimaryFixed` appears to be unused"
+        errorLine1="&lt;color name=&quot;PrimaryFixed&quot;>@color/Primary90&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="142"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.PrimaryFixedDim` appears to be unused"
+        errorLine1="&lt;color name=&quot;PrimaryFixedDim&quot;>@color/Primary80&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="143"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.OnPrimaryFixed` appears to be unused"
+        errorLine1="&lt;color name=&quot;OnPrimaryFixed&quot;>@color/Primary10&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="144"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.OnPrimaryFixedVariant` appears to be unused"
+        errorLine1="&lt;color name=&quot;OnPrimaryFixedVariant&quot;>@color/Primary30&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="145"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.SecondaryFixed` appears to be unused"
+        errorLine1="&lt;color name=&quot;SecondaryFixed&quot;>@color/Secondary90&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="147"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.SecondaryFixedDim` appears to be unused"
+        errorLine1="&lt;color name=&quot;SecondaryFixedDim&quot;>@color/Secondary80&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="148"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.OnSecondaryFixed` appears to be unused"
+        errorLine1="&lt;color name=&quot;OnSecondaryFixed&quot;>@color/Secondary10&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="149"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.OnSecondaryFixedVariant` appears to be unused"
+        errorLine1="&lt;color name=&quot;OnSecondaryFixedVariant&quot;>@color/Secondary30&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="150"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.TertiaryFixed` appears to be unused"
+        errorLine1="&lt;color name=&quot;TertiaryFixed&quot;>@color/Tertiary90&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="152"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.TertiaryFixedDim` appears to be unused"
+        errorLine1="&lt;color name=&quot;TertiaryFixedDim&quot;>@color/Tertiary80&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="153"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.OnTertiaryFixed` appears to be unused"
+        errorLine1="&lt;color name=&quot;OnTertiaryFixed&quot;>@color/Tertiary10&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="154"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.OnTertiaryFixedVariant` appears to be unused"
+        errorLine1="&lt;color name=&quot;OnTertiaryFixedVariant&quot;>@color/Tertiary30&lt;/color>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="155"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_launcher_background` appears to be unused"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src/main/res/drawable/ic_launcher_background.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_launcher_foreground` appears to be unused"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src/main/res/drawable-v24/ic_launcher_foreground.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.hello_blank_fragment` appears to be unused"
+        errorLine1="    &lt;string name=&quot;hello_blank_fragment&quot;>Hello blank fragment&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="6"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.note` appears to be unused"
+        errorLine1="    &lt;string name=&quot;note&quot;>Once the APK has been de-compiled, you can download the zipped file containing the de-compiled files through the UnboxAPK API. There are various ways to view the de-compiled files, and one of the best ways is to use Android Studio."
+        errorLine2="            ~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="9"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.style_EditText` appears to be unused"
+        errorLine1="    &lt;style name=&quot;style_EditText&quot; parent=&quot;Widget.AppCompat.EditText&quot;>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/styles.xml"
+            line="40"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.style_Button` appears to be unused"
+        errorLine1="    &lt;style name=&quot;style_Button&quot; parent=&quot;Widget.MaterialComponents.Button&quot;>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/styles.xml"
+            line="51"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.style_CardView` appears to be unused"
+        errorLine1="    &lt;style name=&quot;style_CardView&quot; parent=&quot;Widget.MaterialComponents.CardView&quot;>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/styles.xml"
+            line="65"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.style_Divider` appears to be unused"
+        errorLine1="    &lt;style name=&quot;style_Divider&quot; parent=&quot;Widget.MaterialComponents.MaterialDivider&quot;>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/styles.xml"
+            line="82"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.style_ImageView` appears to be unused"
+        errorLine1="    &lt;style name=&quot;style_ImageView&quot;>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/styles.xml"
+            line="94"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.Theme_Dynamic_Light` appears to be unused"
+        errorLine1="    &lt;style name=&quot;Theme.Dynamic.Light&quot; parent=&quot;Theme.Material3.DynamicColors.Light&quot;>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/themes.xml"
+            line="4"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.Theme_Material3` appears to be unused"
+        errorLine1="    &lt;style name=&quot;Theme.Material3&quot; parent=&quot;Theme.MaterialComponents.DayNight.NoActionBar&quot;>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-night/themes.xml"
+            line="4"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.Theme_Dynamic_PureWhite` appears to be unused"
+        errorLine1="    &lt;style name=&quot;Theme.Dynamic.PureWhite&quot; parent=&quot;Theme.Material3.DynamicColors.Light&quot;>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/themes.xml"
+            line="49"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.Theme_Dynamic_PureWhite_V2` appears to be unused"
+        errorLine1="    &lt;style name=&quot;Theme.Dynamic.PureWhite.V2&quot; parent=&quot;Theme.Material3.DynamicColors.Light&quot;>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/themes.xml"
+            line="94"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.Theme_Dynamic_Dark` appears to be unused"
+        errorLine1="    &lt;style name=&quot;Theme.Dynamic.Dark&quot; parent=&quot;Theme.Material3.DynamicColors.Dark&quot;>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/themes.xml"
+            line="140"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.Theme_Dynamic_PureBlack` appears to be unused"
+        errorLine1="    &lt;style name=&quot;Theme.Dynamic.PureBlack&quot; parent=&quot;Theme.Material3.DynamicColors.Dark&quot;>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/themes.xml"
+            line="185"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.Theme_Dynamic_PureBlack_V2` appears to be unused"
+        errorLine1="    &lt;style name=&quot;Theme.Dynamic.PureBlack.V2&quot; parent=&quot;Theme.Material3.DynamicColors.Dark&quot;>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/themes.xml"
+            line="230"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.Theme_PureWhite` appears to be unused"
+        errorLine1="    &lt;style name=&quot;Theme.PureWhite&quot; parent=&quot;Theme.Material3.Light.NoActionBar&quot;>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/themes.xml"
+            line="321"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.Theme_PureWhite_V2` appears to be unused"
+        errorLine1="    &lt;style name=&quot;Theme.PureWhite.V2&quot; parent=&quot;Theme.Material3.Light.NoActionBar&quot;>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/themes.xml"
+            line="366"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.Theme_Dark` appears to be unused"
+        errorLine1="    &lt;style name=&quot;Theme.Dark&quot; parent=&quot;Theme.Material3.Dark.NoActionBar&quot;>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/themes.xml"
+            line="412"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.Theme_PureBlack` appears to be unused"
+        errorLine1="    &lt;style name=&quot;Theme.PureBlack&quot; parent=&quot;Theme.Material3.Dark.NoActionBar&quot;>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/themes.xml"
+            line="457"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.Theme_PureBlack_V2` appears to be unused"
+        errorLine1="    &lt;style name=&quot;Theme.PureBlack.V2&quot; parent=&quot;Theme.Material3.Dark.NoActionBar&quot;>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/themes.xml"
+            line="502"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="MonochromeLauncherIcon"
+        message="The application adaptive icon is missing a monochrome tag"
+        errorLine1="&lt;adaptive-icon xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>"
+        errorLine2="^">
+        <location
+            file="src/main/res/mipmap-anydpi-v26/ic_app_icon.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="MonochromeLauncherIcon"
+        message="The application adaptive roundIcon is missing a monochrome tag"
+        errorLine1="&lt;adaptive-icon xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>"
+        errorLine2="^">
+        <location
+            file="src/main/res/mipmap-anydpi-v26/ic_app_icon_round.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/menu_icon.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/menu_icon.png"/>
+    </issue>
+
+    <issue
+        id="ButtonOrder"
+        message="OK button should be on the right (was &quot;OK | Cancel&quot;, should be &quot;Cancel | OK&quot;)"
+        errorLine1="        &lt;Button"
+        errorLine2="         ~~~~~~">
+        <location
+            file="src/main/res/layout/fancy_dialog.xml"
+            line="33"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ButtonStyle"
+        message="Buttons in button bars should be borderless; use `style=&quot;?android:attr/buttonBarButtonStyle&quot;` (and `?android:attr/buttonBarStyle` on the parent)"
+        errorLine1="        &lt;Button"
+        errorLine2="         ~~~~~~">
+        <location
+            file="src/main/res/layout/fancy_dialog.xml"
+            line="33"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ButtonStyle"
+        message="Buttons in button bars should be borderless; use `style=&quot;?android:attr/buttonBarButtonStyle&quot;` (and `?android:attr/buttonBarStyle` on the parent)"
+        errorLine1="        &lt;Button"
+        errorLine2="         ~~~~~~">
+        <location
+            file="src/main/res/layout/fancy_dialog.xml"
+            line="43"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="SmallSp"
+        message="Avoid using sizes smaller than `11sp`: `10sp`"
+        errorLine1="                android:textSize=&quot;10sp&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/rv_list.xml"
+            line="90"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="SmallSp"
+        message="Avoid using sizes smaller than `11sp`: `10sp`"
+        errorLine1="                android:textSize=&quot;10sp&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/rv_list.xml"
+            line="113"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="AlwaysShowAction"
+        message="Prefer &quot;`ifRoom`&quot; instead of &quot;`always`&quot;"
+        errorLine1="        app:showAsAction=&quot;always&quot; />"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/menu_main.xml"
+            line="18"
+            column="9"/>
+        <location
+            file="src/main/res/menu/menu_main.xml"
+            line="25"
+            column="9"/>
+        <location
+            file="src/main/res/menu/menu_main.xml"
+            line="32"
+            column="9"/>
+        <location
+            file="src/main/res/menu/menu_main.xml"
+            line="39"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute"
+        errorLine1="    &lt;EditText"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/edit_note.xml"
+            line="10"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute"
+        errorLine1="    &lt;EditText"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/edit_note.xml"
+            line="29"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/dialog_save.xml"
+            line="89"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/nav_header.xml"
+            line="7"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;com.google.android.material.floatingactionbutton.FloatingActionButton"
+        errorLine2="     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/rv_main.xml"
+            line="20"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageButton"
+        errorLine2="     ~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/snackbar_custom.xml"
+            line="29"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageButton"
+        errorLine2="     ~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/snackbar_custom.xml"
+            line="40"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="        switch1.text = &quot;Toggle to encrypt the Backup&quot;"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/rv/RvMain.kt"
+            line="573"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                switch1.text = &quot;Backup will be encrypted&quot;"
+        errorLine2="                                ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/rv/RvMain.kt"
+            line="580"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        errorLine1="                tvEncryptionKey.text = &quot;Copy the encryption key:\n\n$encryptionKey&quot;"
+        errorLine2="                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/rv/RvMain.kt"
+            line="585"
+            column="40"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                tvEncryptionKey.text = &quot;Copy the encryption key:\n\n$encryptionKey&quot;"
+        errorLine2="                                        ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/rv/RvMain.kt"
+            line="585"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                switch1.text = &quot;Toggle to encrypt the Backup&quot;"
+        errorLine2="                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/rv/RvMain.kt"
+            line="610"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                    checkBoxForAll.text = &quot;UnSelect All&quot;"
+        errorLine2="                                           ~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/rv/RvMain.kt"
+            line="818"
+            column="44"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                    checkBoxForAll.text = &quot;Select All&quot;"
+        errorLine2="                                           ~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/rv/RvMain.kt"
+            line="821"
+            column="44"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                checkBoxForAll.text = &quot;UnSelect All&quot;"
+        errorLine2="                                       ~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/rv/RvMain.kt"
+            line="830"
+            column="40"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                checkBoxForAll.text = &quot;Select All&quot;"
+        errorLine2="                                       ~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/rv/RvMain.kt"
+            line="832"
+            column="40"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="            checkBoxForAll.text = &quot;UnSelect All&quot;"
+        errorLine2="                                   ~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/rv/RvMain.kt"
+            line="838"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="            checkBoxForAll.text = &quot;Select All&quot;"
+        errorLine2="                                   ~~~~~~~~~~">
+        <location
+            file="src/main/java/com/dinesh/mynotes/rv/RvMain.kt"
+            line="840"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Select&quot;, should use `@string` resource"
+        errorLine1="        android:title=&quot;Select&quot; />"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/context_menu.xml"
+            line="6"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Re-Order&quot;, should use `@string` resource"
+        errorLine1="        android:title=&quot;Re-Order&quot; />"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/context_menu.xml"
+            line="9"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Create copy&quot;, should use `@string` resource"
+        errorLine1="        android:title=&quot;Create copy&quot; />"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/context_menu.xml"
+            line="13"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Select All&quot;, should use `@string` resource"
+        errorLine1="        android:title=&quot;Select All&quot; />"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/contextual_action_mode_menu.xml"
+            line="7"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Delete&quot;, should use `@string` resource"
+        errorLine1="        android:title=&quot;Delete&quot; />"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/contextual_action_mode_menu.xml"
+            line="12"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;OK&quot;, should use `@string` resource"
+        errorLine1="        android:text=&quot;OK&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/dialog_restore_rv.xml"
+            line="26"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Cancel&quot;, should use `@string` resource"
+        errorLine1="        android:text=&quot;Cancel&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/dialog_restore_rv.xml"
+            line="37"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;CheckBox&quot;, should use `@string` resource"
+        errorLine1="        android:text=&quot;CheckBox&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/dialog_restore_rv.xml"
+            line="47"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Enter the backup file name&quot;, should use `@string` resource"
+        errorLine1="                android:hint=&quot;Enter the backup file name&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/dialog_save.xml"
+            line="26"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Backup&quot;, should use `@string` resource"
+        errorLine1="                android:text=&quot;Backup&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/dialog_save.xml"
+            line="47"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Cancel&quot;, should use `@string` resource"
+        errorLine1="                android:text=&quot;Cancel&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/dialog_save.xml"
+            line="59"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Toggle to encrypt the Backup&quot;, should use `@string` resource"
+        errorLine1="                android:text=&quot;Toggle to encrypt the Backup&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/dialog_save.xml"
+            line="71"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;You must store the encryption key safely. Without the key you won&apos;t be able to restore the backup.&quot;, should use `@string` resource"
+        errorLine1="                android:text=&quot;You must store the encryption key safely. Without the key you won&apos;t be able to restore the backup.&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/dialog_save.xml"
+            line="84"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;TextView&quot;, should use `@string` resource"
+        errorLine1="                android:text=&quot;TextView&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/dialog_save.xml"
+            line="109"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Please enter the decryption key&quot;, should use `@string` resource"
+        errorLine1="        android:hint=&quot;Please enter the decryption key&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/dialog_to_enter_decryption_key.xml"
+            line="11"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Cancel&quot;, should use `@string` resource"
+        errorLine1="        android:text=&quot;Cancel&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/dialog_to_enter_decryption_key.xml"
+            line="36"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Ok&quot;, should use `@string` resource"
+        errorLine1="        android:text=&quot;Ok&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/dialog_to_enter_decryption_key.xml"
+            line="45"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Title&quot;, should use `@string` resource"
+        errorLine1="        android:hint=&quot;Title&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/edit_note.xml"
+            line="18"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Note&quot;, should use `@string` resource"
+        errorLine1="        android:hint=&quot;Note&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/edit_note.xml"
+            line="40"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Title&quot;, should use `@string` resource"
+        errorLine1="        android:text=&quot;Title&quot; />"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fancy_dialog.xml"
+            line="16"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Message&quot;, should use `@string` resource"
+        errorLine1="        android:text=&quot;Message&quot; />"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fancy_dialog.xml"
+            line="24"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;OK&quot;, should use `@string` resource"
+        errorLine1="            android:text=&quot;OK&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fancy_dialog.xml"
+            line="37"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Cancel&quot;, should use `@string` resource"
+        errorLine1="            android:text=&quot;Cancel&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fancy_dialog.xml"
+            line="47"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;search&quot;, should use `@string` resource"
+        errorLine1="        android:title=&quot;search&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/menu_main.xml"
+            line="9"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;sort&quot;, should use `@string` resource"
+        errorLine1="        android:title=&quot;sort&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/menu_main.xml"
+            line="17"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Save&quot;, should use `@string` resource"
+        errorLine1="        android:title=&quot;Save&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/menu_main.xml"
+            line="24"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Delete&quot;, should use `@string` resource"
+        errorLine1="        android:title=&quot;Delete&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/menu_main.xml"
+            line="31"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Item&quot;, should use `@string` resource"
+        errorLine1="        android:title=&quot;Item&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/menu_main.xml"
+            line="37"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Sort&quot;, should use `@string` resource"
+        errorLine1="                android:title=&quot;Sort&quot;>"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/menu_main.xml"
+            line="44"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Title&quot;, should use `@string` resource"
+        errorLine1="                        android:title=&quot;Title&quot; />"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/menu_main.xml"
+            line="50"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Note&quot;, should use `@string` resource"
+        errorLine1="                        android:title=&quot;Note&quot; />"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/menu_main.xml"
+            line="53"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Date&quot;, should use `@string` resource"
+        errorLine1="                        android:title=&quot;Date&quot; />"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/menu_main.xml"
+            line="56"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;User&quot;, should use `@string` resource"
+        errorLine1="                android:title=&quot;User&quot; />"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/menu_main.xml"
+            line="64"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Logout&quot;, should use `@string` resource"
+        errorLine1="                android:title=&quot;Logout&quot; />"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/menu_main.xml"
+            line="67"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Backup&quot;, should use `@string` resource"
+        errorLine1="        android:title=&quot;Backup&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/nav_items.xml"
+            line="6"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Restore&quot;, should use `@string` resource"
+        errorLine1="        android:title=&quot;Restore&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/nav_items.xml"
+            line="11"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Share&quot;, should use `@string` resource"
+        errorLine1="        android:title=&quot;Share&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/nav_items.xml"
+            line="16"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;About&quot;, should use `@string` resource"
+        errorLine1="        android:title=&quot;About&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/nav_items.xml"
+            line="21"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Please Wait...&quot;, should use `@string` resource"
+        errorLine1="        android:text=&quot;Please Wait...&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/progress_bar.xml"
+            line="32"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Note Title&quot;, should use `@string` resource"
+        errorLine1="        android:text=&quot;Note Title&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/restore_item_note.xml"
+            line="48"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Note&quot;, should use `@string` resource"
+        errorLine1="        android:text=&quot;Note&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/restore_item_note.xml"
+            line="69"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;TextView&quot;, should use `@string` resource"
+        errorLine1="                android:text=&quot;TextView&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/rv_list.xml"
+            line="48"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;TextView&quot;, should use `@string` resource"
+        errorLine1="                android:text=&quot;TextView&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/rv_list.xml"
+            line="68"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;TextView&quot;, should use `@string` resource"
+        errorLine1="                android:text=&quot;TextView&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/rv_list.xml"
+            line="88"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;TextView&quot;, should use `@string` resource"
+        errorLine1="                android:text=&quot;TextView&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/rv_list.xml"
+            line="111"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;textView&quot;, should use `@string` resource"
+        errorLine1="        android:text=&quot;textView&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/snackbar_custom.xml"
+            line="22"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider replacing `android:layout_marginRight` with `android:layout_marginEnd=&quot;10dp&quot;` to better support right-to-left layouts"
+        errorLine1="            android:layout_marginRight=&quot;10dp&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fancy_dialog.xml"
+            line="38"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`start`&quot; instead of &quot;`left`&quot; to ensure correct behavior in right-to-left locales"
+        errorLine1="        android:gravity=&quot;left&quot;"
+        errorLine2="                         ~~~~">
+        <location
+            file="src/main/res/layout/restore_item_note.xml"
+            line="51"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`start`&quot; instead of &quot;`left`&quot; to ensure correct behavior in right-to-left locales"
+        errorLine1="        android:gravity=&quot;left&quot;"
+        errorLine2="                         ~~~~">
+        <location
+            file="src/main/res/layout/restore_item_note.xml"
+            line="72"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`start`&quot; instead of &quot;`left`&quot; to ensure correct behavior in right-to-left locales"
+        errorLine1="                android:gravity=&quot;left&quot;"
+        errorLine2="                                 ~~~~">
+        <location
+            file="src/main/res/layout/rv_list.xml"
+            line="43"
+            column="34"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`start`&quot; instead of &quot;`left`&quot; to ensure correct behavior in right-to-left locales"
+        errorLine1="                android:gravity=&quot;left&quot;"
+        errorLine2="                                 ~~~~">
+        <location
+            file="src/main/res/layout/rv_list.xml"
+            line="63"
+            column="34"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`start`&quot; instead of &quot;`left`&quot; to ensure correct behavior in right-to-left locales"
+        errorLine1="                android:gravity=&quot;left&quot;"
+        errorLine2="                                 ~~~~">
+        <location
+            file="src/main/res/layout/rv_list.xml"
+            line="85"
+            column="34"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`end`&quot; instead of &quot;`right`&quot; to ensure correct behavior in right-to-left locales"
+        errorLine1="                android:gravity=&quot;right&quot;"
+        errorLine2="                                 ~~~~~">
+        <location
+            file="src/main/res/layout/rv_list.xml"
+            line="105"
+            column="34"/>
+    </issue>
+
+</issues>

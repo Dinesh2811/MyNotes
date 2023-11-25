@@ -409,6 +409,7 @@
     </style>
 
 
+
     <style name="Theme.Dark" parent="Theme.Material3.Dark.NoActionBar">
         <item name="colorPrimary">@color/Primary80</item>
         <item name="colorOnPrimary">@color/Primary20</item>

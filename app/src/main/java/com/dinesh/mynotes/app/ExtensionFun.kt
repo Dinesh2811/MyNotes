@@ -1,10 +1,12 @@
 package com.dinesh.mynotes.app
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.util.TypedValue
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 
+@SuppressLint("SuspiciousIndentation")
 fun AppCompatActivity.showSnackbar(message: String, duration: Int = Snackbar.LENGTH_INDEFINITE){
     val backgroundColorTypedValue = TypedValue()
     theme.resolveAttribute(com.google.android.material.R.attr.colorSurfaceInverse, backgroundColorTypedValue, true)
@@ -39,13 +41,13 @@ fun AppCompatActivity.showErrorSnackbar(message: String, duration: Int = Snackba
 
     val textColorTypedValue = TypedValue()
     theme.resolveAttribute(com.google.android.material.R.attr.colorOnSurfaceInverse, textColorTypedValue, true)
-    val textColor = textColorTypedValue.data
+    val textErrorColor = textColorTypedValue.data
 
         FancySnackbar()
             .make(findViewById(android.R.id.content), message, duration)
             .setBackgroundColor(backgroundColor)
             .setActionTextColor(actionTextColor)
-            .setTextColor(textColor)
+            .setTextColor(textErrorColor)
             .setAction("Dismiss") { }
             .show()
 }

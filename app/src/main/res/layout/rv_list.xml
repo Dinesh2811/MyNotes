@@ -10,16 +10,18 @@
         android:id="@+id/rvCardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:backgroundTint="@color/white"
         app:cardCornerRadius="8dp"
-        app:cardElevation="4dp"
         app:cardUseCompatPadding="true"
-        android:backgroundTint="?attr/colorOnPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-<!--        colorOnPrimarySurface-->
-<!--        colorPrimaryContainer-->
+        <!--        android:backgroundTint="?attr/colorOnPrimary"-->
+
+
+        <!--        colorOnPrimarySurface-->
+        <!--        colorPrimaryContainer-->
 
         <!--        colorOnPrimary-->
         <!--        colorPrimaryContainer-->
@@ -30,7 +32,7 @@
             android:id="@+id/rvConstraintLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="0dp">
+            android:padding="4dp">
 
 
             <TextView
@@ -71,7 +73,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/rvTitle" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/rvDateCreated"
                 style="@style/style_TextView"
                 android:layout_width="wrap_content"
@@ -81,13 +82,14 @@
                 android:layout_marginEnd="8dp"
                 android:elevation="100dp"
                 android:ellipsize="marquee"
-                android:marqueeRepeatLimit="marquee_forever"
                 android:gravity="left"
+                android:marqueeRepeatLimit="marquee_forever"
                 android:maxLines="5"
                 android:padding="2dp"
                 android:text="TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textSize="10sp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toStartOf="@+id/rvDateModified"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"

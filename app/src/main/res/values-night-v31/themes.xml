@@ -46,4 +46,53 @@
 
         </style>
 
+        <style name="Theme.OldTheme" parent="Theme.Material3.DynamicColors.Dark">
+                <item name="colorPrimary">@color/material_dynamic_primary100</item>
+                <item name="colorOnPrimary">@color/material_dynamic_primary0</item>
+                <item name="colorPrimaryContainer">@color/material_dynamic_primary10</item>
+                <item name="colorOnPrimaryContainer">@color/material_dynamic_primary100</item>
+                <item name="colorPrimaryInverse">@color/material_dynamic_primary0</item>
+
+                <item name="colorSecondary">@color/material_dynamic_secondary100</item>
+                <item name="colorOnSecondary">@color/material_dynamic_secondary0</item>
+                <item name="colorSecondaryContainer">@color/material_dynamic_secondary10</item>
+                <item name="colorOnSecondaryContainer">@color/material_dynamic_secondary100</item>
+
+                <item name="colorTertiary">@color/material_dynamic_tertiary100</item>
+                <item name="colorOnTertiary">@color/material_dynamic_tertiary0</item>
+                <item name="colorTertiaryContainer">@color/material_dynamic_tertiary10</item>
+                <item name="colorOnTertiaryContainer">@color/material_dynamic_tertiary100</item>
+
+                <item name="colorError">@color/Error80</item>
+                <item name="colorOnError">@color/Error20</item>
+                <item name="colorErrorContainer">@color/Error30</item>
+                <item name="colorOnErrorContainer">@color/Error90</item>
+
+                <item name="android:colorBackground">@color/material_dynamic_neutral0</item>
+                <item name="colorOnBackground">@color/material_dynamic_neutral100</item>
+                <item name="colorSurface">@color/material_dynamic_neutral_variant0</item>
+                <item name="colorOnSurface">@color/material_dynamic_neutral_variant100</item>
+                <item name="colorSurfaceInverse">@color/material_dynamic_neutral100</item>
+                <item name="colorOnSurfaceInverse">@color/material_dynamic_neutral0</item>
+                <item name="colorSurfaceVariant">@color/material_dynamic_neutral_variant0</item>
+                <item name="colorOnSurfaceVariant">@color/material_dynamic_neutral_variant100</item>
+                <item name="colorOutline">@color/material_dynamic_neutral_variant100</item>
+
+                <item name="android:navigationBarColor">@android:color/transparent</item>
+                <item name="android:statusBarColor">@android:color/transparent</item>
+                <item name="android:windowLightStatusBar">false</item>
+                <item name="windowActionBar">false</item>
+                <item name="windowNoTitle">true</item>
+
+                <item name="backgroundColor">@color/material_dynamic_neutral0</item>
+
+                <!--        Toolbar & Multi Select Rv         -->
+                <item name="actionModeBackground">?attr/colorOnPrimary</item>
+                <item name="homeAsUpIndicator">@drawable/ic_baseline_arrow_back_24</item>
+                <item name="actionModeCloseDrawable">@drawable/ic_baseline_close_24</item>
+                <item name="windowActionBarOverlay">true</item>
+                <item name="windowActionModeOverlay">true</item>
+
+        </style>
+
 </resources>

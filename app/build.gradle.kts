@@ -49,6 +49,25 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+//    lint {
+//        //  https://developer.android.com/studio/write/lint#snapshot
+//        baseline = file("lint-baseline.xml")
+//
+//        disable += "TypographyFractions" + "TypographyQuotes"
+//        enable += "RtlHardcoded" + "RtlCompat" + "RtlEnabled"
+//        checkOnly += "NewApi" + "InlinedApi"
+//        // If set to true, turns off analysis progress reporting by lint.
+//        quiet = true
+//        // If set to true (default), stops the build if errors are found.
+//        abortOnError = false
+//        // If set to true, lint only reports errors.
+//        ignoreWarnings = true
+//        // If set to true, lint also checks all dependencies as part of its analysis.
+//        // Recommended for projects consisting of an app with library dependencies.
+//        checkDependencies = true
+//    }
+
 }
 
 dependencies {
