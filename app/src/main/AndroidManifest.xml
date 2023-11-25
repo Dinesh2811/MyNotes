@@ -22,7 +22,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_app_icon_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.OldBlackTheme"
+        android:theme="@style/Theme.OldTheme"
         tools:targetApi="34">
         <activity
             android:name=".rv.RvMain"
