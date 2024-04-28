@@ -7,13 +7,13 @@ plugins {
 
 android {
     namespace = "com.dinesh.mynotes"
-    compileSdk = 35
-    compileSdkPreview = "VanillaIceCream"
+    compileSdk = 34
+//    compileSdkPreview = "VanillaIceCream"
 
     defaultConfig {
         applicationId = "com.dinesh.mynotes"
         minSdk = 26
-        targetSdk = 35
+        targetSdk = 34
         versionCode = 14
         versionName = "2.0"
 
