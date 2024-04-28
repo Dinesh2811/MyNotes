@@ -48,12 +48,12 @@ android {
     }
     buildFeatures {
         buildConfig = true
-        compose = true
+//        compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
-//        kotlinCompilerExtensionVersion = "1.5.12"
-    }
+//    composeOptions {
+//        kotlinCompilerExtensionVersion = "1.5.8"
+////        kotlinCompilerExtensionVersion = "1.5.12"
+//    }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -77,29 +77,28 @@ dependencies {
     implementation("com.journeyapps:zxing-android-embedded:4.3.0")    // QR-Code
 
 
-    implementation("androidx.core:core-ktx:1.13.0")
-    implementation("androidx.activity:activity-compose:1.9.0")
+//    implementation("androidx.core:core-ktx:1.13.0")
+//    implementation("androidx.activity:activity-compose:1.9.0")
+//    implementation("androidx.compose.material3:material3:1.2.1")
 
-    implementation("androidx.compose.material3:material3:1.2.1")
-
-    val composeVersion = "1.6.1"
-//    val composeVersion = "1.7.0-alpha07"
-    implementation(platform("androidx.compose:compose-bom:2024.04.01"))
-    implementation("androidx.compose.ui:ui:$composeVersion")
-    implementation("androidx.compose.ui:ui-graphics:$composeVersion")
-    implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
-    implementation("androidx.compose.foundation:foundation:$composeVersion")
-    implementation("androidx.compose.ui:ui-geometry:$composeVersion")
-    implementation("androidx.compose.foundation:foundation-layout:$composeVersion")
-    implementation("androidx.compose.runtime:runtime-livedata:$composeVersion")
-    implementation("androidx.compose.animation:animation-core:$composeVersion")
-    implementation("androidx.compose.animation:animation:$composeVersion")
-    implementation("androidx.compose.ui:ui-text:$composeVersion")
-    implementation("androidx.compose.ui:ui-util:$composeVersion")
-    implementation("androidx.compose.ui:ui-viewbinding:$composeVersion")
-    implementation("androidx.compose.material:material:$composeVersion")
-    implementation("androidx.compose.material:material-icons-core:$composeVersion")
-    implementation("androidx.compose.material:material-icons-extended:$composeVersion")
+//    val composeVersion = "1.6.1"
+////    val composeVersion = "1.7.0-alpha07"
+//    implementation(platform("androidx.compose:compose-bom:2024.04.01"))
+//    implementation("androidx.compose.ui:ui:$composeVersion")
+//    implementation("androidx.compose.ui:ui-graphics:$composeVersion")
+//    implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
+//    implementation("androidx.compose.foundation:foundation:$composeVersion")
+//    implementation("androidx.compose.ui:ui-geometry:$composeVersion")
+//    implementation("androidx.compose.foundation:foundation-layout:$composeVersion")
+//    implementation("androidx.compose.runtime:runtime-livedata:$composeVersion")
+//    implementation("androidx.compose.animation:animation-core:$composeVersion")
+//    implementation("androidx.compose.animation:animation:$composeVersion")
+//    implementation("androidx.compose.ui:ui-text:$composeVersion")
+//    implementation("androidx.compose.ui:ui-util:$composeVersion")
+//    implementation("androidx.compose.ui:ui-viewbinding:$composeVersion")
+//    implementation("androidx.compose.material:material:$composeVersion")
+//    implementation("androidx.compose.material:material-icons-core:$composeVersion")
+//    implementation("androidx.compose.material:material-icons-extended:$composeVersion")
 
 //    //  Hilt
 //    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
