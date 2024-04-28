@@ -14,7 +14,7 @@ android {
         applicationId = "com.dinesh.mynotes"
         minSdk = 26
         targetSdk = 35
-        versionCode = 13
+        versionCode = 14
         versionName = "2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -26,7 +26,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = true
-            isShrinkResources = true
+            isShrinkResources = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
         debug {
@@ -51,8 +51,7 @@ android {
 //        compose = true
     }
 //    composeOptions {
-//        kotlinCompilerExtensionVersion = "1.5.8"
-////        kotlinCompilerExtensionVersion = "1.5.12"
+//        kotlinCompilerExtensionVersion = "1.5.12"
 //    }
     packaging {
         resources {
