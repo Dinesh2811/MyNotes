@@ -31,7 +31,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:allowUndo="true"
-        android:autoLink="all"
+        android:autoLink="none"
         android:autoSizeTextType="uniform"
         android:background="@color/white"
         android:contextClickable="true"

@@ -7,14 +7,14 @@ plugins {
 
 android {
     namespace = "com.dinesh.mynotes"
-    compileSdk = 34
+    compileSdk = 35
 //    compileSdkPreview = "VanillaIceCream"
 
     defaultConfig {
         applicationId = "com.dinesh.mynotes"
         minSdk = 26
-        targetSdk = 34
-        versionCode = 14
+        targetSdk = 35
+        versionCode = 15
         versionName = "2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -62,17 +62,17 @@ android {
 }
 
 dependencies {
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
+    implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation("com.google.android.material:material:1.12.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.1")
 
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
 
     implementation("androidx.room:room-runtime:2.6.1")
     ksp("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
 
-    implementation("com.google.code.gson:gson:2.10.1")    // Used to convert Java Object into JSON representation
+    implementation("com.google.code.gson:gson:2.12.1")    // Used to convert Java Object into JSON representation
     implementation("com.journeyapps:zxing-android-embedded:4.3.0")    // QR-Code
 
 
