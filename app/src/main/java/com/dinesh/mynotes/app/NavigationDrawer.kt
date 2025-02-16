@@ -8,6 +8,9 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.drawerlayout.widget.DrawerLayout
 import com.dinesh.mynotes.R
 import com.google.android.material.navigation.NavigationView
@@ -44,11 +47,22 @@ open class NavigationDrawer : ToolbarMain(), NavigationView.OnNavigationItemSele
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24)
         navigationView.setNavigationItemSelectedListener(this)
 
+        edgeToEdgeDisplay()
+
         val fragmentTransaction = supportFragmentManager.beginTransaction()
 
         //        val fragmentOne = HomeFragment()
         //        fragmentTransaction.replace(R.id.frameLayoutInflateAdapter, fragmentOne)
         //        fragmentTransaction.commit()
+    }
+
+    private fun edgeToEdgeDisplay() {
+        // Apply window insets to the NavigationView (for the status bar)
+        ViewCompat.setOnApplyWindowInsetsListener(navigationView) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.updatePadding(top = insets.top)
+            WindowInsetsCompat.CONSUMED
+        }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

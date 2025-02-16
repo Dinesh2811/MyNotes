@@ -17,6 +17,10 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.core.widget.addTextChangedListener
 import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.LiveData
@@ -82,6 +86,8 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Enable edge-to-edge *before* setContentView
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         initializeRecyclerView()
 
         notesLiveList.observe(this) {
@@ -135,6 +141,7 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
 
         toolbarSearchView.visibility = View.GONE
         tvToolbar.visibility = View.VISIBLE
+        edgeToEdgeDisplay()
 
         notesViewModel = ViewModelProvider(this)[NotesViewModel::class.java]
         notesLiveList = notesViewModel.getAllNotes()
@@ -151,6 +158,31 @@ class RvMain : NavigationDrawer(), RvInterface, ActionMode.Callback {
         callback.setDragEnable(false)
 
         floatingActionButton.setOnClickListener(addNoteClickListener)
+    }
+
+    private fun edgeToEdgeDisplay() {
+        // Apply window insets
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.appBarLayout)) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            // Apply top inset to the AppBarLayout (status bar)
+            view.updatePadding(top = insets.top)
+            WindowInsetsCompat.CONSUMED
+        }
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.parent_layout)) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.updatePadding(bottom = insets.bottom)
+            WindowInsetsCompat.CONSUMED
+        }
+
+        ViewCompat.setOnApplyWindowInsetsListener(floatingActionButton) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val params = view.layoutParams as ViewGroup.MarginLayoutParams
+            params.bottomMargin = insets.bottom
+            //            + resources.getDimensionPixelSize(R.dimen.fab_margin) // Add default margin
+            view.layoutParams = params
+            WindowInsetsCompat.CONSUMED
+        }
     }
 
     override fun onItemClick(view: View?, position: Int) {
