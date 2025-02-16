@@ -9,6 +9,10 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -29,6 +33,8 @@ class EditNote : NavigationDrawer() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Enable edge-to-edge *before* setContentView
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         initializeRecyclerView()
         retrieveNote()
 
@@ -80,7 +86,29 @@ class EditNote : NavigationDrawer() {
         etTitle = v.findViewById(R.id.etTitle)
         etNote = v.findViewById(R.id.etNote)
 
+        edgeToEdgeDisplay(parentLayout)
+
         notesViewModel = ViewModelProvider(this)[NotesViewModel::class.java]
+    }
+
+    private fun edgeToEdgeDisplay(parentLayout: LinearLayout) {
+        // Apply insets to AppBarLayout (status bar)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.appBarLayout)) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.updatePadding(top = insets.top)
+            WindowInsetsCompat.CONSUMED
+        }
+
+        // Apply insets to parentLayout (navigation bar AND keyboard)
+        ViewCompat.setOnApplyWindowInsetsListener(parentLayout) { view, windowInsets ->
+            val navigationInsets = windowInsets.getInsets(WindowInsetsCompat.Type.navigationBars())
+            val imeInsets = windowInsets.getInsets(WindowInsetsCompat.Type.ime())
+
+            // Use the MAX of the navigation bar and keyboard insets
+            val bottomInset = maxOf(navigationInsets.bottom, imeInsets.bottom)
+            view.updatePadding(bottom = bottomInset)
+            WindowInsetsCompat.CONSUMED
+        }
     }
 
     private fun retrieveNote() {
