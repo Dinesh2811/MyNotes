@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:text="OK"
             android:layout_marginRight="10dp"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:padding="10dp"
             android:textSize="14sp"
             android:gravity="center" />
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cancel"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:padding="10dp"
             android:textSize="14sp"
             android:gravity="center" />

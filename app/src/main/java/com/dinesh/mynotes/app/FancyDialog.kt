@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.dinesh.mynotes.R
 
 class FancyDialog(context: Context) : Dialog(context) {
@@ -56,6 +57,9 @@ class FancyDialog(context: Context) : Dialog(context) {
 
         titleView.text = title
         messageView.text = message
+
+//        positiveButton.setTextColor(ContextCompat.getColor(positiveButton.context, R.color.white))
+//        negativeButton.setTextColor(ContextCompat.getColor(negativeButton.context, R.color.white))
 
         if (positiveButtonText != null) {
             positiveButton.text = positiveButtonText
